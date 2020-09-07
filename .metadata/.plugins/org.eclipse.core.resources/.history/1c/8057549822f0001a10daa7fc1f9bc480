@@ -1,0 +1,5 @@
+package app.matching.controller.main;
+
+public class MainController {
+
+}

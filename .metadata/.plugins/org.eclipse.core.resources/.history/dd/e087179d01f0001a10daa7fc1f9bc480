@@ -1,0 +1,5 @@
+package app.Interceptor;
+
+public class CertificationInterceptor {
+
+}
