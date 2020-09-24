@@ -8,7 +8,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import app.admin.matching.command.MemberAddCommand;
 import app.admin.matching.command.MemberCommand;
+import app.admin.matching.service.MemberAddWriteService;
 import app.admin.matching.service.MemberJoinService;
 
 @Controller
@@ -16,6 +18,8 @@ import app.admin.matching.service.MemberJoinService;
 public class MatchingAdminMemberController {
 	@Autowired
 	MemberJoinService memberJoinService;
+	@Autowired
+	MemberAddWriteService memberAddWriteService;
 	
 	@RequestMapping("memberList")
 	public String memberList() {
@@ -39,6 +43,19 @@ public class MatchingAdminMemberController {
 		Integer i=memberJoinService.insertMember(memberCommand,model);
 		if (i==null) {
 			return "thymeleaf/admin/matching/member/member_write";
+		}
+		return "redirect:/";
+		
+	}
+	@RequestMapping("memberAdd" )
+	public String memberAdd() {
+		return "thymeleaf/admin/matching/member/member_add_write";
+	}
+	@RequestMapping(value = "memberAddWrite", method = RequestMethod.POST)
+	public String memberAddWrite(MemberAddCommand memberAddCommand) throws Exception {
+		Integer i=memberAddWriteService.insertMemberAdd(memberAddCommand);
+		if (i==null) {
+			return "thymeleaf/admin/matching/member/member_add_write";
 		}
 		return "redirect:/";
 		
