@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="app.admin.matching.mapper.MemberMapper">
+	<sql id="column">
+		MEM_ID, MEM_NAME, MEM_BIRTH, MEM_ADDR, MEM_TEL, 
+		MEM_EMAIL, MEM_PASS, MEM_GENDER,MEM_REGIST, MEM_JOINOK
+	</sql>
+	<insert id="insertMember" parameterType="app.admin.matching.domain.MemberDTO">
+		insert into member (<include refid="column"/>)
+		values(#{memId},#{memName},#{memBirth},#{memAddr},
+				#{memTel},#{memEmail},#{memPass},#{memGender},sysdate, null)
+	</insert>
+	
+	
+	</mapper>
