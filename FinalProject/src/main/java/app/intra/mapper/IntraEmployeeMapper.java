@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import app.domain.StartEndPageDTO;
+import app.domain.UserIdChangeDTO;
+import app.domain.UserPwChangeDTO;
 import app.intra.domain.IntraDepartmentDTO;
 import app.intra.domain.IntraEmployeeDTO;
 
@@ -17,5 +19,7 @@ public interface IntraEmployeeMapper {
 	public List<IntraEmployeeDTO> selectAllEmployee(StartEndPageDTO dto) throws Exception;
 	public int selectCountEmployee() throws Exception;
 	public Integer updateEmployee(IntraEmployeeDTO dto) throws Exception;
+	public void changePw(UserPwChangeDTO dto) throws Exception;
+	public String findId(UserIdChangeDTO dto) throws Exception;
 	
 }

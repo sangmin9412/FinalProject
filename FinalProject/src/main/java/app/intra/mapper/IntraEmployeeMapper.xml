@@ -23,8 +23,8 @@
 	</sql>
 	
 	<insert id="insertEmployee" parameterType="app.intra.domain.IntraEmployeeDTO">
-		insert into employee(<include refid="baseColumns" />)
-		values (
+		INSERT INTO employee(<include refid="baseColumns" />)
+		VALUES (
 			#{empId},
 			#{depNo},
 			#{empPass},
@@ -66,7 +66,7 @@
 				ORDER BY create_at DESC
 			)
 		)
-		where rn between #{startPage} and #{endPage}
+		WHERE rn between #{startPage} and #{endPage}
 	</select>
 	
 	<resultMap type="app.intra.domain.IntraDepartmentDTO" id="departmentMap">
@@ -75,17 +75,25 @@
 	</resultMap>
 	
 	<select id="selectAllDepartment" resultMap="departmentMap">
-		select DEP_NO, DEP_NAME
-		from department
+		SELECT DEP_NO, DEP_NAME
+		FROM department
 	</select>
 	
 	<select id="selectCountEmployee" resultType="int">
-		select count(*)
-		from employee
+		SELECT count(*)
+		FROM employee
+	</select>
+	
+	<select id="findId" parameterType="app.domain.UserIdChangeDTO" resultType="string">
+		SELECT emp_id
+		FROM employee
+		WHERE emp_name = #{userName}
+			AND emp_email = #{userEmail}
+			AND emp_tel = #{userTel}
 	</select>
 	
 	<update id="updateEmployee" parameterType="app.intra.domain.IntraEmployeeDTO">
-		update employee
+		UPDATE employee
 		<trim prefix="set" suffixOverrides=",">
 			<if test="depNo != null">
 				dep_no = #{depNo},
@@ -103,6 +111,14 @@
 				emp_duty = #{empDuty},
 			</if>
 		</trim>
-		where emp_id = #{empId}
+		WHERE emp_id = #{empId}
+	</update>
+	
+	<update id="changePw" parameterType="app.domain.UserPwChangeDTO">
+		UPDATE employee
+		SET emp_pass = #{newPw}
+		WHERE emp_id = #{userId}
+			AND emp_name = #{userName}
+			AND emp_email = #{userEmail}
 	</update>
 </mapper>
