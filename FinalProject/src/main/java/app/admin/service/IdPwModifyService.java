@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import app.admin.intra.domain.IntraEmployeeDTO;
+import app.admin.intra.mapper.IntraEmployeeMapper;
 import app.command.AuthInfo;
 import app.command.ChangeIdCommand;
 import app.command.ChangePwCommand;
 import app.domain.StartEndPageDTO;
 import app.domain.UserIdChangeDTO;
 import app.domain.UserPwChangeDTO;
-import app.intra.domain.IntraEmployeeDTO;
-import app.intra.mapper.IntraEmployeeMapper;
 
 @Component
 @Service
