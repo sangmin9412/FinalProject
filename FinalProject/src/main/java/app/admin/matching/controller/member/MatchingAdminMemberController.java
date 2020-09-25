@@ -1,5 +1,7 @@
 package app.admin.matching.controller.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,50 +22,59 @@ public class MatchingAdminMemberController {
 	MemberJoinService memberJoinService;
 	@Autowired
 	MemberAddWriteService memberAddWriteService;
-	
+
 	@RequestMapping("memberList")
 	public String memberList() {
 		return "thymeleaf/admin/matching/member/member_list";
 	}
+
 	@RequestMapping("memberView")
 	public String memberView() {
 		return "thymeleaf/admin/matching/member/member_view";
 	}
+
 	@RequestMapping("memberWrite")
-	public String memberWrite() {
+	public String memberWrite(MemberCommand memberCommand) {
 		return "thymeleaf/admin/matching/member/member_write";
 	}
+
 	@RequestMapping(value = "memberJoin", method = RequestMethod.POST)
-	public String memberJoin(@Validated MemberCommand memberCommand,
-							BindingResult result, Model model) throws Exception {
-		/*
-		 * if (result.hasErrors()) { System.out.println("에러"); return
-		 * "thymeleaf/admin/matching/member/member_write"; }
-		 */
-		Integer i=memberJoinService.insertMember(memberCommand,model);
-		if (i==null) {
+	public String memberJoin(@Validated MemberCommand memberCommand, BindingResult result, Model model)
+			throws Exception {
+
+		if (result.hasErrors()) {
+			System.out.println("에러");
+			return "thymeleaf/admin/matching/member/member_write";
+		}
+
+		Integer i = memberJoinService.insertMember(memberCommand, model);
+		if (i == null) {
 			return "thymeleaf/admin/matching/member/member_write";
 		}
 		return "redirect:/";
-		
+
 	}
-	@RequestMapping("memberAdd" )
+
+	@RequestMapping("memberAdd")
 	public String memberAdd() {
 		return "thymeleaf/admin/matching/member/member_add_write";
 	}
+
 	@RequestMapping(value = "memberAddWrite", method = RequestMethod.POST)
-	public String memberAddWrite(MemberAddCommand memberAddCommand) throws Exception {
-		Integer i=memberAddWriteService.insertMemberAdd(memberAddCommand);
-		if (i==null) {
+	public String memberAddWrite(MemberAddCommand memberAddCommand, HttpSession session) throws Exception {
+		Integer i = memberAddWriteService.insertMemberAdd(memberAddCommand, session);
+		if (i == null) {
 			return "thymeleaf/admin/matching/member/member_add_write";
 		}
 		return "redirect:/";
-		
+
 	}
+
 	@RequestMapping("memberModify")
 	public String memberModify() {
 		return "thymeleaf/admin/matching/member/member_modify";
 	}
+
 	@RequestMapping("memberDelete")
 	public String memberDelete() {
 		return "thymeleaf/admin/matching/member/member_delete";

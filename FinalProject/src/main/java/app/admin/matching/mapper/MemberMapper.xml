@@ -6,6 +6,11 @@
 		MEM_ID, MEM_NAME, MEM_BIRTH, MEM_ADDR, MEM_TEL, 
 		MEM_EMAIL, MEM_PASS, MEM_GENDER,MEM_REGIST, MEM_JOINOK
 	</sql>
+	<sql id="col_memadd">
+		MEM_ID, MEM_CAREER, MEM_JOB, MEM_SALARY, MEM_HGT,
+		MEM_WGT, MEM_BLOOD, MEM_HOBBY, MEM_RLG, MEM_IMAGE, 
+		MEM_EXP, MEM_MAT
+	</sql>
 	<insert id="insertMember" parameterType="app.admin.matching.domain.MemberDTO">
 		insert into member (<include refid="column"/>)
 		values(#{memId},#{memName},#{memBirth},#{memAddr},
@@ -13,4 +18,9 @@
 	</insert>
 	
 	
+	<insert id="insertMemberAdd" parameterType="app.admin.matching.domain.MemberAddDTO">
+		insert into memberadd (<include refid="col_memadd"/>)
+		values(#{memId}, #{memCareer},#{memJob},#{memSalary},#{memHgt},
+				#{memWgt},#{memBlood},#{memHobby},#{memRlg},null,null,0)
+	</insert>
 	</mapper>

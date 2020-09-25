@@ -1,5 +1,7 @@
 package app.admin.matching.command;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -10,8 +12,8 @@ public class MemberAddCommand {
 	String memHgt;
 	String memWgt;
 	String memBlood;
-	String memHobby;
 	String memRlg;
 	String memImage;
+	List memHobby;
 
 }
