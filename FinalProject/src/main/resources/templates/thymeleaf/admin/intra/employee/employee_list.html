@@ -38,8 +38,9 @@
 									<colgroup>
 										<col style="width:80px;" />
 										<col />
-										<col />
-										<col />
+										<col style="width:200px;"/>
+										<col style="width:100px;" />
+										<col style="width:150px;" />
 									</colgroup>
 									<thead>
 										<tr>
@@ -51,15 +52,22 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="list ,i: ${employeeList}">
-											<th>[[${i.count}]]</th>
-											<td>
-												<a th:href="@{employeeView/{id}(id=${list.empId})}">[[${list.empId}]]</a>
-											</td>
-											<td>[[${list.empName}]]</td>
-											<td>[[${list.department.depName}]]</td>
-											<td>[[${list.empTel}]]</td>
-										</tr>
+										<th:block th:if="${employeeList != null}">
+											<tr th:each="list ,i: ${employeeList}">
+												<th>[[${i.count}]]</th>
+												<td>
+													<a th:href="@{employeeView/{id}(id=${list.empId})}">[[${list.empId}]]</a>
+												</td>
+												<td>[[${list.empName}]]</td>
+												<td>[[${list.department.depName}]]</td>
+												<td>[[${list.empTel}]]</td>
+											</tr>
+										</th:block>
+										<th:block th:if="${employeeList == null}">
+											<tr>
+												<td colspan="9" class="text-center">등록된 직원이 없습니다.</td>
+											</tr>
+										</th:block>
 									</tbody>
 								</table>
 							</div>

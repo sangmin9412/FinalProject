@@ -5,7 +5,6 @@
 <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
 <fullyQualifiedTypeName name="org.springframework.util.ObjectUtils"/>
 <fullyQualifiedTypeName name="app.Interceptor.CertificationInterceptor"/>
-<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
 <fullyQualifiedTypeName name="javax.validation.constraints.Email"/>
 <fullyQualifiedTypeName name="app.intra.command.IntraEmployeeCommand"/>
@@ -22,7 +21,6 @@
 <fullyQualifiedTypeName name="app.intra.service.employee.IntraEmployeeDetailService"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
 <fullyQualifiedTypeName name="app.intra.service.employee.IntraEmployeeModifyService"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
 <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
 <fullyQualifiedTypeName name="javax.validation.constraints.Size"/>
@@ -54,4 +52,6 @@
 <fullyQualifiedTypeName name="app.domain.UserIdChangeDTO"/>
 <fullyQualifiedTypeName name="org.springframework.validation.annotation.Validated"/>
 <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 </qualifiedTypeNameHistroy>
