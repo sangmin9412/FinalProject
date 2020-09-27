@@ -27,7 +27,7 @@ public class MemberJoinService {
 	MemberMapper memberMapper;
 	@Autowired
 	MailAction mailAction;
-	public Integer insertMember(MemberCommand memberCommand,Model model) throws Exception {
+	public Integer insertMember(MemberCommand memberCommand,Model model) {
 		if (!memberCommand.isUserPwEqualToUserPwCon()) {
 			model.addAttribute("valid_memPwCon","비밀번호가 일치하지 않습니다.");
 			return null;
@@ -53,7 +53,12 @@ public class MemberJoinService {
 		memberDTO.setMemTel(memberCommand.getMemTel());
 		System.out.println(memberDTO.getMemTel());
 		
-		result=memberMapper.insertMember(memberDTO);
+		try {
+			result=memberMapper.insertMember(memberDTO);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		if (result !=null) {
 			SmsSend ss = new SmsSend();
@@ -63,14 +68,12 @@ public class MemberJoinService {
 				
 			} catch (MessagingException e) {
 				ss.smsSend(memberDTO.getMemTel(),memberDTO.getMemName()+"님 회원가입을 환영합니다2");
-				
+				e.printStackTrace();
 			}
 		}else {
 			model.addAttribute("duplicate_memId","사용중인 아이디 입니다.");
 		}
 		return result;
-		
-		
 		
 	}
 }

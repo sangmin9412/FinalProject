@@ -24,7 +24,7 @@
 	        	<div class="card">
 	        		<div class="card-body">
 	        			<!-- Page 컨텐츠 영역 -->
-	        			<form action="memberAddWrite" method="POST" name="frm" id="frm">
+	        			<form action="memberAddWrite" method="POST" name="frm" id="frm" enctype="multipart/form-data">
 	        				
 	        				<div class="form-group row">
 	        					<label for="memCareer" class="col-sm-2 col-form-label">
@@ -161,11 +161,9 @@
 	        						프로필 사진
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="file" class="form-control" id="memImage" name="memImage">
+	        						<input type="file" class="form-control" name="memImage" multiple="multiple"/>
 	        					</div>
 	        				</div>
-	        				
-	        				
 	        				
 	        				
 	        				

@@ -1,12 +1,13 @@
 package app.admin.matching.controller.member;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,11 +40,9 @@ public class MatchingAdminMemberController {
 	}
 
 	@RequestMapping(value = "memberJoin", method = RequestMethod.POST)
-	public String memberJoin(@Validated MemberCommand memberCommand, BindingResult result, Model model)
-			throws Exception {
+	public String memberJoin(@Valid MemberCommand memberCommand, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
-			System.out.println("에러");
 			return "thymeleaf/admin/matching/member/member_write";
 		}
 
@@ -61,8 +60,8 @@ public class MatchingAdminMemberController {
 	}
 
 	@RequestMapping(value = "memberAddWrite", method = RequestMethod.POST)
-	public String memberAddWrite(MemberAddCommand memberAddCommand, HttpSession session) throws Exception {
-		Integer i = memberAddWriteService.insertMemberAdd(memberAddCommand, session);
+	public String memberAddWrite(MemberAddCommand memberAddCommand, HttpServletRequest request) throws Exception {
+		Integer i = memberAddWriteService.insertMemberAdd(memberAddCommand, request);
 		if (i == null) {
 			return "thymeleaf/admin/matching/member/member_add_write";
 		}

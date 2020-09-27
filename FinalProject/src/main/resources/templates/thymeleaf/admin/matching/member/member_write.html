@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       	layout:decorator="layout/admin/matching/default">
 <head>
+  	
+  	
+  	
   	<title>Admin</title>
 	<!-- 페이지 css -->
 	<th:block layout:fragment="css">
@@ -14,11 +17,12 @@
 		<script></script>
 	</th:block>
 	
-	
-	
-</head>
+	</head>
+
 
 <body>
+   
+   	 
     <th:block layout:fragment="content" class="content">
     	<!-- Page Heading -->
         <h1 class="h3 mb-4 text-gray-800">회원 등록</h1>
@@ -27,15 +31,15 @@
 	        	<div class="card">
 	        		<div class="card-body">
 	        			<!-- Page 컨텐츠 영역 -->
-	        			<form th:action='@{/admin/matching/member/memberJoin}' method="POST" name="frm" id="frm" th:object="${memberCommand}">
+	        			<form th:action='memberJoin' method="POST" name="frm" id="frm" th:object="${memberCommand}">
 	        				<div class="form-group row">
 	        					<label for="memId" class="col-sm-2 col-form-label">
 	        						아이디
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="memId" class="form-control" id="memId" th:field="*{memId}" autofocus="autofocus">
-	        						<span th:if="${#fields.hasErrors('memId')}" th:errors="*{memId}"></span>
+	        						<input type="text" name="memId" class="form-control" id="memId" th:field="*{memId}" autofocus="autofocus"/>
 	        						<span th:text="${duplicate_memId}"></span>
+	        						<span th:if="${#fields.hasErrors('memId')}" th:errors="*{memId}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -43,7 +47,8 @@
 	        						패스워드
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="password" name="memPass" class="form-control" id="memPass">
+	        						<input type="password" name="memPass" class="form-control" id="memPass" th:field="*{memPass}"/>
+	        						<span th:if="${#fields.hasErrors('memPass')}" th:errors="*{memPass}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -51,7 +56,9 @@
 	        						패스워드 확인
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="password" name="memPassCon" class="form-control" id="memPassCon">
+	        						<input type="password" name="memPassCon" class="form-control" id="memPassCon" th:field="*{memPassCon}"/>
+	        						 <span th:if="${#fields.hasErrors('memPassCon')}" th:errors="*{memPassCon}" ></span>
+		    							<span th:text="${valid_memPwCon}"></span> 
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -59,7 +66,8 @@
 	        						이름
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="memName" class="form-control" id="memName">
+	        						<input type="text" name="memName" class="form-control" id="memName" th:field="*{memName}">
+	        						<span th:if="${#fields.hasErrors('memName')}" th:errors="*{memName}" ></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -67,7 +75,8 @@
 	        						생년월일
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="date" name="memBirth" class="form-control" id="memBirth">
+	        						<input type="date" name="memBirth" class="form-control" id="memBirth" th:field="*{memBirth}">
+	        						<span th:if="${#fields.hasErrors('memBirth')}" th:errors="*{memBirth}" ></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -86,7 +95,8 @@
 	        						전화번호
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="memTel" class="form-control" id="memTel">
+	        						<input type="text" name="memTel" class="form-control" id="memTel" th:field="*{memTel}">
+	        						<span th:if="${#fields.hasErrors('memTel')}" th:errors="*{memTel}" ></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -94,7 +104,8 @@
 	        						이메일
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="email" name="memEmail" class="form-control" id="memEmail">
+	        						<input type="email" name="memEmail" class="form-control" id="memEmail" th:field="*{memEmail}">
+	        						<span th:if="${#fields.hasErrors('memEmail')}" th:errors="*{memEmail}" ></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -102,14 +113,15 @@
 	        						주소
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="memAddr" class="form-control" id="memAddr">
-	        					</div>
+	        						<input type="text" name="memAddr" class="form-control" id="memAddr" th:field="*{memAddr}">
+	           						<span th:if="${#fields.hasErrors('memAddr')}" th:errors="*{memAddr}" ></span>
+	           						<input type="button" onclick='openZipSearch();' value="검색"/>        					
+	           						</div>
+	        					
 	        				</div>
 	        				
 	        				
-	        				
-	        				
-	        				
+	        			        				
 	        				
 	        				
 	        				<!-- <div class="form-group row">
@@ -135,10 +147,17 @@
 	        					<button type="submit" class="btn btn-primary">등록</button>
 	        				</div>
 	        			</form>
+	        			 
 	        		</div>
 	        	</div>
         	</div>
         </div>
     </th:block>
+    
+   
+    
+    
+	
 </body>
+
 </html>

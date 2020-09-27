@@ -19,7 +19,8 @@ public class MemberAddDTO {
 	String memBlood;
 	String memHobby;
 	String memRlg;
-	String memImage;
+	String memOriginalImage;
+	String memStoreImage;
 	Timestamp memExp;
 	Long memMat;
 }
