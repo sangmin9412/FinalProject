@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko"
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head th:replace="fragments/admin/head :: headFragment">
+	<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Final Project</title>
+</head>
+<body>
+<table class="table table-bordered">
+									<colgroup>
+										<col style="width:80px;" />
+										<col />
+										<col />
+										<col />
+									</colgroup>
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>아이디</th>
+											<th>이름</th>
+											<th>전화번호</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="list , i: ${memberList}">
+											<th>[[${i.count}]]</th>
+											<td>
+												[[${list.memId}]]</td>
+											
+											<td>[[${list.memName}]]</td>
+											<td>[[${list.memTel}]]</td>
+										</tr>
+									</tbody>
+								</table>
+							<th:block th:replace="fragments/admin/includePage :: pagingFragment"></th:block> 
+</body>
+</html>

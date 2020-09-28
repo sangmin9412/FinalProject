@@ -12,23 +12,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import app.admin.matching.command.AuthInfo;
-import app.admin.matching.command.LoginCommand;
+import app.admin.matching.command.MemberLoginCommand;
 import app.admin.matching.domain.MemberDTO;
 import app.admin.matching.mapper.MemberMapper;
+import app.domain.StartEndPageDTO;
 
 @Service
 @Component
-public class LoginService {
+public class MemberLoginService {
 	@Autowired
 	MemberMapper memberMapper;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	AuthInfo authInfo=new AuthInfo();
-	public String execute(LoginCommand loginCommand,HttpSession session, HttpServletResponse response, Model model) throws Exception{
+	public String execute(MemberLoginCommand memberLoginCommand,HttpSession session, HttpServletResponse response, Model model) throws Exception{
 		String location="";
 		MemberDTO memberDTO=new MemberDTO();
-		memberDTO.setMemId(loginCommand.getMemId());
-		List<MemberDTO> list=memberMapper.selectMember(memberDTO);
+		StartEndPageDTO startEndPageDTO = new StartEndPageDTO(1L, 1L, memberLoginCommand.getUserId(), null);
+		List<MemberDTO> list=memberMapper.selectMember(startEndPageDTO);
 		System.out.println(memberDTO.getMemId());
 		if (list.size()==0) {
 			model.addAttribute("valid_mem", "존재하지 않는 계정입니다.");
@@ -36,7 +37,7 @@ public class LoginService {
 		}else {
 			memberDTO=list.get(0);
 			/* System.out.println(memberDTO.getMemPass()); */
-			if (passwordEncoder.matches(loginCommand.getMemPass(), memberDTO.getMemPass())) {
+			if (passwordEncoder.matches(memberLoginCommand.getUserPw(), memberDTO.getMemPass())) {
 				System.out.println("로그인성공");
 				authInfo.setId(memberDTO.getMemId());
 				System.out.println(authInfo.getId());

@@ -36,18 +36,23 @@
 		<result column="MEM_REGIST" jdbcType="VARCHAR" property="memRegist"/>
 	</resultMap>
 	
-	<select id="selectMember" parameterType="app.admin.matching.domain.MemberDTO" resultMap="member">
-		select <include refid="column"/>
-		from member
-		<where>
-			<if test="memId != null">
-				MEM_ID=#{memId}
-			</if>
-		</where>
-		order by MEM_REGIST desc
+	<select id="selectMember" parameterType="app.domain.StartEndPageDTO" resultMap="member">
+		select *
+		from(select rownum rn, <include refid="column"/>
+			from(select <include refid="column"/>
+				from member
+				<trim prefix="where" prefixOverrides="AND | OR">
+					<if test="userId != null">
+						MEM_ID=#{userId}
+					</if>
+				</trim>
+				order by MEM_REGIST desc))
+		where rn &gt;= #{startPage} and rn &lt;= #{endPage}
 	
 	</select>
-	
+	<select id="getMemberCount" resultType="int">
+		select count(*) from member
+	</select>
 	
 	
 	</mapper>

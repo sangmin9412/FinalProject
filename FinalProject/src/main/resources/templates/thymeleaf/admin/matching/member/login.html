@@ -33,16 +33,16 @@
 		                  <div class="text-center">
 		                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
 		                  </div>
-		                  <form th:action="@{/login}" class="user" name="frm" id="frm" method="post" th:object="${loginCommand}">
+		                  <form th:action="@{/login}" class="user" name="frm" id="frm" method="post" th:object="${memberLoginCommand}">
 		                    <div class="form-group">
-		                      <input type="text" class="form-control form-control-user" th:field="*{memId}" id="memId" aria-describedby="emailHelp" placeholder="id">
-	        					<span th:if="${#fields.hasErrors('memId')}" th:errors="*{memId}"></span>
+		                      <input type="text" class="form-control form-control-user" th:field="*{userId}" id="userId" aria-describedby="emailHelp" placeholder="id">
+	        					<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
 		                    	<span th:text="${valid_mem}"></span>
 		                    
 		                    </div>
 		                    <div class="form-group">
-		                      <input type="password" th:field="*{memPass}" class="form-control form-control-user"  id="memPass" placeholder="Password">
-		                    <span th:if="${#fields.hasErrors('memPass')}" th:errors="*{memPass}" ></span>
+		                      <input type="password" th:field="*{userPw}" class="form-control form-control-user"  id="userPw" placeholder="Password">
+		                    <span th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}" ></span>
 							<span th:text="${valid_pw}"></span>
 		                    
 		                    </div>

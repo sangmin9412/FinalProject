@@ -33,10 +33,6 @@ public class MainController {
 	public String t6() {
 		return "thymeleaf/test/utilities-other";
 	}
-	/*
-	 * @RequestMapping("/login") public String t7() { return "thymeleaf/test/login";
-	 * }
-	 */
 	
 	@RequestMapping("/register")
 	public String t8() {

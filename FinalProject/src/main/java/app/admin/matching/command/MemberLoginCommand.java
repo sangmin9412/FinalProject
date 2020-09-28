@@ -5,8 +5,8 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class LoginCommand {
+public class MemberLoginCommand {
 	@NotBlank
-	String memId;
-	String memPass;
+	String userId;
+	String userPw;
 }
