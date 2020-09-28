@@ -57,14 +57,14 @@
 									</thead>
 									<tbody>
 										<th:block th:if="${noticeList != null}">
-										<tr th:each="list ,i: ${noticeList}">
+										<tr th:each="dto ,i: ${noticeList}">
 											<th>[[${i.count}]]</th>
 											<td>
-												<a th:href="@{noticeView/{id}(id=${list.empId})}">[[${list.notSub}]]</a>
+												<a th:href="@{noticeView/{id}(id=${dto.empId})}">[[${dto.notSub}]]</a>
 											</td>
-											<td>[[${list.empId}]]</td>
-											<td>[[${list.notDate}]]</td>
-											<td>[[${list.notCount}]]</td>
+											<td>[[${dto.empId}]]</td>
+											<td>[[${dto.notDate}]]</td>
+											<td>[[${dto.notCount}]]</td>
 										</tr>
 										</th:block>
 										<th:block th:if="${noticeList == null}">
