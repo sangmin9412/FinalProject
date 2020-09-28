@@ -59,7 +59,7 @@ public class MemberAddWriteService {
 		String location="";
 		String originalTotal = "";
 		String storeTotal = "";
-		String PATH="/static/upload";
+		String PATH="/static/upload/member";
 		String filePath=request.getServletContext().getRealPath(PATH);
 		System.out.println(filePath);
 		for (MultipartFile mf : memberAddCommand.getMemImage()) {

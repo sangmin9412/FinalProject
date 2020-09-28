@@ -1,6 +1,5 @@
 package app.admin.matching.command;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

@@ -14,7 +14,36 @@
 	
 	<!-- 페이지 js -->
 	<th:block layout:fragment="js">
-		<script></script>
+		<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+		<script>
+		function openZipSearch() {
+            new daum.Postcode({
+               oncomplete: function(data) {
+            	   var fullAddr = data.address; // 최종 주소 변수
+                   var extraAddr = ''; // 조합형 주소 변수
+    
+                   // 기본 주소가 도로명 타입일때 조합한다.
+                   if(data.addressType === 'R'){
+                       //법정동명이 있을 경우 추가한다.
+                       if(data.bname !== ''){
+                           extraAddr += data.bname;
+                       }
+                       // 건물명이 있을 경우 추가한다.
+                       if(data.buildingName !== ''){
+                           extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                       }
+                       // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                       fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            	   
+                  $('[name=memAddr]').val(fullAddr);
+                  $('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+                  $('[name=addr1]').val(data.address);
+                  $('[name=addr2]').val(data.buildingName);
+               }
+               }
+            }).open();
+         }
+		</script>
 	</th:block>
 	
 	</head>
@@ -113,10 +142,16 @@
 	        						주소
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="memAddr" class="form-control" id="memAddr" th:field="*{memAddr}">
-	           						<span th:if="${#fields.hasErrors('memAddr')}" th:errors="*{memAddr}" ></span>
-	           						<input type="button" onclick='openZipSearch();' value="검색"/>        					
+	        						<div class="form-row">
+		        						<div class="col-10">
+		        							<input type="text" name="memAddr" class="form-control" id="memAddr" th:field="*{memAddr}">
+		        						</div>
+		        						<div class="col-2">
+		           							<input type="button" class="btn btn-primary" onclick='openZipSearch();' value="검색"/>     
+		           						</div>
 	           						</div>
+	           						<span th:if="${#fields.hasErrors('memAddr')}" th:errors="*{memAddr}" ></span>
+	           					</div>
 	        					
 	        				</div>
 	        				
