@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="app.admin.intra.mapper.IntraNoticeMapper">
+  <insert id="insertNotice" parameterType="app.admin.intra.domain.IntraNoticeDTO">
+  insert into board(NOT_NO,EMP_ID,NOT_SUB,NOT_CONT,NOT_DATE,NOT_COUNT,NOT_ORIGIN_FILE,NOT_STORE_FILE,NOT_SIZE)
+  values("NUM_SEQ.nextval",#{empId},#{notSub},#{notCont},sysdate,#{notCount},#{notOriginFile},#{notStoreFile},#{notSize})
+  </insert>
+  
+  </mapper>
