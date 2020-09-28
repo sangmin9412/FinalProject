@@ -11,7 +11,16 @@
 
 <!-- 페이지 js -->
 <th:block layout:fragment="js">
-	<script></script>
+	<script>
+	  $(function(){
+	    	 $(".memSearch").click(
+	    			 function(){
+	    				 window.open("/admin/matching/member/List", "PopupWin", "win", "width=500, height=300");    				 
+	    				 
+	    			 });
+	  });
+	
+	</script>
 </th:block>
 </head>
 
