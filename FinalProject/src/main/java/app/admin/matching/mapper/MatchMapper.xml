@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="app.admin.matching.mapper.MatchMapper">
+	<sql id="col_match">
+		MAT_NO, MEM_ID, PARTNER_ID, EMP_ID,
+		MAT_DATE, MAT_CHECK
+	</sql>
+	
+	
+	<insert id="matchInsert" parameterType="app.admin.matching.domain.MatchDTO">
+	 insert into matching (<include refid="col_match"/>)
+	 values(MATCH_SEQ.NEXTVAL,#{memId}, #{partnerId}, #{empId}, #{matDate}, #{matCheck})
+	 
+	</insert>
+	
+	
+	
+	</mapper>
