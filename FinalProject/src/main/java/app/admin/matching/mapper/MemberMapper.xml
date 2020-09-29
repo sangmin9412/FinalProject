@@ -33,7 +33,7 @@
 		<result column="MEM_EMAIL" jdbcType="VARCHAR" property="memEmail"/>
 		<result column="MEM_PASS" jdbcType="VARCHAR" property="memPass"/>
 		<result column="MEM_GENDER" jdbcType="VARCHAR" property="memGender"/>
-		<result column="MEM_REGIST" jdbcType="VARCHAR" property="memRegist"/>
+		<result column="MEM_REGIST" jdbcType="TIMESTAMP" property="memRegist"/>
 	</resultMap>
 	
 	<select id="selectMember" parameterType="app.domain.StartEndPageDTO" resultMap="member">

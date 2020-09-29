@@ -13,7 +13,34 @@
 	 values(MATCH_SEQ.NEXTVAL,#{memId}, #{partnerId}, #{empId}, #{matDate}, #{matCheck})
 	 
 	</insert>
+	<resultMap type="app.admin.matching.domain.MatchDTO" id="match">
+		<id column="MAT_NO" jdbcType="INTEGER" property="matNo"/>
+		<result column="MEM_ID" jdbcType="VARCHAR" property="memId"/>
+		<result column="PARTNER_ID" jdbcType="VARCHAR" property="partnerId"/>
+		<result column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+		<result column="MAT_DATE" jdbcType="TIMESTAMP" property="matDate"/>
+		<result column="MAT_CHECK" jdbcType="VARCHAR" property="matCheck"/>
 	
+	</resultMap>
+	
+	
+	<select id="selectMatch" parameterType="app.domain.StartEndPageDTO" resultMap="match">
+		select *
+		from(select rownum rn, <include refid="col_match"/>
+			from(select <include refid="col_match"/>
+				from MATCHING
+				<where>
+					<if test="userId != null">
+						MEM_ID=#{userId} or PARTNER_ID=#{userId}
+					</if>
+				</where>
+				order by MAT_DATE desc))
+		where rn &gt;= #{startPage} and rn &lt;= #{endPage}
+	
+	</select>
+	<select id="getMatchCount" resultType="int">
+		select count(*) from MATCHING
+	</select>
 	
 	
 	</mapper>

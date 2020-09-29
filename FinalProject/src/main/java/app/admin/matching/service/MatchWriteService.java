@@ -16,7 +16,7 @@ import app.command.AuthInfo;
 
 @Service
 @Component
-public class MatchService {
+public class MatchWriteService {
 	@Autowired
 	MatchMapper matchMapper;
 	public String matchWrite(MatchCommand matchCommand, HttpServletRequest request) throws Exception{
