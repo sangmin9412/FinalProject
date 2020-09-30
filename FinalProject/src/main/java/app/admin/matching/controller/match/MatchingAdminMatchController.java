@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import app.admin.matching.command.MatchCommand;
+import app.admin.matching.service.MatchDetailService;
 import app.admin.matching.service.MatchListService;
-import app.admin.matching.service.MatchListService;
+import app.admin.matching.service.MatchModifyService;
 import app.admin.matching.service.MatchWriteService;
 
 @Controller
@@ -23,11 +24,15 @@ public class MatchingAdminMatchController {
 	MatchWriteService matchWriteService;
 	@Autowired
 	MatchListService matchListService;
-	
+	@Autowired
+	MatchDetailService matchDetailService;
+	@Autowired
+	MatchModifyService matchModifyService;
 	
 
 	@RequestMapping("matchView")
-	public String matchView() {
+	public String matchView(@RequestParam(value = "matNo") String matNo,@RequestParam(value = "id", required = false) String partnerId, Model model) throws Exception{
+		matchDetailService.execute(matNo,partnerId,model);
 		return "thymeleaf/admin/matching/match/match_view";
 	}
 
@@ -51,8 +56,14 @@ public class MatchingAdminMatchController {
 	}
 
 	@RequestMapping("matchModify")
-	public String matchModify() {
+	public String matchModify(@RequestParam(value = "matNo") String matNo, Model model) throws Exception{
+		matchDetailService.execute(matNo, null, model);
 		return "thymeleaf/admin/matching/match/match_modify";
+	}
+	@RequestMapping(value = "matchModifyPro", method = RequestMethod.POST)
+	public String matchModifyPro(@Validated MatchCommand matchcommand, Model model) throws Exception{
+		matchModifyService.execute(matchcommand, model);
+		return "redirect:/admin/matching/match/matchView?matNo="+matchcommand.getMatNo();
 	}
 	
 	@RequestMapping("matchList")

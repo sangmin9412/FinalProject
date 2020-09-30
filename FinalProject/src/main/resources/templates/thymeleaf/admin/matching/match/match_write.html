@@ -11,9 +11,38 @@
 
 <!-- 페이지 js -->
 <th:block layout:fragment="js">
+	<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 	<script>
+		function openZipSearch() {
+            new daum.Postcode({
+               oncomplete: function(data) {
+            	   var fullAddr = data.address; // 최종 주소 변수
+                   var extraAddr = ''; // 조합형 주소 변수
+    
+                   // 기본 주소가 도로명 타입일때 조합한다.
+                   if(data.addressType === 'R'){
+                       //법정동명이 있을 경우 추가한다.
+                       if(data.bname !== ''){
+                           extraAddr += data.bname;
+                       }
+                       // 건물명이 있을 경우 추가한다.
+                       if(data.buildingName !== ''){
+                           extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                       }
+                       // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                       fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            	   
+                  $('[name=matLoc]').val(fullAddr);
+                  $('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+                  $('[name=addr1]').val(data.address);
+                  $('[name=addr2]').val(data.buildingName);
+               }
+               }
+            }).open();
+         }
+	
 	$(function(){
-		  $(".memSearch").click(function(){
+		  $("#btn").click(function(){
 
 		    //부모창의 id가 id인 input 태그에 'dragon' 이라는 문자열 저장하기
 		  
@@ -41,24 +70,53 @@
 							<div class="form-group row">
 								<label for="" class="col-sm-2 col-form-label"> 매칭회원 </label>
 								<div class="col-sm-10">
+									<div class="form-row">
+		        						<div class="col-10">
 									<input type="text" name="memId" class="form-control" id="memId">
-									<button type="button" class="memSearch">검색</button>
+										</div>
+		        						<div class="col-2">
+									<button type="button" class="btn btn-primary" id="btn">검색</button>
+										</div>
+									</div>
+									
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="" class="col-sm-2 col-form-label"> 상대회원 </label>
 								<div class="col-sm-10">
+									<div class="form-row">
+		        						<div class="col-10">
 									<input type="text" name="partnerId" class="form-control" id="partnerId">
-									<button type="button" class="memSearch" >검색</button>
+										</div>
+		        						<div class="col-2">
+										</div>
+									</div>
+									
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="" class="col-sm-2 col-form-label"> 매칭일시 </label>
-								<div class="col-sm-10">
-									<input type="datetime-local" name="matDate"
+								<div class="col-sm-9">
+									<input type="date" name="matDate"
 										class="form-control" id="">
 								</div>
 							</div>
+							<div class="form-group row">
+	        					<label for="memAddr" class="col-sm-2 col-form-label">
+	        						매칭장소
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<div class="form-row">
+		        						<div class="col-10">
+		        							<input type="text" name="matLoc" class="form-control" id="matLoc">
+		        						</div>
+		        						<div class="col-2">
+		           							<input type="button" class="btn btn-primary" onclick='openZipSearch();' value="검색"/>     
+		           						</div>
+	           						</div>
+	           					</div>
+	        					
+	        				</div>
 							
 							
 							<div class="form-group row">

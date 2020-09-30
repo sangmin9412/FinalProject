@@ -47,7 +47,7 @@
 									<tbody>
 										<tr th:each="list, i:${matchList}">
 											<th>[[${i.count}]]</th>
-											<td>[[${list.matNo}]]</td>
+											<td><a th:href="@{matchView(matNo=${list.matNo},id=${list.partnerId})}">[[${list.matNo}]]</a></td>
 											<td>[[${list.memId}]]</td>
 											<td>[[${list.partnerId}]]</td>
 											<td>[[${list.matDate}]]</td>

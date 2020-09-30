@@ -1,6 +1,7 @@
 package app.admin.matching.domain;
 
-import java.sql.Timestamp;
+
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,10 +11,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MatchDTO {
-	Long matNo;
+	Integer matNo;
 	String memId;
 	String partnerId;
 	String empId;
-	Timestamp matDate;
+	Date matDate;
 	String matCheck;
+	String matLoc;
+	String memName;
+	String partnerName;
+	Date memBirth;
+	String memGender;
+	
 }

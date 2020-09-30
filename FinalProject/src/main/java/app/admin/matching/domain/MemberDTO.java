@@ -1,8 +1,8 @@
 package app.admin.matching.domain;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class MemberDTO implements Serializable {
 	String memId;
 	String memName;
-	Timestamp memBirth;
+	Date memBirth;
 	String memAddr;
 	String memTel;
 	String memEmail;

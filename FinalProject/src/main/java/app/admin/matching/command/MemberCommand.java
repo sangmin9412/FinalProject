@@ -1,6 +1,7 @@
 package app.admin.matching.command;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -18,7 +19,6 @@ public class MemberCommand {
 	@NotBlank(message = "이름을 입력하세요.")
 	String memName;
 	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@NotNull(message = "생년월일을 입력하세요.")
 	Date memBirth;
 	

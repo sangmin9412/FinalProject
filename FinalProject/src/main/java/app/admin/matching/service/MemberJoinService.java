@@ -34,13 +34,14 @@ public class MemberJoinService {
 		}
 		Integer result = null;
 		MemberDTO memberDTO=new MemberDTO();
-		Timestamp memBirth = 
-				new Timestamp(memberCommand.getMemBirth().getTime());
+		/*
+		 * Timestamp memBirth = new Timestamp(memberCommand.getMemBirth().getTime());
+		 */
 		memberDTO.setMemPass(passwordEncoder.encode(memberCommand.getMemPass()));
 		System.out.println(memberDTO.getMemPass());
 		memberDTO.setMemAddr(memberCommand.getMemAddr());
 		System.out.println(memberDTO.getMemAddr());
-		memberDTO.setMemBirth(memBirth);
+		memberDTO.setMemBirth(memberCommand.getMemBirth());
 		System.out.println(memberDTO.getMemBirth());
 		memberDTO.setMemEmail(memberCommand.getMemEmail());
 		System.out.println(memberDTO.getMemEmail());

@@ -14,4 +14,6 @@ public interface MatchMapper {
 	public Integer matchInsert(MatchDTO dto) throws Exception;
 	public List<MatchDTO> selectMatch(StartEndPageDTO startEndPageDTO) throws Exception;
 	public Integer getMatchCount();
+	public void matchUpdate(MatchDTO dto) throws Exception;
+	
 }
