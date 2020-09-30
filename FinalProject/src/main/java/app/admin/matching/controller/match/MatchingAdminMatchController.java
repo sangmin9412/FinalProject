@@ -63,7 +63,7 @@ public class MatchingAdminMatchController {
 	@RequestMapping(value = "matchModifyPro", method = RequestMethod.POST)
 	public String matchModifyPro(@Validated MatchCommand matchcommand, Model model) throws Exception{
 		matchModifyService.execute(matchcommand, model);
-		return "redirect:/admin/matching/match/matchView?matNo="+matchcommand.getMatNo();
+		return "redirect:/admin/matching/match/matchView?matNo="+matchcommand.getMatNo()+"&id="+matchcommand.getPartnerId();
 	}
 	
 	@RequestMapping("matchList")
