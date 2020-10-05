@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	layout:decorator="layout/sub">
+<head>
+  	<title>User</title>
+	<!-- 페이지 css -->
+	<th:block layout:fragment="css">
+		<style></style>
+	</th:block>
+	
+	<!-- 페이지 js -->
+	<th:block layout:fragment="js">
+		<script></script>
+	</th:block>
+</head>
+
+<body>
+	<th:block layout:fragment="content" class="content">
+   	<section id="page-title">
+
+		<div class="container clearfix">
+			<h1>My Account</h1>
+		</div>
+
+	</section>
+	
+	<section id="content">
+
+		<div class="content-wrap">
+
+			<div class="container clearfix">
+
+				<div class="col_one_third nobottommargin">
+
+					<div class="well well-lg nobottommargin">
+						<form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+
+							<h3>로그인</h3>
+
+							<div class="col_full">
+								<label for="login-form-username">ID:</label>
+								<input type="text" id="login-form-username" name="memId" value="" class="form-control" />
+							</div>
+
+							<div class="col_full">
+								<label for="login-form-password">Password:</label>
+								<input type="password" id="login-form-password" name="memPass" value="" class="form-control" />
+							</div>
+
+							<div class="col_full nobottommargin">
+								<button class="button button-3d nomargin" id="login-form-submit">Login</button>
+								<a href="#" class="fright">Forgot Password?</a>
+							</div>
+
+						</form>
+					</div>
+
+				</div>
+
+				<div class="col_two_third col_last nobottommargin">
+
+
+					<h3>회원가입</h3>
+
+					<form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+
+						<div class="col_half">
+							<label for="register-form-name">ID:</label>
+							<input type="text" id="register-form-name" name="memId" value="" class="form-control" />
+						</div>
+
+						<div class="col_half col_last">
+							<label for="register-form-email">Email:</label>
+							<input type="text" id="register-form-email" name="memEmail" value="" class="form-control" />
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="col_half">
+							<label for="register-form-username">Choose a Username:</label>
+							<input type="text" id="register-form-username" name="memName" value="" class="form-control" />
+						</div>
+
+						<div class="col_half col_last">
+							<label for="register-form-phone">Phone:</label>
+							<input type="text" id="register-form-phone" name="memTel" value="" class="form-control" />
+						</div>
+
+						<div class="clear"></div>
+
+						<div class="col_half">
+							<label for="register-form-password">Choose Password:</label>
+							<input type="password" id="register-form-password" name="memPass" value="" class="form-control" />
+						</div>
+
+						<div class="col_half col_last">
+							<label for="register-form-repassword">Re-enter Password:</label>
+							<input type="password" id="register-form-repassword" name="memPassCon" value="" class="form-control" />
+						</div>
+
+						<div class="clear"></div>
+						
+						<div class="col_half">
+							<label for="register-form-password">Address:</label>
+							<input type="text" id="register-form-password" name="memAddr" value="" class="form-control" />
+							
+							<!-- 우편번호검색 있을 시 <a href="#" class="button button-3d button-blue" style="margin-left: 0;">주소검색</a> -->
+						</div>
+
+						<div class="col_half col_last">
+							<label for="register-form-repassword">Birth:</label>
+							<input type="date" id="register-form-repassword" name="memBirth" value="" class="form-control" />
+						</div>
+
+						<div class="col_full nobottommargin">
+							<button class="button button-3d button-black nomargin" id="register-form-submit">Register Now</button>
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+    </th:block>
+</body>
+</html>
