@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="app.admin.matching.mapper.MemberMapper">
+	<sql id="column">
+		MEM_ID, MEM_NAME, MEM_BIRTH, MEM_ADDR, MEM_TEL, 
+		MEM_EMAIL, MEM_PASS, MEM_GENDER, MEM_REGIST, MEM_JOINOK
+	</sql>
+	<sql id="col_memadd">
+		MEM_ID, MEM_CAREER, MEM_JOB, MEM_SALARY, MEM_HGT,
+		MEM_WGT, MEM_BLOOD, MEM_HOBBY, MEM_RLG, MEM_ORIGINAL_IMAGE,
+		MEM_STORE_IMAGE, MEM_EXP, MEM_MAT
+	</sql>
+	<insert id="insertMember" parameterType="app.admin.matching.domain.MemberDTO">
+		insert into member (<include refid="column"/>)
+		values(#{memId},#{memName},#{memBirth},#{memAddr},
+				#{memTel},#{memEmail},#{memPass},#{memGender},sysdate, null)
+	</insert>
+	
+	
+	<insert id="insertMemberAdd" parameterType="app.admin.matching.domain.MemberAddDTO">
+		insert into memberadd (<include refid="col_memadd"/>)
+		values(#{memId}, #{memCareer},#{memJob},#{memSalary},#{memHgt},
+				#{memWgt},#{memBlood},#{memHobby},#{memRlg},#{memOriginalImage},
+				#{memStoreImage},null,0)
+	</insert>
+	<resultMap type="app.admin.matching.domain.MemberDTO" id="member">
+		<id column="MEM_ID" jdbcType="VARCHAR" property="memId"/>
+		<result column="MEM_NAME" jdbcType="VARCHAR" property="memName"/>
+		<result column="MEM_BIRTH" jdbcType="VARCHAR" property="memBirth"/>
+		<result column="MEM_ADDR" jdbcType="VARCHAR" property="memAddr"/>
+		<result column="MEM_TEL" jdbcType="VARCHAR" property="memTel"/>
+		<result column="MEM_EMAIL" jdbcType="VARCHAR" property="memEmail"/>
+		<result column="MEM_PASS" jdbcType="VARCHAR" property="memPass"/>
+		<result column="MEM_GENDER" jdbcType="VARCHAR" property="memGender"/>
+		<result column="MEM_REGIST" jdbcType="TIMESTAMP" property="memRegist"/>
+	</resultMap>
+	
+	<select id="selectMember" parameterType="app.domain.StartEndPageDTO" resultMap="member">
+		select *
+		from(select rownum rn, <include refid="column"/>
+			from(select <include refid="column"/>
+				from member
+				<trim prefix="where" prefixOverrides="AND | OR">
+					<if test="userId != null">
+						MEM_ID=#{userId}
+					</if>
+				</trim>
+				order by MEM_REGIST desc))
+		where rn &gt;= #{startPage} and rn &lt;= #{endPage}
+	
+	</select>
+	<select id="getMemberCount" resultType="int">
+		select count(*) from member
+	</select>
+	
+	
+	</mapper>

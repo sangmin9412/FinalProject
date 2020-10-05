@@ -20,6 +20,24 @@
 		
 		<!-- Custom scripts for all pages-->
 		<script src="/admin/js/sb-admin-2.js"></script>
+		<script type="text/javascript"	src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
+	
+	    <script type="text/javascript">
+	   
+	    
+	    
+	   function confirm_id(id){
+	    	opener.document.getElementById("memId").value=id;
+	    	alert("회원이 선택되었습니다. 상대회원을 선택해주세요");
+	    	 
+		   }
+	   function confirm_id2(partnerId){
+	    	opener.document.getElementById("partnerId").value=partnerId;
+	    	window.close(); 
+	    } 
+	  
+
+	</script>
 		
 		<!-- 개별 css -->
 		<th:block layout:fragment="css"></th:block>
