@@ -91,8 +91,9 @@
         					</div>
         				</div>
 	        			<div class="btn-group float-sm-right">
-        					<a th:href="@{../noticeModify/{id}(id=${intraNoticeCommand.empId}, num=${intraNoticeCommand.notNo})}" class="btn btn-primary">수정</a>
-        					<a href="../noticeList" class="btn btn-primary">목록으로</a>
+	        			    <a th:href="@{noticeModify(num=${intraNoticeCommand.notNo})}" class="btn btn-primary">수정</a>
+	        			    <a th:href="@{noticedelete(num=${intraNoticeCommand.notNo})}" class="btn btn-primary">삭제</a>
+        					<a href="/admin/intra/notice/noticeList" class="btn btn-primary">목록으로</a>
         				</div>
 	        		</div>
 	        	</div>
