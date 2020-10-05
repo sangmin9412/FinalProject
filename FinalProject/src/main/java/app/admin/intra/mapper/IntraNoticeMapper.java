@@ -12,4 +12,8 @@ import app.admin.intra.domain.IntraNoticeDTO;
 public interface IntraNoticeMapper {
 	public int insertNotice(IntraNoticeDTO dto) throws Exception;
 	public List<IntraNoticeDTO> viewNotice() throws Exception;
+	public IntraNoticeDTO detailNotice(Integer notNo)throws Exception;
+	public IntraNoticeDTO modifyNotice(Integer notNo) throws Exception; 
+	public void updateNotice(IntraNoticeDTO dto)throws Exception;
+	public void deleteNotice(IntraNoticeDTO dto)throws Exception;
 }

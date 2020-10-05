@@ -24,13 +24,14 @@
 	        	<div class="card">
 	        		<div class="card-body">
 	        			<!-- Page 컨텐츠 영역 -->
-	        			<form action="" method="">
+	        			<input type="hidden" name="num" th:value="${notNo}" />
+	        			<form action="noticeDeletePro" method="post">
 	        				<div class="form-group row">
 	        					<label for="" class="col-sm-2 col-form-label">
 	        						input title
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="" class="form-control" id="">
+	        						<input type="text" name="num" class="form-control" id="notNo">
 	        					</div>
 	        				</div>
 	        				<div class="btn-group float-sm-right">

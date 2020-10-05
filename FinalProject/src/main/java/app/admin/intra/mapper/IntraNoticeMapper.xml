@@ -40,8 +40,34 @@
 		<result column="NOT_STORE_FILE" jdbcType="VARCHAR" property="notStoreFile" />
 		<result column="NOT_SIZE" jdbcType="VARCHAR" property="notSize" />
 	</resultMap>
+	
 	<select id="viewNotice" resultMap="aaa">
 		select <include refid="baseColumns" />
 		from notice
 	</select>
+	
+	<select id="detailNotice" parameterType="int" resultMap="aaa">
+	select <include refid="baseColumns" />
+	from notice
+	where NOT_NO = #{notNo}
+	</select>
+	
+	<select id="modifyNotice" parameterType="int" resultMap="aaa">
+	select <include refid="baseColumns" />
+	from notice
+	where NOT_NO = #{notNo}
+	</select>
+		
+	<update id="updateNotice"  parameterType="app.admin.intra.domain.IntraNoticeDTO">
+	update notice
+	set NOT_SUB = #{notSub}, NOT_CONT = #{notCont} 
+	where NOT_NO = #{notNo} 
+	</update>
+	
+	
+	<delete id="deleteNotice"  parameterType="app.admin.intra.domain.IntraNoticeDTO" >
+	delete from notice
+	where NOT_NO = #{notNo} <!-- and  emp_pass = #{empPass}	 -->
+	</delete>
+	
   </mapper>

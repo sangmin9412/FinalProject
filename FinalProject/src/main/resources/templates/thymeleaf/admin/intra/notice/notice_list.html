@@ -60,7 +60,7 @@
 										<tr th:each="dto ,i: ${noticeList}">
 											<th>[[${i.count}]]</th>
 											<td>
-												<a th:href="@{noticeView/{id}(id=${dto.empId})}">[[${dto.notSub}]]</a>
+												<a th:href="@{noticeView(num=${dto.notNo})}">[[${dto.notSub}]]</a>
 											</td>
 											<td>[[${dto.empId}]]</td>
 											<td>[[${dto.notDate}]]</td>
