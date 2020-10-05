@@ -33,7 +33,7 @@ public class MemberLoginService {
 		System.out.println(memberDTO.getMemId());
 		if (list.size()==0) {
 			model.addAttribute("valid_mem", "존재하지 않는 계정입니다.");
-			location="thymeleaf/admin/matching/member/login";
+			location="thymeleaf/common/login";
 		}else {
 			memberDTO=list.get(0);
 			/* System.out.println(memberDTO.getMemPass()); */
@@ -48,7 +48,7 @@ public class MemberLoginService {
 				
 			}else {
 				model.addAttribute("valid_pw","비밀번호가 틀립니다.");
-				location="thymeleaf/admin/matching/member/login";
+				location="thymeleaf/common/login";
 			}
 		}
 		

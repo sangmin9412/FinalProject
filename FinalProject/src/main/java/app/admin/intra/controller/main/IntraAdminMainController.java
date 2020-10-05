@@ -101,7 +101,7 @@ public class IntraAdminMainController {
 		if (result.hasErrors()) {
 			return "thymeleaf/admin/common/forgot-password";
 		}
-		return idPwModifyService.changePw(changePwCommand, request, model);
+		return idPwModifyService.changePw(changePwCommand, request, model, "emp");
 	}
 	
 	@RequestMapping(value = "findId", method = RequestMethod.GET)
@@ -119,7 +119,7 @@ public class IntraAdminMainController {
 		if (result.hasErrors()) {
 			return "thymeleaf/admin/common/forgot-id";
 		}
-		return idPwModifyService.findId(changeIdCommand, request, model);
+		return idPwModifyService.findId(changeIdCommand, request, model, "emp");
 	}
 	
 }

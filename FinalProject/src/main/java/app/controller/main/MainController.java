@@ -14,7 +14,7 @@ public class MainController {
 		return "thymeleaf/sub";
 	}
 	
-	@RequestMapping("/test/test")
+	@RequestMapping("/test/")
 	public String t() {
 		return "thymeleaf/test/index";
 	}
