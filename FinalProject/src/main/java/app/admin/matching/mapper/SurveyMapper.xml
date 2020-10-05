@@ -55,14 +55,24 @@
 		<result column="MEM_MAT" jdbcType="BIGINT" property="memMat"/>
 	</resultMap>
 	<select id="selectMember" parameterType="app.admin.matching.domain.SurveyDTO" resultMap="member">
-		SELECT  M.MEM_ID, MEM_NAME, MEM_BIRTH, MEM_ADDR, MEM_TEL, 
+		SELECT  M.MEM_ID, RPAD(SUBSTR(MEM_NAME,1,1),LENGTH(MEM_NAME)+1,'*') AS MEM_NAME,
+				RPAD(SUBSTR(MEM_TEL,1,7),LENGTH(MEM_TEL),'*') AS MEM_TEL,
+				RPAD(SUBSTR(MEM_ADDR,1,7),LENGTH(MEM_ADDR),'*') AS MEM_ADDR,
+				MEM_BIRTH,	
 				MEM_EMAIL, MEM_PASS, MEM_GENDER, MEM_REGIST,
 				MEM_CAREER, MEM_JOB, MEM_SALARY, MEM_HGT,
 				MEM_WGT, MEM_BLOOD, MEM_HOBBY, MEM_RLG,
 				MEM_ORIGINAL_IMAGE,	MEM_STORE_IMAGE, MEM_EXP, MEM_MAT
 		FROM MEMBER M JOIN MEMBERADD A
 		ON A.MEM_ID=M.MEM_ID
-		<trim prefix="where" prefixOverrides="AND">
+		<trim prefix="where" prefixOverrides="AND | OR">
+			<if test='memGender == "M"'>
+				MEM_GENDER = 'F'
+			</if>
+			<if test='memGender == "F"'>
+				AND MEM_GENDER = 'M'
+			</if>
+			
 			<if test="surBlood !=null">
 				AND MEM_BLOOD=#{surBlood}
 			</if>
@@ -115,8 +125,6 @@
 	 	<result column="SUR_SALARY" jdbcType="BIGINT" property="surSalary"/>
 	
 	</resultMap>
-	
-	
 	
 	
 	

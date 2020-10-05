@@ -13,7 +13,7 @@ public class SurveyCommand {
 	String surBlood;
 	String surHgt;
 	String surWgt;
-	List surHobby;
+	String surHobby;
 	String surRlg;
 	
 }

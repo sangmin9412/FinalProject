@@ -26,7 +26,7 @@ public class MatchingAdminSurveyController {
 	@RequestMapping("surveyWritePro")
 	public String surveyWritePro(SurveyCommand surveyCommand, Model model, HttpSession session) throws Exception {
 		String memId=surveyWriteService.execute(surveyCommand,model,session);
-		surveySearchService.execute(memId, model);
+		 surveySearchService.execute(memId, model);
 		return "thymeleaf/admin/matching/survey/survey_result";
 	}
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import app.admin.matching.command.AuthInfo;
 import app.admin.matching.command.MemberAddCommand;
 import app.admin.matching.domain.MemberAddDTO;
 import app.admin.matching.mapper.MemberMapper;
@@ -27,8 +29,11 @@ public class MemberAddWriteService {
 	public Integer insertMemberAdd(MemberAddCommand memberAddCommand, HttpServletRequest request) throws Exception {
 		Integer result = null;
 		MemberAddDTO memberAddDTO = new MemberAddDTO();
-		memberAddDTO.setMemId("aaa"); // 하드코딩
-		/* String memId=((AuthInfo)session.getAttribute("authInfo")).getId(); */
+		/* memberAddDTO.setMemId("aaa"); */
+		HttpSession session = request.getSession();
+		String memId=((AuthInfo)session.getAttribute("authInfo")).getId();
+		memberAddDTO.setMemId(memId);
+		System.out.println(memberAddDTO.getMemId());
 		memberAddDTO.setMemBlood(memberAddCommand.getMemBlood());
 		System.out.println(memberAddDTO.getMemBlood());
 		memberAddDTO.setMemCareer(memberAddCommand.getMemCareer());

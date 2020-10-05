@@ -36,24 +36,25 @@
 									<thead>
 										<tr>
 											<th>No</th>
-											<th>아이디</th>
 											<th>이름</th>
 											<th>전화번호</th>
-											<th>가입일</th>
+											<th>생년월일</th>
+											<th>지역</th>
+											
 										</tr>
 									</thead>
 									<tbody>
 										<tr th:each="list , i: ${memberList}">
 											<th>[[${i.count}]]</th>
-											<td>[[${list.memId}]]</td>
-											
 											<td>[[${list.memName}]]</td>
 											<td>[[${list.memTel}]]</td>
-											<td><span th:text="${#dates.format(list.memRegist,'yyyy-MM-dd')}"></span></td>
+											<td><span th:text="${#dates.format(list.memBirth,'yyyy년 **월 **일')}"></span></td>
+											<td>[[${list.memAddr}]]</td>
 										</tr>
 									</tbody>
 									
 								</table>
+								<span>[[${#lists.size(memberList)}]]명의 회원과 매칭 성공 가능성이 있습니다.</span>
 							</div>
 						</div>
 						<!-- 
