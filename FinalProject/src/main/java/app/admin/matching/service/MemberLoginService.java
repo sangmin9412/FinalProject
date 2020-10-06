@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import app.admin.matching.command.AuthInfo;
 import app.admin.matching.command.MemberLoginCommand;
 import app.admin.matching.domain.MemberDTO;
 import app.admin.matching.mapper.MemberMapper;
+import app.command.AuthInfo;
 import app.domain.StartEndPageDTO;
 
 @Service
@@ -24,7 +24,7 @@ public class MemberLoginService {
 	MemberMapper memberMapper;
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	AuthInfo authInfo=new AuthInfo();
+	AuthInfo authInfo = new AuthInfo();
 	public String execute(MemberLoginCommand memberLoginCommand,HttpSession session, HttpServletResponse response, Model model) throws Exception{
 		String location="";
 		MemberDTO memberDTO=new MemberDTO();

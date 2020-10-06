@@ -20,24 +20,22 @@
 				============================================= -->
 				<nav id="primary-menu">
 					<ul>
-						<li><a href="/"><div>데이트 코스</div></a></li>
-						<li><a href="/"><div>상품</div></a></li>
-						<li><a href="/"><div>매칭 서비스</div></a></li>
+						<li><a href="/course/"><div>데이트 코스</div></a></li>
+						<li><a href="#"><div>쇼핑몰</div></a>
+							<ul>
+								<li><a href="/mall/goods/goodsList">상품목록</a></li>
+								<li><a href="/mall/board/reviewList">리뷰게시판</a></li>
+							</ul>
+						</li>
+						<li><a href="/matching/"><div>매칭 서비스</div></a></li>
 						<th:block th:if="${ session.authInfo == null }">
 							<li><a href="/login"><div>로그인</div></a></li>
 						</th:block>
 						<th:block th:if="${ session.authInfo != null }">
 							<li><a href="/logout2"><div>로그아웃</div></a></li>
-							<li><a href="#"><div>마이페이지</div></a>
-								<ul>
-									<li><a href="#">데이트 코스 마이페이지</a></li>
-									<li><a href="#">쇼핑몰 마이페이지</a></li>
-									<li><a href="#">매칭 마이페이지</a></li>
-								</ul>
-							</li>
+							<li><a th:href="@{/mypage/myinfo/{id}(id=${ session.authInfo.Id })}"><div>마이페이지</div></a>
 						</th:block>
 					</ul>
-					
 					
 					<!-- <div id="top-cart">
 						<a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>

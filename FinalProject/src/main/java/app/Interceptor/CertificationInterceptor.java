@@ -8,12 +8,12 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import app.command.AuthInfo;
+
 public class CertificationInterceptor extends HandlerInterceptorAdapter {
 	// 컨트롤러 (RequestMapping이 선언된 메서드 진입) 실행 직전에 동작.
 	// 반환 값이 true일 경우 정상적으로 진행이 되고, false일 경우 실행이 멈춥니다.
 	// 전달인자 중 Object handler는 핸들러 매핑이 잦은 컨트롤러 클래스 객체입니다.
-	
-	/*
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -43,6 +43,4 @@ public class CertificationInterceptor extends HandlerInterceptorAdapter {
 		// TODO Auto-generated method stub
 		super.afterCompletion(request, response, handler, ex);
 	}
-	
-	*/
 }

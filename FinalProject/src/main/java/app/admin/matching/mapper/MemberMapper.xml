@@ -68,14 +68,22 @@
 			AND mem_tel = #{userTel}
 	</select>
 	
+	<update id="changePw" parameterType="app.domain.UserPwChangeDTO">
+		UPDATE member
+		SET mem_pass = #{newPw}
+		WHERE mem_id = #{userId}
+			AND mem_name = #{userName}
+			AND mem_email = #{userEmail}
+	</update>
+	
 	<update id="updateMember" parameterType="app.admin.matching.domain.MemberDTO">
 		UPDATE member
 		<trim prefix="set" suffixOverrides=",">
-			<if test="memName != null">
-				mem_name = #{memName},
-			</if>
 			<if test="memEmail != null">
 				mem_email = #{memEmail},
+			</if>
+			<if test="memName != null">
+				mem_name = #{memName},
 			</if>
 			<if test="memTel != null">
 				mem_tel = #{memTel},
@@ -85,14 +93,6 @@
 			</if>
 		</trim>
 		WHERE mem_id = #{memId}
-	</update>
-	
-	<update id="changePw" parameterType="app.domain.UserPwChangeDTO">
-		UPDATE member
-		SET mem_pass = #{newPw}
-		WHERE mem_id = #{userId}
-			AND mem_name = #{userName}
-			AND mem_email = #{userEmail}
 	</update>
 	
 </mapper>

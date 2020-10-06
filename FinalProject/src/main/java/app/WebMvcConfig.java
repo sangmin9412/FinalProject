@@ -12,9 +12,17 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new CertificationInterceptor())
 			.addPathPatterns("/**/*")
+			.excludePathPatterns("/css/**/")
+			.excludePathPatterns("/js/**/")
+			.excludePathPatterns("/images/**/")
 			.excludePathPatterns("/register/**/")
 			.excludePathPatterns("/login")
-			.excludePathPatterns("/test/**/");
+			.excludePathPatterns("/test/**/")
+			.excludePathPatterns("/admin/**/")
+			.excludePathPatterns("/partner/**/")
+			.excludePathPatterns("/course/**/")
+			.excludePathPatterns("/mall/**/")
+			.excludePathPatterns("/matching/**/");
 	}
 	
 }
