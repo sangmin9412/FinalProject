@@ -18,6 +18,7 @@
 <body>
     <th:block layout:fragment="content" class="content">
     	<!-- Page Heading -->
+    	<!-- <div th:include="../templates/fragments/admin/intra/topbar.html"></div> -->
         <h1 class="h3 mb-4 text-gray-800">근태 리스트</h1>
         <div class="row">
         	<div class="col-md-12">
@@ -55,15 +56,18 @@
 									</thead>
 									<tbody>
 										<th:block th:if="${commuteList != null}">
-											<tr th:each="list ,i: ${commuteList}">
+											<tr th:each="dto ,i: ${commuteList}">
 												<th>[[${i.count}]]</th>
 												<td>
-													<a>[[${list.empId}]]</a>
+													<a>[[${session.authInfo.Id}]]</a>
 												</td>
-												<td>[[${list.comDate}]]</td>
-												<td>[[${list.comGo}]]</td>
-												<td>[[${list.comLeave}]]</td>
-												<td>[[${list.comIp}]]</td>
+												<td>[[${#dates.format(dto.comDate, 'yyyy-MM-dd')}]]</td>
+												<!-- <td>[[${dto.comDate}]]</td> -->
+												<td>[[${#dates.format(dto.comGo, 'hh:mm:ss')}]]</td>
+												<!-- <td>[[${dto.comGo}]]</td> -->
+												<td>[[${#dates.format(dto.comLeave, 'hh:mm:ss')}]]</td>
+												<!-- <td>[[${dto.comLeave}]]</td> -->
+												<td>[[${dto.comIp}]]</td>
 											</tr>
 										</th:block>
 										<th:block th:if="${commuteList == null}">
@@ -75,6 +79,9 @@
 								</table>
 							</div>
 						</div>
+						<!-- <div class="btn-group float-sm-right">
+	        		    <a href="" class="btn btn-primary">등록</a>
+        				</div> -->
 						
 						<!-- 페이지네이션 -->
 						<!-- 

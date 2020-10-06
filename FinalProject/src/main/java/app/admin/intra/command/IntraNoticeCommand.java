@@ -2,6 +2,8 @@ package app.admin.intra.command;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -15,5 +17,6 @@ public class IntraNoticeCommand {
 	Integer notCount;
 	String notOriginFile;
 	String notStoreFile;
-	String notSize;
+	Long notSize;
+	MultipartFile report;
 }

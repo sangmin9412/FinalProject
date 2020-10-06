@@ -24,11 +24,16 @@
 	  	#{notCont},
 	  	SysDate,
 	  	0,
-	  	null,
-	  	null,
-	  	null
+	  	#{notOriginFile},
+	  	#{notStoreFile},
+	  	#{notSize}
 	 )
   </insert>
+  <select id="noticeCount" resultType="int">
+		select count(*) from COMMUTE
+	</select>
+    
+  
   	<resultMap type="app.admin.intra.domain.IntraNoticeDTO" id="aaa">
 		<id column="NOT_NO" jdbcType="BIGINT" property="notNo" />
 		<id column="EMP_ID" jdbcType="VARCHAR" property="empId" />

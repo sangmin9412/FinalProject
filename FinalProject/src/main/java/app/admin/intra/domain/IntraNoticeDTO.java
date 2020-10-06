@@ -15,5 +15,5 @@ public class IntraNoticeDTO {
 	Integer notCount;
 	String notOriginFile;
 	String notStoreFile;
-	String notSize;
+	Long notSize;
 }

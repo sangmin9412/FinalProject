@@ -16,4 +16,5 @@ public interface IntraNoticeMapper {
 	public IntraNoticeDTO modifyNotice(Integer notNo) throws Exception; 
 	public void updateNotice(IntraNoticeDTO dto)throws Exception;
 	public void deleteNotice(IntraNoticeDTO dto)throws Exception;
+	public int noticeCount()throws Exception;
 }
