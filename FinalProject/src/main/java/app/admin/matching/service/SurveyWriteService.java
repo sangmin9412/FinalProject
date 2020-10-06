@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import app.admin.matching.command.AuthInfo;
 import app.admin.matching.command.SurveyCommand;
 import app.admin.matching.domain.SurveyDTO;
 import app.admin.matching.mapper.SurveyMapper;
+import app.command.AuthInfo;
 
 @Service
 @Component
