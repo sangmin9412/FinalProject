@@ -14,7 +14,36 @@
 	
 	</insert>
 	
+	<select id="selectEvent" parameterType="app.domain.StartEndPageDTO" resultMap="event">
+		SELECT *	
+		FROM(SELECT rownum rn, <include refid="eve_col"/> 
+			FROM(SELECT <include refid="eve_col"/> 
+				FROM EVENT
+				<where>
+					<if test="num != null">
+						EVE_NO=#{num}
+					</if>
+				</where>
+				ORDER BY EVE_DATE DESC))
+		WHERE rn &gt;= #{startPage} and rn &lt;= #{endPage}
 	
+	</select>
+	
+	<resultMap type="app.admin.matching.domain.EventDTO" id="event">
+		<id column="EVE_NO" jdbcType="BIGINT" property="eveNo"/>
+		<id column="VEN_ID" jdbcType="VARCHAR" property="venId"/>
+		<result column="EVE_LOC" jdbcType="VARCHAR" property="eveLoc"/>
+		<result column="EVE_DATE" jdbcType="TIMESTAMP" property="eveDate"/>
+		<result column="EVE_MXCNT" jdbcType="BIGINT" property="eveMxCnt"/>
+		<result column="EVE_SUBJECT" jdbcType="VARCHAR" property="eveSubject"/>
+		<result column="EVE_CONTENT" jdbcType="VARCHAR" property="eveContent"/>
+		<result column="EVE_ORIGINAL_IMAGE" jdbcType="VARCHAR" property="eveOriginalImage"/>
+		<result column="EVE_STORE_IMAGE" jdbcType="VARCHAR" property="eveStoreImage"/>
+	</resultMap>
+	
+	<select id="getEventCount" resultType="int">
+		select count(*) from event
+	</select>
 	
 	
 	</mapper>

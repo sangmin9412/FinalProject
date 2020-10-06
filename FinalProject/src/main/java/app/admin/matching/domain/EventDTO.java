@@ -1,7 +1,5 @@
 package app.admin.matching.domain;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
@@ -21,5 +19,12 @@ public class EventDTO {
 	String eveContent;
 	String eveOriginalImage;
 	String eveStoreImage;
+	public EventDTO(String eveOriginalImage, String eveStoreImage) {
+		super();
+		this.eveOriginalImage = eveOriginalImage;
+		this.eveStoreImage = eveStoreImage;
+	}
+	
+	
 
 }
