@@ -15,7 +15,7 @@ import org.springframework.util.FileCopyUtils;
 @Component
 @Service
 public class FileDownLoad {
-	public void fileDownLoad(String path, String fileName, HttpServletRequest request, HttpServletResponse response) {
+	public void fileDownLoad(String path, String fileName, String ofileName, HttpServletRequest request, HttpServletResponse response) {
 		String RealPath = request.getServletContext().getRealPath(path);
 		String originalFileName = fileName.split("`")[1];
 		String storeFileName = fileName.split("`")[0];

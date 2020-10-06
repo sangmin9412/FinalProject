@@ -35,7 +35,6 @@ public class MemberCommand {
 	@NotBlank(message = "패스워드를 입력하세요.")
 	String memPass;
 	
-	@NotBlank(message = "패스워드를 입력하세요.")
 	String memPassCon;
 	String memGender;
 	public boolean isUserPwEqualToUserPwCon() {

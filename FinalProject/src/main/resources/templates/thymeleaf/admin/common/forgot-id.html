@@ -39,11 +39,11 @@
 		                      <div class="d-block invalid-feedback" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
 		                    </div>
 		                    <div class="form-group">
-		                      <input type="text" name="userName" class="form-control form-control-user" th:field="*{userEmail}" placeholder="Email">
+		                      <input type="text" name="userEmail" class="form-control form-control-user" th:field="*{userEmail}" placeholder="Email">
 		                      <div class="d-block invalid-feedback" th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}"></div>
 		                    </div>
 		                    <div class="form-group">
-		                      <input type="text" name="userEmail" class="form-control form-control-user" th:field="*{userTel}" placeholder="Tel" maxlength="13">
+		                      <input type="text" name="userTel" class="form-control form-control-user" th:field="*{userTel}" placeholder="Tel" maxlength="13">
 		                      <div class="d-block invalid-feedback" th:if="${#fields.hasErrors('userTel')}" th:errors="*{userTel}"></div>
 		                    </div>
 		                    <button type="submit" class="btn btn-primary btn-user btn-block">Find ID</button>

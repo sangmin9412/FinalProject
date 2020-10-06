@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import app.admin.matching.command.AuthInfo;
 import app.admin.matching.command.MemberAddCommand;
 import app.admin.matching.domain.MemberAddDTO;
 import app.admin.matching.mapper.MemberMapper;
+import app.command.AuthInfo;
 
 @Service
 @Component

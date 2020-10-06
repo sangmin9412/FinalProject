@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import app.admin.matching.command.AuthInfo;
 import app.admin.matching.command.MemberLoginCommand;
 import app.admin.matching.domain.MemberDTO;
 import app.admin.matching.mapper.MemberMapper;
+import app.command.AuthInfo;
 import app.domain.StartEndPageDTO;
 
 @Service
@@ -24,7 +24,7 @@ public class MemberLoginService {
 	MemberMapper memberMapper;
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	AuthInfo authInfo=new AuthInfo();
+	AuthInfo authInfo = new AuthInfo();
 	public String execute(MemberLoginCommand memberLoginCommand,HttpSession session, HttpServletResponse response, Model model) throws Exception{
 		String location="";
 		MemberDTO memberDTO=new MemberDTO();
@@ -33,7 +33,7 @@ public class MemberLoginService {
 		System.out.println(memberDTO.getMemId());
 		if (list.size()==0) {
 			model.addAttribute("valid_mem", "존재하지 않는 계정입니다.");
-			location="thymeleaf/admin/matching/member/login";
+			location="thymeleaf/common/login";
 		}else {
 			memberDTO=list.get(0);
 			/* System.out.println(memberDTO.getMemPass()); */
@@ -48,7 +48,7 @@ public class MemberLoginService {
 				
 			}else {
 				model.addAttribute("valid_pw","비밀번호가 틀립니다.");
-				location="thymeleaf/admin/matching/member/login";
+				location="thymeleaf/common/login";
 			}
 		}
 		

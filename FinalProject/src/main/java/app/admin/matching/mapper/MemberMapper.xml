@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	<mapper namespace="app.admin.matching.mapper.MemberMapper">
+<mapper namespace="app.admin.matching.mapper.MemberMapper">
 	<sql id="column">
 		MEM_ID, MEM_NAME, MEM_BIRTH, MEM_ADDR, MEM_TEL, 
 		MEM_EMAIL, MEM_PASS, MEM_GENDER, MEM_REGIST, MEM_JOINOK
@@ -16,7 +16,6 @@
 		values(#{memId},#{memName},#{memBirth},#{memAddr},
 				#{memTel},#{memEmail},#{memPass},#{memGender},sysdate, null)
 	</insert>
-	
 	
 	<insert id="insertMemberAdd" parameterType="app.admin.matching.domain.MemberAddDTO">
 		insert into memberadd (<include refid="col_memadd"/>)
@@ -53,6 +52,47 @@
 	<select id="getMemberCount" resultType="int">
 		select count(*) from member
 	</select>
+
+	<update id="updateJoinOk">
+		update member
+		set mem_joinok = #{num}
+		where mem_id = #{userId}
+			and mem_joinok is null
+	</update>
 	
+	<select id="findId" parameterType="app.domain.UserIdChangeDTO" resultType="string">
+		SELECT mem_id
+		FROM member
+		WHERE mem_name = #{userName}
+			AND mem_email = #{userEmail}
+			AND mem_tel = #{userTel}
+	</select>
 	
-	</mapper>
+	<update id="changePw" parameterType="app.domain.UserPwChangeDTO">
+		UPDATE member
+		SET mem_pass = #{newPw}
+		WHERE mem_id = #{userId}
+			AND mem_name = #{userName}
+			AND mem_email = #{userEmail}
+	</update>
+	
+	<update id="updateMember" parameterType="app.admin.matching.domain.MemberDTO">
+		UPDATE member
+		<trim prefix="set" suffixOverrides=",">
+			<if test="memEmail != null">
+				mem_email = #{memEmail},
+			</if>
+			<if test="memName != null">
+				mem_name = #{memName},
+			</if>
+			<if test="memTel != null">
+				mem_tel = #{memTel},
+			</if>
+			<if test="memAddr != null">
+				mem_addr = #{memAddr},
+			</if>
+		</trim>
+		WHERE mem_id = #{memId}
+	</update>
+	
+</mapper>

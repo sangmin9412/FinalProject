@@ -44,7 +44,7 @@ public class MatchingAdminMemberController {
 	}
 
 	@RequestMapping(value = "memberJoin", method = RequestMethod.POST)
-	public String memberJoin(@Valid MemberCommand memberCommand, BindingResult result, Model model) {
+	public String memberJoin(@Valid MemberCommand memberCommand, BindingResult result, Model model) throws Exception {
 
 		if (result.hasErrors()) {
 			return "thymeleaf/admin/matching/member/member_write";
@@ -54,8 +54,8 @@ public class MatchingAdminMemberController {
 		if (i == null) {
 			return "thymeleaf/admin/matching/member/member_write";
 		}
+		
 		return "redirect:/";
-
 	}
 
 	@RequestMapping("memberAdd")

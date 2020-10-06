@@ -9,52 +9,64 @@ public class MainController {
 	public String home() {
 		return "thymeleaf/index";
 	}
-	@RequestMapping("/buttons")
+	@RequestMapping("/sub")
+	public String sub() {
+		return "thymeleaf/sub";
+	}
+	
+	@RequestMapping("/test/")
+	public String t() {
+		return "thymeleaf/test/index";
+	}
+	@RequestMapping("/test/buttons")
 	public String t1() {
 		return "thymeleaf/test/buttons";
 	}
-	@RequestMapping("/cards")
+	@RequestMapping("/test/cards")
 	public String t2() {
 		return "thymeleaf/test/cards";
 	}
-	@RequestMapping("/colors")
+	@RequestMapping("/test/colors")
 	public String t3() {
 		return "thymeleaf/test/utilities-color";
 	}
-	@RequestMapping("/borders")
+	@RequestMapping("/test/borders")
 	public String t4() {
 		return "thymeleaf/test/utilities-border";
 	}
-	@RequestMapping("/animations")
+	@RequestMapping("/test/animations")
 	public String t5() {
 		return "thymeleaf/test/utilities-animation";
 	}
-	@RequestMapping("/other")
+	@RequestMapping("/test/other")
 	public String t6() {
 		return "thymeleaf/test/utilities-other";
 	}
-	
-	@RequestMapping("/register")
+	@RequestMapping("/test/login")
+	public String t7() {
+		return "thymeleaf/test/login";
+	}
+	@RequestMapping("/test/register")
 	public String t8() {
 		return "thymeleaf/test/register";
 	}
-	@RequestMapping("/forgotPass")
+	@RequestMapping("/test/forgotPass")
 	public String t9() {
 		return "thymeleaf/test/forgot-password";
 	}
-	@RequestMapping("/blank")
+	@RequestMapping("/test/blank")
 	public String t10() {
 		return "thymeleaf/test/blank";
 	}
-	@RequestMapping("/charts")
+	@RequestMapping("/test/charts")
 	public String t11() {
 		return "thymeleaf/test/charts";
 	}
-	@RequestMapping("/tables")
+	@RequestMapping("/test/tables")
 	public String t12() {
 		return "thymeleaf/test/tables";
 	}
-	@RequestMapping("/forms")
+	@RequestMapping("/test/forms")
 	public String t13() {
 		return "thymeleaf/test/forms";
 	}

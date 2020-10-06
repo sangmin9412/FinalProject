@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import app.admin.intra.domain.IntraEmployeeDTO;
+import app.admin.intra.mapper.IntraEmployeeMapper;
 import app.command.AuthInfo;
 import app.command.LoginCommand;
 import app.domain.StartEndPageDTO;
-import app.intra.domain.IntraEmployeeDTO;
-import app.intra.mapper.IntraEmployeeMapper;
 
 @Component
 @Service

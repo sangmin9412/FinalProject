@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/matching")
+@RequestMapping("matching")
 public class MatchingMainController {
 	@RequestMapping("/")
 	public String home() {
