@@ -1,4 +1,4 @@
-package app.intra.command;
+package app.admin.intra.command;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

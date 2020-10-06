@@ -1,15 +1,15 @@
-package app.intra.mapper;
+package app.admin.intra.mapper;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import app.admin.intra.domain.IntraDepartmentDTO;
+import app.admin.intra.domain.IntraEmployeeDTO;
 import app.domain.StartEndPageDTO;
 import app.domain.UserIdChangeDTO;
 import app.domain.UserPwChangeDTO;
-import app.intra.domain.IntraDepartmentDTO;
-import app.intra.domain.IntraEmployeeDTO;
 
 @Component
 @Repository(value = "app.intra.mapper")

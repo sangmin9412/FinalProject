@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import app.intra.command.IntraEmployeeCommand;
-import app.intra.mapper.IntraEmployeeMapper;
-import app.intra.service.employee.IntraEmployeeDetailService;
-import app.intra.service.employee.IntraEmployeeListService;
-import app.intra.service.employee.IntraEmployeeModifyService;
-import app.intra.service.employee.IntraEmployeeWriteService;
+import app.admin.intra.command.IntraEmployeeCommand;
+import app.admin.intra.mapper.IntraEmployeeMapper;
+import app.admin.intra.service.employee.IntraEmployeeDetailService;
+import app.admin.intra.service.employee.IntraEmployeeListService;
+import app.admin.intra.service.employee.IntraEmployeeModifyService;
+import app.admin.intra.service.employee.IntraEmployeeWriteService;
 
 @Controller
 @RequestMapping("/admin/intra/employee")

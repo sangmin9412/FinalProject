@@ -26,7 +26,7 @@
 				    	내 정보
 				  </a>
 				  <div class="dropdown-divider"></div>
-				  <a class="dropdown-item" href="/admin/intra/logout">
+				  <a class="dropdown-item" href="/admin/matching/logout">
 				    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 				  		로그아웃
 				  </a>
@@ -35,7 +35,7 @@
 		      
 		      <!-- 로그아웃 상태 -->
 		      <th:block th:if="${session.authInfo == null}">
-			      <a class="nav-link dropdown-toggle" href="/admin/intra/login">
+			      <a class="nav-link dropdown-toggle" href="/admin/matching/login">
 			      	<span class="mr-2 d-none d-lg-inline text-gray-600 small">LOGIN</span>
 			      </a>
 		      </th:block>

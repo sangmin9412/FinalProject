@@ -1,4 +1,4 @@
-package app.intra.domain;
+package app.admin.intra.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

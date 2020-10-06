@@ -1,4 +1,4 @@
-package app.intra.service.employee;
+package app.admin.intra.service.employee;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import app.admin.intra.domain.IntraEmployeeDTO;
+import app.admin.intra.mapper.IntraEmployeeMapper;
 import app.controller.PageAction;
 import app.domain.StartEndPageDTO;
-import app.intra.domain.IntraEmployeeDTO;
-import app.intra.mapper.IntraEmployeeMapper;
 
 @Component
 @Service

@@ -1,4 +1,4 @@
-package app.intra.service.employee;
+package app.admin.intra.service.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import app.admin.intra.command.IntraEmployeeCommand;
+import app.admin.intra.domain.IntraEmployeeDTO;
+import app.admin.intra.mapper.IntraEmployeeMapper;
 import app.domain.StartEndPageDTO;
-import app.intra.command.IntraEmployeeCommand;
-import app.intra.domain.IntraEmployeeDTO;
-import app.intra.mapper.IntraEmployeeMapper;
 
 @Component
 @Service
