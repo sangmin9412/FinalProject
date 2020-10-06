@@ -1,6 +1,7 @@
 package app.admin.matching.service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
@@ -36,9 +37,9 @@ public class MemberJoinService {
 		}
 		
 		StartEndPageDTO startEndPageDTO = new StartEndPageDTO(1L, 1L, memberCommand.getMemId(), null);
-		MemberDTO user = memberMapper.selectMember(startEndPageDTO).get(0);
+		List<MemberDTO> user = memberMapper.selectMember(startEndPageDTO);
 		
-		if (user != null) {
+		if (user.size() > 0) {
 			model.addAttribute("duplicate_memId","사용중인 아이디 입니다.");
 			return null;
 		}
@@ -84,6 +85,7 @@ public class MemberJoinService {
 		return result;
 		
 	}
+	
 	public Integer updateJoinOk(String num, String userId) throws Exception {
 		MemberJoinOkDTO dto = new MemberJoinOkDTO();
 		dto.setNum(num);

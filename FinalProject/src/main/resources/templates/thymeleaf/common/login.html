@@ -163,7 +163,7 @@
 						<div class="col_half col_last">
 							<label for="register-form-birth">Birth:</label>
 							<input type="date" id="register-form-birth" name="memBirth" th:field="*{memBirth}" class="form-control" />
-							<span th:if="${#fields.hasErrors('memBirth')}" th:errors="*{memBirth}" ></span>
+							<span th:if="${#fields.hasErrors('memBirth')}" th:text="'생년월일을 선택하세요.'" ></span>
 						</div>
 
 						<div class="col_full nobottommargin">
