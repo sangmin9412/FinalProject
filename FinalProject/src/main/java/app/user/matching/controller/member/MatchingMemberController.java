@@ -10,4 +10,8 @@ public class MatchingMemberController {
 	public String home() {
 		return "thymeleaf/matching/mypage/index";
 	}
+	@RequestMapping("memberAdd")
+	public String memberAdd() {
+		return "thymeleaf/matching/mypage/member_add_write";
+	}
 }
