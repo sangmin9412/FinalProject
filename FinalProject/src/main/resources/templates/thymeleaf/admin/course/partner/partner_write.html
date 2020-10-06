@@ -24,15 +24,98 @@
 	        	<div class="card">
 	        		<div class="card-body">
 	        			<!-- Page 컨텐츠 영역 -->
-	        			<form action="" method="">
+	        			<form th:action="@{/admin/course/partner/partnerJoinOk}" method="post" th:object="${partnerCommand}">
 	        				<div class="form-group row">
-	        					<label for="" class="col-sm-2 col-form-label">
-	        						input title
+	        					<label for="venId" class="col-sm-2 col-form-label">
+	        						아이디
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="" class="form-control" id="">
+	        						<input type="text" name="venId" class="form-control" id="venId">
 	        					</div>
 	        				</div>
+	        				<div class="form-group row">
+	        					<label for="venPass" class="col-sm-2 col-form-label">
+	        						비밀번호
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="password" name="venPass" class="form-control" id="venPass">
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="reVenPass" class="col-sm-2 col-form-label">
+	        						비밀번호 확인
+	        					<span th:text="${valid_ReMemPass}"></span> 	
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="password" name="reVenPass" class="form-control" id="reVenPass">
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="venName" class="col-sm-2 col-form-label">
+	        						상호
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="text" name="venName" class="form-control" id="venName">
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="venTel" class="col-sm-2 col-form-label">
+	        						전화번호
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="text" name="venTel" class="form-control" id="venTel">
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="venNo" class="col-sm-2 col-form-label">
+	        						사업자번호
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="text" name="venNo" class="form-control" id="venNo">
+	        					</div>
+	        				</div>	        					        				
+	        				<div class="form-group row">
+	        					<label for="venAddr" class="col-sm-2 col-form-label">
+	        						주소
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="text" name="venAddr" class="form-control" id="venAddr">
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="venCeo" class="col-sm-2 col-form-label">
+	        						대표자명
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="text" name="venCeo" class="form-control" id="venCeo">
+	        					</div>
+	        				</div>	 
+	        				<div class="form-group row">
+	        					<label for="venCdate" class="col-sm-2 col-form-label">
+	        						계약일
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="datetime-local" name="venCdate" class="form-control" id="venCdate">
+	        					</div>
+	        				</div>	        				       					        				
+	        			   <div class="form-group row">
+	        					<label for="venAcnt" class="col-sm-2 col-form-label">
+	        						계좌은행
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="text" name="memEmail" class="form-control" id="memEmail">
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="venAcntNo" class="col-sm-2 col-form-label">
+	        						계좌번호
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<input type="text" name="venAcntNo" class="form-control" id="venAcntNo">
+	        					</div>
+	        				</div>
+	        	
+	        				<!-- 		
 	        				<div class="form-group row">
 	        					<label for="" class="col-sm-2 col-form-label">
 	        						select title
@@ -51,7 +134,7 @@
 	        					<div class="col-sm-10">
 	        						<input type="file" class="form-control" id="">
 	        					</div>
-	        				</div>
+	        				</div> -->	
 	        				<div class="btn-group float-sm-right">
 	        					<button type="submit" class="btn btn-primary">등록</button>
 	        				</div>
