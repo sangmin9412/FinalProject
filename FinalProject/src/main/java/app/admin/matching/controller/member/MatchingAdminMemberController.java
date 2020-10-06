@@ -28,7 +28,8 @@ public class MatchingAdminMemberController {
 	MemberListService memberListService;
 
 	@RequestMapping("memberList")
-	public String memberList() {
+	public String memberList(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) throws Exception  {
+				memberListService.memberList(model,page,1);
 		return "thymeleaf/admin/matching/member/member_list";
 	}
 
@@ -84,7 +85,7 @@ public class MatchingAdminMemberController {
 	
 	@RequestMapping("List")
 	public String list(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) throws Exception {
-		memberListService.memberList(model,page);
+		memberListService.memberList(model,page,0);
 		return "thymeleaf/admin/matching/member/list";
 	}
 }

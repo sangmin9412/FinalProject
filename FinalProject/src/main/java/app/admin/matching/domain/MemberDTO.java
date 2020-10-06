@@ -21,4 +21,6 @@ public class MemberDTO implements Serializable {
 	String memPass;
 	String memGender;
 	Timestamp memRegist;
+	
+	MemberAddDTO memberAdd;
 }
