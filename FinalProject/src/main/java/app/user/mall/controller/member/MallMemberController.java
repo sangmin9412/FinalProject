@@ -12,11 +12,11 @@ public class MallMemberController {
 	}
 	@RequestMapping("orderList")
 	public String orderList() {
-		return "thymeleaf/mall/order/order_list";
+		return "thymeleaf/mall/mypage/order_list";
 	}
 	@RequestMapping("deliveryList")
 	public String deliveryList() {
-		return "thymeleaf/mall/order/delivery_list";
+		return "thymeleaf/mall/mypage/delivery_list";
 	}
 	
 }

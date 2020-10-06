@@ -10,4 +10,8 @@ public class CourseMemberController {
 	public String home() {
 		return "thymeleaf/course/mypage/index";
 	}
+	@RequestMapping("orderList")
+	public String orderList() {
+		return "thymeleaf/course/mypage/order_list";
+	}
 }
