@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="app.admin.matching.mapper.EventMapper">
+	<sql id="eve_col">
+		EVE_NO, VEN_ID, EVE_LOC, EVE_DATE, EVE_MXCNT,
+		EVE_SUBJECT, EVE_CONTENT, EVE_ORIGINAL_IMAGE, EVE_STORE_IMAGE
+	</sql>
+	
+	<insert id="eventInsert" parameterType="app.admin.matching.domain.EventDTO">
+		INSERT INTO EVENT(<include refid="eve_col"/>)
+		VALUES(EVENT_SEQ.NEXTVAL,#{venId}, #{eveLoc}, #{eveDate}, #{eveMxCnt},
+				#{eveSubject}, #{eveContent}, #{eveOriginalImage}, #{eveStoreImage})
+	
+	</insert>
+	
+	
+	
+	
+	</mapper>
