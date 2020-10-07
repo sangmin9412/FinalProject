@@ -20,7 +20,7 @@
    	<section id="page-title">
 
 		<div class="container clearfix">
-			<h1>Metching Service</h1>
+			<h1>Matching Service</h1>
 		</div>
 
 	</section>
@@ -47,56 +47,30 @@
 					<col style="width:150px;" />
 				  	<col style="width:200px;" />
 				  </colgroup>
-				  <thead>
-					<tr>
-					  <th>No</th>
-					  <th>제목</th>
-					  <th>작성자</th>
-					  <th>날짜</th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <td>1</td>
-					  <td><a href="#">Subjecttttttt</a></td>
-					  <td>test1212</td>
-					  <td>2020-10-05</td>
-					</tr>
-					<tr>
-					  <td>2</td>
-					  <td><a href="#">Subjecttttttt</a></td>
-					  <td>test1212</td>
-					  <td>2020-10-05</td>
-					</tr>
-					<tr>
-					  <td>3</td>
-					  <td><a href="#">Subjecttttttt</a></td>
-					  <td>test1212</td>
-					  <td>2020-10-05</td>
-					</tr>
-					<tr>
-					  <td>4</td>
-					  <td><a href="#">Subjecttttttt</a></td>
-					  <td>test1212</td>
-					  <td>2020-10-05</td>
-					</tr>
-				  </tbody>
+				<thead>
+										<tr>
+											<th>No</th>
+											<th>이벤트 제목</th>
+											<th>이벤트 일시</th>
+											<th>모집인원</th>
+											<th>업체담당자</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="list, i:${eventList}">
+											<th>[[${i.count}]]</th>
+											<td><a th:href="@{eventView(eveNo=${list.eveNo})}">[[${list.eveSubject}]]</a></td>
+											<td>[[${list.eveDate}]]</td>
+											<td>[[${list.eveMxCnt}]]</td>
+											<td>[[${list.venId}]]</td>
+										</tr>
+										
+									</tbody>
 				</table>
-				
 				<div class="center">
-					<ul class="pagination">
-						<li><a href="#">«</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">»</a></li>
-					</ul>
 					
-					<!-- 개발이 완료되면 아래 인크루드 사용하세요 
 					<th:block th:replace="fragments/includePage :: pagingFragment"></th:block>
-					 -->
 				</div>
 				
 			</div>

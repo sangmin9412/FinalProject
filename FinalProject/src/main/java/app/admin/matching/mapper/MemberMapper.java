@@ -23,4 +23,5 @@ public interface MemberMapper {
 	public String findId(UserIdChangeDTO dto) throws Exception;
 	public void changePw(UserPwChangeDTO dto) throws Exception;
 	public Integer updateMember(MemberDTO dto) throws Exception;
+	public List<MemberAddDTO> selectAddInfo(String memId) throws Exception;
 }

@@ -32,7 +32,13 @@
 								<li><a href="/mall/board/reviewList">리뷰게시판</a></li>
 							</ul>
 						</li>
-						<li><a href="/matching/survey/surveyWrite"><div>매칭 서비스</div></a></li>
+						<li><a href="/matching/survey/surveyWrite"><div>매칭 서비스</div></a>
+							<ul>
+								<li><a href="/matching/survey/surveyWrite">이상형 찾기</a></li>
+								<li><a href="/matching/event/eventList">이벤트</a></li>
+							</ul>
+						
+						</li>
 						<th:block th:if="${ session.authInfo == null }">
 							<li><a href="/login"><div>로그인</div></a></li>
 						</th:block>

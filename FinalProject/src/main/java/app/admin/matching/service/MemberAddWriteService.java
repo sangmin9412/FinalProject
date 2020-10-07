@@ -77,14 +77,16 @@ public class MemberAddWriteService {
 			try {
 				mf.transferTo(file);
 			} catch (Exception e) {
-				location="thymeleaf/admin/matching/member/member_add_write";
+				location="thymeleaf/matching/mypage/member_add_write";
 				e.printStackTrace();
 			}
 			
 		}
 		
 		memberAddDTO.setMemOriginalImage(originalTotal);
+		System.out.println(memberAddDTO.getMemOriginalImage());
 		memberAddDTO.setMemStoreImage(storeTotal);
+		System.out.println(memberAddDTO.getMemStoreImage());
 		
 		result = memberMapper.insertMemberAdd(memberAddDTO);
 
