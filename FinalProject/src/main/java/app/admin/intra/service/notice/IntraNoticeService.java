@@ -1,3 +1,4 @@
+
 package app.admin.intra.service.notice;
 
 import java.io.File;
@@ -45,7 +46,8 @@ public class IntraNoticeService {
 			dto.setNotOriginFile(original);
 			
 			File file = new File(filePath + "/" + store);
-			dto.setNotSize(file.length());
+			dto.setNotSize(mf.getSize());
+			System.out.println(mf.getSize());
 			mf.transferTo(file);
 		}catch(Exception e){
 			e.printStackTrace();

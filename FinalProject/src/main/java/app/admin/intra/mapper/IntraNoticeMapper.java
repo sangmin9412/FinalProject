@@ -17,4 +17,5 @@ public interface IntraNoticeMapper {
 	public void updateNotice(IntraNoticeDTO dto)throws Exception;
 	public void deleteNotice(IntraNoticeDTO dto)throws Exception;
 	public int noticeCount()throws Exception;
+	public int commuteCount()throws Exception;
 }

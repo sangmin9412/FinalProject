@@ -30,6 +30,9 @@
 	 )
   </insert>
   <select id="noticeCount" resultType="int">
+		select count(*) from NOTICE
+	</select>
+	 <select id="commuteCount" resultType="int">
 		select count(*) from COMMUTE
 	</select>
     
