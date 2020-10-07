@@ -11,9 +11,9 @@
 	
 	<!-- 페이지 js -->
 	<th:block layout:fragment="js">
-		<script></script>
 	</th:block>
-</head>
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	</head>
 
 <body>
     <th:block layout:fragment="content" class="content">
@@ -27,25 +27,28 @@
 	        			<div class="row">
 	        				<div class="col-sm-12 col-md-6 mb-3">
 	        					<div class="form-inline">
-		        					<select name="" id="" class="form-control">
-		        						<option value="">1월</option>
-		        						<option value="">2월</option>
-		        						<option value="">3월</option>
-		        						<option value="">4월</option>
-		        						<option value="">5월</option>
-		        						<option value="">6월</option>
-		        						<option value="">7월</option>
-		        						<option value="">8월</option>
-		        						<option value="">9월</option>
-		        						<option value="">10월</option>
-		        						<option value="">11월</option>
-		        						<option value="">12월</option>
+		        					<select name="list" id="month" class="form-control" onchange="window.open(value,'_self');">
+		        						<option value="">선택</option>
+		        						<option value="commuteList">전체</option>
+		        						<option value="commuteListPro?month=01">1월</option>
+		        						<option value="commuteListPro?month=02">2월</option>
+		        						<option value="commuteListPro?month=03">3월</option>
+		        						<option value="commuteListPro?month=04">4월</option>
+		        						<option value="commuteListPro?month=05">5월</option>
+		        						<option value="commuteListPro?month=06">6월</option>
+		        						<option value="commuteListPro?month=07">7월</option>
+		        						<option value="ccommuteListPro?month=08">8월</option>
+		        						<option value="commuteListPro?month=09">9월</option>
+		        						<option value="commuteListPro?month=10">10월</option>
+		        						<option value="commuteListPro?month=11">11월</option>
+		        						<option value="commuteListPro?month=12">12월</option>
 		        					</select>
+		              					
 	        					</div>
 	        				</div>
 	        				<div class="col-sm-12 col-md-6">
 	        					<div class="float-right mb-3">
-	        						Total: [[${count}]]
+	        						Total: [[${count}]]	        					    			
 	        					</div>
 	        				</div>
 	        			</div>
@@ -78,7 +81,7 @@
 												<td>
 													<a>[[${session.authInfo.Id}]]</a>
 												</td>
-												<td>[[${#dates.format(dto.comDate, 'yyyy-MM-dd')}]]</td>
+												<td>[[${#dates.format(dto.comDate, 'yyyy-MM-dd')}]]</td> 
 												<!-- <td>[[${dto.comDate}]]</td> -->
 												<td>[[${#dates.format(dto.comGo, 'hh:mm:ss')}]]</td>
 												<!-- <td>[[${dto.comGo}]]</td> -->

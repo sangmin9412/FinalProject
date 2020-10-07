@@ -32,6 +32,9 @@
 	<select id="commuteCount" resultType="int">
 		select count(*) from COMMUTE
 	</select>
+
+    
+     
     
  
   <resultMap type="app.admin.intra.domain.IntraCommuteDTO" id="bbb">
@@ -49,6 +52,15 @@
 		from commute
 	</select>
    
+   <select id ="commuteLists" parameterType="string" resultMap="bbb">
+   select <include refid="baseColumns"/>
+   from commute
+   <where>
+   	<if test="value !=null">
+   		TO_CHAR(COM_DATE,'MM') = #{value}
+   	</if>
+   </where>
+   </select>
   
   
   </mapper>

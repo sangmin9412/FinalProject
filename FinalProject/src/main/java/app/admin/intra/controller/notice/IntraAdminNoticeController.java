@@ -68,7 +68,6 @@ public class IntraAdminNoticeController {
 	public String NoticeModifyPro(IntraNoticeCommand intraNoticeCommand)throws Exception{
 		intraNoticeModifyProService.IntraNoticeUpdate(intraNoticeCommand);
 		return "redirect:/admin/intra/notice/noticeView?num="+intraNoticeCommand.getNotNo();
-		
 	}
 	@RequestMapping("noticedelete")//삭제 페이지 
 	public String noticedelete(@RequestParam(value = "num") Integer notNo)
