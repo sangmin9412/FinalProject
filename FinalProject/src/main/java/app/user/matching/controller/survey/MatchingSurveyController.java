@@ -10,4 +10,8 @@ public class MatchingSurveyController {
 	public String surveyWrite() {
 		return "thymeleaf/matching/survey/survey_write";
 	}
+	@RequestMapping("memberList")
+	public String memberList() {
+		return "thymeleaf/matching/survey/member_list";
+	}
 }
