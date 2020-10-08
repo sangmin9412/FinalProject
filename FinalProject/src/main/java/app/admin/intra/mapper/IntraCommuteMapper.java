@@ -16,7 +16,7 @@ public interface IntraCommuteMapper {
 	public List<IntraCommuteDTO> commuteList()throws Exception;
 	public List<IntraCommuteDTO> commuteLists(String comDate);
 	public Integer commuteCount() throws Exception;
-	public Integer commuteMonth() throws Exception;
+	
 	
 
 

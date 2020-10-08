@@ -19,7 +19,7 @@ public class IntraCommuteListServie {
 
 	public void listService(Model model)throws Exception{
 		 
-		List<IntraCommuteDTO> lists = intraCommuteMapper.commuteLists(null);
+		List<IntraCommuteDTO> lists = intraCommuteMapper.commuteList();
 		
 		int count = intraCommuteMapper.commuteCount();
 
