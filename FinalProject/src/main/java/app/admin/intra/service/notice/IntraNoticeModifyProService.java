@@ -22,9 +22,7 @@ public class IntraNoticeModifyProService {
 		dto.setNotNo(intraNoticeCommand.getNotNo());
 		dto.setNotCont(intraNoticeCommand.getNotCont());
 		dto.setNotSub(intraNoticeCommand.getNotSub());
-		
-		
-		
+				
 		intraNoticeMapper.updateNotice(dto);
 	}
 	

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="app.admin.intra.mapper.IntraAskMapper">
+  <sql id="baseColumns">
+  	ASK_NO,
+  	EMP_ID,
+  	ASK_SUB,
+  	ASK_CONT,
+  	ASK_DATE,
+  	ASK_COUNT,
+  	ASK_ORIGIN_FILE,
+  	ASK_STORE_FILE,
+  	ASK_SIZE
+  </sql>
+    <insert id="insertAsk" parameterType="app.admin.intra.domain.IntraAskDTO">
+  insert into ASK(
+	  	<include refid="baseColumns" />
+  	)
+  values(
+	  	NUM_SEQ.nextval,
+	  	#{empId},
+	  	#{askSub},
+	  	#{askCont},
+	  	SysDate,
+	  	0,
+	  	#{askOriginFile},
+	  	#{askStoreFile},
+	  	#{askSize}
+	 )
+  </insert>
+  
+  <resultMap type="app.admin.intra.domain.IntraAskDTO" id="ccc">
+		<id column="ASK_NO" jdbcType="BIGINT" property="askNo" />
+		<id column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+		<result column="ASK_SUB" jdbcType="VARCHAR"	property="askSub" />
+		<result column="ASK_CONT" jdbcType="VARCHAR" property="askCont" />
+		<result column="ASK_DATE" jdbcType="TIMESTAMP" property="askDate" />
+		<result column="ASK_COUNT" jdbcType="BIGINT" property="askCount" />
+		<result column="ASK_ORIGIN_FILE" jdbcType="VARCHAR"	property="askOriginFile" />
+		<result column="ASK_STORE_FILE" jdbcType="VARCHAR" property="askStoreFile" />
+		<result column="ASK_SIZE" jdbcType="VARCHAR" property="askSize" />
+	</resultMap>
+	
+	 <select id="listAsk" resultMap="ccc">
+		select <include refid="baseColumns" />
+		from ask
+	</select>
+	
+	 <select id="countAsk" resultType="int">
+		select count(*) from ASK
+	</select>
+	
+	<select id="detailAsk" parameterType="int" resultMap="ccc">
+		select <include refid="baseColumns" />
+		from ask
+		where ASK_NO = #{askNo}
+	</select>
+	
+	<update id="updateAsk" parameterType="app.admin.intra.domain.IntraAskDTO" >
+	update ask
+	set ASK_SUB = #{askSub}, ASK_CONT = #{askCont} 
+	where ASK_NO = #{askNo} 
+	</update>
+	
+	<delete id="deleteAsk"  parameterType="app.admin.intra.domain.IntraAskDTO" >
+	delete from ask
+	where ASK_NO = #{askNo}
+	</delete>
+    
+	
+	
+  </mapper>
+  
+ 
+	  
+  
