@@ -1,5 +1,10 @@
 package app.user.matching.controller.event;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +28,14 @@ public class MatchingEventController {
 		
 	}
 	@RequestMapping("eventView")
-	public String eventView(@RequestParam(value = "eveNo")String eveNo,Model model) throws Exception {
+	public String eventView(@RequestParam(value = "eveNo")String eveNo,Model model, HttpSession session, HttpServletResponse response) throws Exception {
+		if (session.getAttribute("authInfo")==null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('먼저 로그인을 해주세요'); location.href='/login';</script>");
+			out.flush();
+		}
+		
 		eventDetailService.execute(eveNo, model);
 		return "thymeleaf/matching/event/event_view";
 	}

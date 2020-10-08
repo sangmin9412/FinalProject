@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import app.admin.matching.domain.MatchDTO;
+import app.admin.matching.domain.MatchPayDTO;
 import app.domain.StartEndPageDTO;
 
 @Component
@@ -15,5 +16,6 @@ public interface MatchMapper {
 	public List<MatchDTO> selectMatch(StartEndPageDTO startEndPageDTO) throws Exception;
 	public Integer getMatchCount();
 	public void matchUpdate(MatchDTO dto) throws Exception;
+	public void matchPayInsert(MatchPayDTO dto) throws Exception;
 	
 }

@@ -12,14 +12,7 @@
 		MEM_STORE_IMAGE, MEM_EXP, MEM_MAT
 	</sql>
 	
-	<select id="selectAddInfo" parameterType="string" resultMap="memberAdd">
-		SELECT <include refid="col_memadd"/> 
-		FROM MEMBERADD 
-		WHERE MEM_ID=#{memId}
-	
-	</select>
-	
-	<resultMap type="app.admin.matching.domain.MemberAddDTO" id="memberAdd">
+	<resultMap type="app.admin.matching.domain.MemberAddDTO" id="memAdd">
 	 	<id column="MEM_ID" jdbcType="VARCHAR" property="memId"/>
 		<result column="MEM_CAREER" jdbcType="VARCHAR" property="memCareer"/>
 		<result column="MEM_JOB" jdbcType="VARCHAR" property="memJob"/>
@@ -31,10 +24,19 @@
 		<result column="MEM_RLG" jdbcType="VARCHAR" property="memRlg"/>
 		<result column="MEM_ORIGINAL_IMAGE" jdbcType="VARCHAR" property="memOriginalImage"/>
 		<result column="MEM_STORE_IMAGE" jdbcType="VARCHAR" property="memStoreImage"/>
-		<result column="MEM_EXP" jdbcType="VARCHAR" property="memExp"/>
+		<result column="MEM_EXP" jdbcType="TIMESTAMP" property="memExp"/>
 		<result column="MEM_MAT" jdbcType="VARCHAR" property="memMat"/>
 	
 	</resultMap>
+	
+	
+	<select id="selectAddInfo" parameterType="string" resultMap="memAdd">
+		SELECT <include refid="col_memadd"/> 
+		FROM MEMBERADD 
+		WHERE MEM_ID=#{memId}
+	
+	</select>
+	
 	
 	
 	
@@ -136,5 +138,19 @@
 		</trim>
 		WHERE mem_id = #{memId}
 	</update>
+	
+	<update id="updateMemberAdd" parameterType="string">
+		update memberadd
+		set mem_exp=sysdate+365
+		where mem_id=#{value}
+	</update>
+	<select id="selectExpireDate" parameterType="string" resultType="string">
+		SELECT MEM_EXP
+		FROM MEMBERADD
+		WHERE MEM_ID=#{value} and MEM_EXP>sysdate
+		
+	</select>
+	
+	
 	
 </mapper>

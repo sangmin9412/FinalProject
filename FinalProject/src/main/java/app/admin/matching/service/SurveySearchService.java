@@ -31,6 +31,7 @@ public class SurveySearchService {
 		surveyDTO.setMemGender(memberDTO.getMemGender());
 		List<MemberDTO> list=surveyMapper.selectMember(surveyDTO);
 		model.addAttribute("memberList",list);
+		model.addAttribute("memId",memId);
 		
 	}
 

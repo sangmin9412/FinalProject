@@ -1,5 +1,6 @@
 package app.admin.matching.mapper;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -24,4 +25,6 @@ public interface MemberMapper {
 	public void changePw(UserPwChangeDTO dto) throws Exception;
 	public Integer updateMember(MemberDTO dto) throws Exception;
 	public List<MemberAddDTO> selectAddInfo(String memId) throws Exception;
+	public void updateMemberAdd(String memId) throws Exception;
+	public String selectExpireDate(String memId) throws Exception;
 }

@@ -26,7 +26,7 @@ public class MemberAddWriteService {
 	@Autowired
 	MemberMapper memberMapper;
 
-	public Integer insertMemberAdd(MemberAddCommand memberAddCommand, HttpServletRequest request) throws Exception {
+	public Integer insertMemberAdd(MemberAddCommand memberAddCommand, HttpServletRequest request)   {
 		Integer result = null;
 		MemberAddDTO memberAddDTO = new MemberAddDTO();
 		/* memberAddDTO.setMemId("aaa"); */
@@ -42,13 +42,16 @@ public class MemberAddWriteService {
 		System.out.println(memberAddDTO.getMemHgt());
 		/* memberAddDTO.setMemHobby(memberAddCommand.getMemHobby()); */
 
-		List list = new ArrayList();
-		list = memberAddCommand.getMemHobby();
-		String[] memHobby = (String[]) list.toArray(new String[list.size()]);
 		String hobbySum = "";
-		for (String s : memHobby) {
-			hobbySum += s + "`";
+		if (memberAddCommand.getMemHobby() != null) {
+			List list = new ArrayList();
+			list = memberAddCommand.getMemHobby();
+			String[] memHobby = (String[]) list.toArray(new String[list.size()]);
+			for (String s : memHobby) {
+				hobbySum += s + " ";
+			}
 		}
+		
 
 		System.out.println(hobbySum);
 		memberAddDTO.setMemHobby(hobbySum);
@@ -67,6 +70,8 @@ public class MemberAddWriteService {
 		String PATH="/static/upload/member";
 		String filePath=request.getServletContext().getRealPath(PATH);
 		System.out.println(filePath);
+		
+		
 		for (MultipartFile mf : memberAddCommand.getMemImage()) {
 			String original=mf.getOriginalFilename();
 			String originalFileExtension=original.substring(original.lastIndexOf("."));
@@ -74,6 +79,8 @@ public class MemberAddWriteService {
 			originalTotal+=original+"`";
 			storeTotal+=store+"`";
 			File file=new File(filePath+"/"+store);
+			
+			
 			try {
 				mf.transferTo(file);
 			} catch (Exception e) {
@@ -88,7 +95,12 @@ public class MemberAddWriteService {
 		memberAddDTO.setMemStoreImage(storeTotal);
 		System.out.println(memberAddDTO.getMemStoreImage());
 		
-		result = memberMapper.insertMemberAdd(memberAddDTO);
+		try {
+			result = memberMapper.insertMemberAdd(memberAddDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return result;
 	}

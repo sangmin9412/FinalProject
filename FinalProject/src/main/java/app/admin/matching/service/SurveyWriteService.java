@@ -24,6 +24,7 @@ public class SurveyWriteService {
 		/* String memId=((AuthInfo)session.getAttribute("authInfo")).getId(); */
 		SurveyDTO surveyDTO=new SurveyDTO();
 		/* surveyDTO.setMemId("aaa"); */
+		
 		String memId=((AuthInfo)session.getAttribute("authInfo")).getId();
 		surveyDTO.setMemId(memId);
 		surveyDTO.setSurAge(surveyCommand.getSurAge());
@@ -46,7 +47,6 @@ public class SurveyWriteService {
 		surveyDTO.setSurWgt(surveyCommand.getSurWgt());
 		surveyMapper.insertSurvey(surveyDTO);
 		return surveyDTO.getMemId();
-		
+		}
 	}
 
-}

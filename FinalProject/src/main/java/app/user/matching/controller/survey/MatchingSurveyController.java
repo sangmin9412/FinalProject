@@ -1,5 +1,8 @@
 package app.user.matching.controller.survey;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +27,17 @@ public class MatchingSurveyController {
 		return "thymeleaf/matching/survey/survey_write";
 	}
 	@RequestMapping("surveyWritePro")
-	public String surveyWritePro(SurveyCommand surveyCommand, Model model, HttpSession session) throws Exception {
+	public String surveyWritePro(SurveyCommand surveyCommand, Model model, HttpSession session, HttpServletResponse response) throws Exception {
+		if (session.getAttribute("authInfo")==null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('먼저 로그인을 해주세요'); location.href='/login';</script>");
+			out.flush();
+		}
+		
 		String memId=surveyWriteService.execute(surveyCommand,model,session);
-		 surveySearchService.execute(memId, model);
+		surveySearchService.execute(memId, model);
+		
 		return "thymeleaf/matching/survey/survey_result";
 	}
 	

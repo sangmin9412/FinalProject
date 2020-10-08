@@ -46,7 +46,7 @@ public class MatchingMemberController {
 		if (i == null) {
 			return "thymeleaf/matching/mypage/member_add_write";
 		}
-		return "redirect:/";
+		return "redirect:/mypage/matching/memberAddView";
 
 	}
 	@RequestMapping("memberAddModify")

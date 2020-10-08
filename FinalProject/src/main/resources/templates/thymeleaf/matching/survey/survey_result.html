@@ -20,7 +20,7 @@
    	<section id="page-title">
 
 		<div class="container clearfix">
-			<h1>Metching Service</h1>
+			<h1>Matching Service</h1>
 		</div>
 
 	</section>
@@ -30,15 +30,18 @@
 		<div class="content-wrap">
 			
 			<div class="container clearfix">
-				
+				<form th:action="@{/matching/match/payment}" id="frm" name="frm" method="post">
 				<div class="row" style="margin-bottom: 10px;">
 					<div class="tright">
 						<div class="form-inline">
-							<input type="text" name="search" class="form-control" style="max-width:200px;" />
-							<button class="button button-3d button-small">search</button>
+						<span>[[${#lists.size(memberList)}]]명의 회원과 매칭 성공 가능성이 있습니다.</span>
+						<!-- 	<input type="text" name="search" class="form-control" style="max-width:200px;" /> -->
+							<button type="submit" class="button button-3d button-small">매칭신청</button>
 						</div>
 					</div>
 				</div>
+				</form>
+				
 				
 				<table class="table table-hover">
 				  <colgroup>
@@ -58,7 +61,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="list , i: ${memberList}">
+										<tr th:each="list , i: ${memberList}"  >
 											<th>[[${i.count}]]</th>
 											<td>[[${list.memName}]]</td>
 											<td>[[${list.memTel}]]</td>
@@ -67,7 +70,7 @@
 										</tr>
 									</tbody>
 				</table>
-				<span>[[${#lists.size(memberList)}]]명의 회원과 매칭 성공 가능성이 있습니다.</span>
+				
 				<div class="center">
 					<ul class="pagination">
 						<li><a href="#">«</a></li>

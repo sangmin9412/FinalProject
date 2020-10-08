@@ -64,6 +64,26 @@
 	<select id="getMatchCount" resultType="int">
 		select count(*) from MATCHING
 	</select>
+	<sql id="col_matchpay">
+		MATPAY_NO, MEM_ID, MATPAY_WAY, MATPAY_PRICE, MATPAY_REQ, MATPAY_DATE
+	</sql>
+	<insert id="matchPayInsert" parameterType="app.admin.matching.domain.MatchPayDTO">
+		INSERT INTO MATCHPAY(<include refid="col_matchpay"/>)
+		VALUES(MATCHPAY_SEQ.NEXTVAL,#{memId},#{matPayWay},
+				#{matPayPrice},#{matPayReq},SYSDATE)
+	
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	</mapper>
