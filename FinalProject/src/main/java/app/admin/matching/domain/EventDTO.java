@@ -19,6 +19,7 @@ public class EventDTO {
 	String eveContent;
 	String eveOriginalImage;
 	String eveStoreImage;
+	Long eveApplicant;
 	public EventDTO(String eveOriginalImage, String eveStoreImage) {
 		super();
 		this.eveOriginalImage = eveOriginalImage;
