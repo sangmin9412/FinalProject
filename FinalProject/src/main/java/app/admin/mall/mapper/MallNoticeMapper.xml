@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="app.admin.mall.mapper.MallNoticeMapper">
+  <sql id="baseColumns">
+  	MNOT_NO,
+  	EMP_ID,
+  	MNOT_SUB,
+  	MNOT_CONT,
+  	MNOT_DATE,
+  	MNOT_COUNT,
+  	MNOT_ORIGIN_FILE,
+  	MNOT_STORE_FILE,
+  	MNOT_SIZE
+  </sql>
+  <insert id="insertNotice" parameterType="app.admin.mall.domain.MallNoticeDTO">
+  insert into MALLNOTICE(
+	  	<include refid="baseColumns" />
+  	)
+  values(
+	  	NUM_SEQ.nextval,
+	  	#{empId},
+	  	#{mnotSub},
+	  	#{mnotCont},
+	  	SysDate,
+	  	0,
+	  	#{mnotOriginFile},
+	  	#{mnotStoreFile},
+	  	#{mnotSize}
+	 )
+  </insert>
+  <select id="noticeCount" resultType="int">
+		select count(*) from COMMUTE
+	</select>
+    
+  
+  	<resultMap type="app.admin.mall.domain.MallNoticeDTO" id="aaa">
+		<id column="MNOT_NO" jdbcType="BIGINT" property="mnotNo" />
+		<id column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+		<result column="MNOT_SUB" jdbcType="VARCHAR"	property="mnotSub" />
+		<result column="MNOT_CONT" jdbcType="VARCHAR" property="mnotCont" />
+		<result column="MNOT_DATE" jdbcType="TIMESTAMP" property="mnotDate" />
+		<result column="MNOT_COUNT" jdbcType="BIGINT" property="mnotCount" />
+		<result column="MNOT_ORIGIN_FILE" jdbcType="VARCHAR"	property="mnotOriginFile" />
+		<result column="MNOT_STORE_FILE" jdbcType="VARCHAR" property="mnotStoreFile" />
+		<result column="MNOT_SIZE" jdbcType="VARCHAR" property="mnotSize" />
+	</resultMap>
+	
+	<select id="viewNotice" resultMap="aaa">
+		select <include refid="baseColumns" />
+		from mallnotice
+	</select>
+	
+	<select id="detailNotice" parameterType="int" resultMap="aaa">
+	select <include refid="baseColumns" />
+	from mallnotice
+	where MNOT_NO = #{mnotNo}
+	</select>
+	
+	<select id="modifyNotice" parameterType="int" resultMap="aaa">
+	select <include refid="baseColumns" />
+	from mallnotice
+	where MNOT_NO = #{mnotNo}
+	</select>
+		
+	<update id="updateNotice"  parameterType="app.admin.mall.domain.MallNoticeDTO">
+	update mallnotice
+	set MNOT_SUB = #{mnotSub}, MNOT_CONT = #{mnotCont} 
+	where MNOT_NO = #{mnotNo} 
+	</update>
+	
+	
+	<delete id="deleteNotice"  parameterType="app.admin.mall.domain.MallNoticeDTO" >
+	delete from mallnotice
+	where MNOT_NO = #{mnotNo} <!-- and  emp_pass = #{empPass}	 -->
+	</delete>
+	
+  </mapper>

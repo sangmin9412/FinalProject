@@ -37,53 +37,27 @@
 										<tr>
 											<th>No</th>
 											<th>아이디</th>
-											<th>....</th>
-											<th>....</th>
+											<th>이름</th>
+											<th>전화번호</th>
+											<th>가입일</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th>1</th>
-											<td>
-												<a href="memberView">asd 01</a>
-											</td>
-											<td>....</td>
-											<td>....</td>
-										</tr>
-										<tr>
-											<th>2</th>
-											<td>
-												<a href="memberView">asd 02</a>
-											</td>
-											<td>....</td>
-											<td>....</td>
-										</tr>
-										<tr>
-											<th>3</th>
-											<td>
-												<a href="memberView">asd 03</a>
-											</td>
-											<td>....</td>
-											<td>....</td>
+										<tr th:each="list , i: ${memberList}">
+											<th>[[${i.count}]]</th>
+											<td>[[${list.memId}]]</td>
+											
+											<td>[[${list.memName}]]</td>
+											<td>[[${list.memTel}]]</td>
+											<td><span th:text="${#dates.format(list.memRegist,'yyyy-MM-dd')}"></span></td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
 						
-						<nav aria-label="Page navigation example">
-							<ul class="pagination justify-content-end">
-								<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">Next</a></li>
-							</ul>
-						</nav>
-						<!--
-						개발이 완료되면 페이징은 아래에 있는걸로 사용하세요 
 						<th:block th:replace="fragments/admin/includePage :: pagingFragment"></th:block>
-						 -->
+						 
 	        		</div>
 	        	</div>
         	</div>

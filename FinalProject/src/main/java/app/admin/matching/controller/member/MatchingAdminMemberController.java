@@ -28,8 +28,9 @@ public class MatchingAdminMemberController {
 	MemberListService memberListService;
 
 	@RequestMapping("memberList")
-	public String memberList(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) throws Exception  {
-				memberListService.memberList(model,page,1);
+	public String memberList(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model)
+			throws Exception {
+		memberListService.memberList(model, page, 1);
 		return "thymeleaf/admin/matching/member/member_list";
 	}
 
@@ -54,7 +55,7 @@ public class MatchingAdminMemberController {
 		if (i == null) {
 			return "thymeleaf/admin/matching/member/member_write";
 		}
-		
+
 		return "redirect:/";
 	}
 
@@ -82,10 +83,10 @@ public class MatchingAdminMemberController {
 	public String memberDelete() {
 		return "thymeleaf/admin/matching/member/member_delete";
 	}
-	
+
 	@RequestMapping("List")
 	public String list(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) throws Exception {
-		memberListService.memberList(model,page,0);
+		memberListService.memberList(model, page, 0);
 		return "thymeleaf/admin/matching/member/list";
 	}
 }
