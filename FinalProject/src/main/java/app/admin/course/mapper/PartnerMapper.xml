@@ -3,46 +3,68 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="app.admin.course.mapper.PartnerMapper" >
 <sql id="baseColumn">
-		VEN_ID, VEN_PASS, VEN_NAME, VEN_TEL, VEN_NO, VEN_ADDR, VEN_CEO, VEN_CDATE, VEN_ACNT, VEN_ACNTNO
+		VEN_ID,
+		VEN_PASS,
+		VEN_NAME,
+		VEN_TEL,
+		VEN_NO,
+		VEN_ADDR,
+		VEN_CEO,
+		VEN_CDATE,
+		VEN_ACNT,
+		VEN_ACNTNO,
+		VEN_TYPE,
+		VEN_OK
 </sql>	
 <insert id="insertPartner" parameterType="app.admin.course.domain.PartnerDTO">
-	insert into vendor ( <include refid="baseColumn" />  )
-		values(#{venId},#{venPass},#{venName},#{venTel},#{venNo},#{venAddr},#{venCeo},#{venCdate},#{venAcnt},#{venAcntNo})
+	insert into vendor (<include refid="baseColumn" />)
+	values(
+		#{venId},
+		#{venPass},
+		#{venName},
+		#{venTel},
+		#{venNo},
+		#{venAddr},
+		#{venCeo},
+		#{venCdate},
+		#{venAcnt},
+		#{venAcntNo},
+		#{venType},
+		null
+	)
 </insert>
-	<resultMap type="app.admin.course.domain.PartnerDTO" id="basePartner" >
-		<constructor>
-			<idArg column="VEN_ID" javaType="string" />
-			<arg column="VEN_PASS" javaType="string" />
-			<arg column="VEN_NAME" javaType="string" />
-			<arg column="VEN_TEL" javaType="string" />
-			<arg column="VEN_NO" javaType="string" />
-			<arg column="VEN_ADDR" javaType="string" />
-			<arg column="VEN_CEO" javaType="string" />
-			<arg column="VEN_CDATE" javaType="java.sql.Timestamp"/>
-			<arg column="VEN_ACNT" javaType="string" />
-			<arg column="VEN_ACNTNO" javaType="string" />
-		</constructor>
-	</resultMap>
-<select id="selectPartner" parameterType="app.admin.course.domain.PartnerDTO" resultMap="basePartner">
-select * 
-from(select rownum rn, <include refid="baseColumn" />
-	from(  select <include refid="baseColumn" />  
+<resultMap type="app.admin.course.domain.PartnerDTO" id="basePartner" >
+	<id column="VEN_ID" jdbcType="VARCHAR" property="venId" />
+	<result column="VEN_PASS" jdbcType="VARCHAR" property="venPass" />
+	<result column="VEN_NAME" jdbcType="VARCHAR" property="venName" />
+	<result column="VEN_TEL" jdbcType="VARCHAR" property="venTel" />
+	<result column="VEN_NO" jdbcType="VARCHAR" property="venNo" />
+	<result column="VEN_ADDR" jdbcType="VARCHAR" property="venAddr" />
+	<result column="VEN_CEO" jdbcType="VARCHAR" property="venCeo" />
+	<result column="VEN_CDATE" jdbcType="TIMESTAMP" property="venCdate" />
+	<result column="VEN_ACNT" jdbcType="VARCHAR" property="venAcnt" />
+	<result column="VEN_ACNTNO" jdbcType="VARCHAR" property="venAcntNo" />
+	<result column="VEN_TYPE" jdbcType="VARCHAR" property="venType" />
+	<result column="VEN_OK" jdbcType="VARCHAR" property="venOk" />
+</resultMap>
+<select id="selectPartner" parameterType="app.domain.StartEndPageDTO" resultMap="basePartner">
+	select * 
+	from(select rownum rn, <include refid="baseColumn" />
+		from(  select <include refid="baseColumn" />  
 			from vendor
 			<where>
-				<if test="venId != null">
-					VEN_ID = #{venId} 
+				<if test="userId != null">
+					VEN_ID = #{userId} 
 				</if>
 			</where>
-			order by VEN_CDATE desc))
-	<where>
-		<if test="startEndPageDTO != null">
-				rn between #{startEndPageDTO.startPage} 
-			and #{startEndPageDTO.endPage}
-		</if>
-	</where>
+			order by VEN_CDATE desc
+		)
+	)
+	where rn between #{startPage} 
+	and #{endPage}
 </select>
 <select id="partnerCount" resultType="int">
-		select count(*) from vendor
+	select count(*) from vendor
 </select>
 <delete id="partnerDelete" parameterType="string">
 	delete from vendor
@@ -50,6 +72,42 @@ from(select rownum rn, <include refid="baseColumn" />
 		VEN_ID = #{venId} 
 	</where>
 </delete>
+<update id="partnerUpdate" parameterType="app.admin.course.domain.PartnerDTO">
+	update vendor
+	<trim prefix="set" suffixOverrides=",">
+		<if test="venPass != null">
+			ven_pass = #{venPass},
+		</if>
+		<if test="venName != null">
+			ven_name = #{venName},
+		</if>
+		<if test="venTel != null">
+			ven_tel = #{venTel},
+		</if>
+		<if test="venNo != null">
+			ven_no = #{venNo},
+		</if>
+		<if test="venAddr != null">
+			ven_addr = #{venAddr},
+		</if>
+		<if test="venCeo != null">
+			ven_ceo = #{venCeo},
+		</if>
+		<if test="venCdate != null">
+			ven_cdate = #{venCdate},
+		</if>
+		<if test="venAcnt != null">
+			ven_acnt = #{venAcnt},
+		</if>
+		<if test="venAcntNo != null">
+			ven_acntno = #{venAcntNo},
+		</if>
+		<if test="venType != null">
+			ven_type = #{venType},
+		</if>
+	</trim>
+	where ven_id = #{venId}
+</update>
 
 </mapper>
 

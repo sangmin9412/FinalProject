@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import app.admin.course.domain.PartnerDTO;
-import app.admin.course.domain.StartEndPageDTO2;
 import app.admin.course.mapper.PartnerMapper;
 import app.controller.PageAction;
+import app.domain.StartEndPageDTO;
 
 @Component
 @Service
@@ -22,20 +22,20 @@ public class PartnerListService {
 		int limit = 10;
 		int limitPage = 10;
 		
-		Long startRow = ((long)page -1 ) * 10 +1;
-		Long endRow = startRow + limit -1;
+		Long startRow = ((long)page -1 ) * limit +1;
+		Long endRow = startRow + limit - 1;
 		
-		StartEndPageDTO2 startEndPageDTO = new StartEndPageDTO2(startRow,endRow);
-		PartnerDTO PartnerDTO = new PartnerDTO();
-		PartnerDTO.setStartEndPageDTO(startEndPageDTO);
+		StartEndPageDTO startEndPageDTO = new StartEndPageDTO(startRow, endRow);
 
-		List<PartnerDTO> partners = partnerMapper.selectPartner(PartnerDTO);
+		List<PartnerDTO> partners = partnerMapper.selectPartner(startEndPageDTO);
 		int count = partnerMapper.partnerCount();
 		
 		model.addAttribute("p_lists", partners);
 		model.addAttribute("p_count", count);
+		model.addAttribute("limit", limit);
+		model.addAttribute("page", page);
 		PageAction pageAction = new PageAction();
-		pageAction.page(model, count, limit, limitPage, page, "partnerList?");
+		pageAction.page(model, count, limit, limitPage, page, "partnerList");
 	}
 
 }

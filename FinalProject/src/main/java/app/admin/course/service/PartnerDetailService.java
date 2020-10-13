@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 
 import app.admin.course.domain.PartnerDTO;
 import app.admin.course.mapper.PartnerMapper;
+import app.domain.StartEndPageDTO;
 
 @Component
 @Service
@@ -15,9 +16,8 @@ public class PartnerDetailService {
 	PartnerMapper partnerMapper;
 	
 	public void partnerDetail(String venId, Model model) throws Exception{
-		PartnerDTO partner = new PartnerDTO();
-		partner.setVenId(venId);
-		partner = partnerMapper.selectPartner(partner).get(0);
+		StartEndPageDTO startEndPageDTO = new StartEndPageDTO(1L, 1L, venId, null);
+		PartnerDTO partner = partnerMapper.selectPartner(startEndPageDTO).get(0);
 		model.addAttribute("partnerCommand", partner);		
 	}
 

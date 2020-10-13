@@ -30,7 +30,8 @@
 	        						아이디
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="venId" class="form-control" id="venId">
+	        						<input type="text" name="venId" class="form-control" id="venId" th:field="*{venId}">
+	        						<span th:if="${#fields.hasErrors('venId')}" th:errors="*{venId}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -38,7 +39,8 @@
 	        						비밀번호
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="password" name="venPass" class="form-control" id="venPass">
+	        						<input type="password" name="venPass" class="form-control" id="venPass" th:field="*{venPass}">
+	        						<span th:if="${#fields.hasErrors('venPass')}" th:errors="*{venPass}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -47,7 +49,8 @@
 	        					<span th:text="${valid_ReMemPass}"></span> 	
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="password" name="reVenPass" class="form-control" id="reVenPass">
+	        						<input type="password" name="reVenPass" class="form-control" id="reVenPass" th:field="*{reVenPass}">
+	        						<span th:if="${#fields.hasErrors('reVenPass')}" th:errors="*{reVenPass}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -55,7 +58,8 @@
 	        						상호
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="venName" class="form-control" id="venName">
+	        						<input type="text" name="venName" class="form-control" id="venName" th:field="*{venName}">
+	        						<span th:if="${#fields.hasErrors('venName')}" th:errors="*{venName}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -63,7 +67,8 @@
 	        						전화번호
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="venTel" class="form-control" id="venTel">
+	        						<input type="text" name="venTel" class="form-control" id="venTel" th:field="*{venTel}" maxlength="13">
+	        						<span th:if="${#fields.hasErrors('venTel')}" th:errors="*{venTel}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -71,7 +76,8 @@
 	        						사업자번호
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="venNo" class="form-control" id="venNo">
+	        						<input type="text" name="venNo" class="form-control" id="venNo" th:field="*{venNo}">
+	        						<span th:if="${#fields.hasErrors('venNo')}" th:errors="*{venNo}"></span>
 	        					</div>
 	        				</div>	        					        				
 	        				<div class="form-group row">
@@ -79,7 +85,8 @@
 	        						주소
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="venAddr" class="form-control" id="venAddr">
+	        						<input type="text" name="venAddr" class="form-control" id="venAddr" th:field="*{venAddr}">
+	        						<span th:if="${#fields.hasErrors('venAddr')}" th:errors="*{venAddr}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -87,7 +94,8 @@
 	        						대표자명
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="venCeo" class="form-control" id="venCeo">
+	        						<input type="text" name="venCeo" class="form-control" id="venCeo" th:field="*{venCeo}">
+	        						<span th:if="${#fields.hasErrors('venCeo')}" th:errors="*{venCeo}"></span>
 	        					</div>
 	        				</div>	 
 	        				<div class="form-group row">
@@ -95,7 +103,8 @@
 	        						계약일
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="datetime-local" name="venCdate" class="form-control" id="venCdate">
+	        						<input type="date" name="venCdate" class="form-control" id="venCdate" th:field="*{venCdate}">
+	        						<span th:if="${#fields.hasErrors('venCdate')}" th:text="'계약일을 선택해주세요'"></span>
 	        					</div>
 	        				</div>	        				       					        				
 	        			   <div class="form-group row">
@@ -103,7 +112,8 @@
 	        						계좌은행
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="memEmail" class="form-control" id="memEmail">
+	        						<input type="text" name="venAcnt" class="form-control" id="venAcnt" th:field="*{venAcnt}">
+	        						<span th:if="${#fields.hasErrors('venAcnt')}" th:errors="*{venAcnt}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
@@ -111,30 +121,22 @@
 	        						계좌번호
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="venAcntNo" class="form-control" id="venAcntNo">
-	        					</div>
-	        				</div>
-	        	
-	        				<!-- 		
-	        				<div class="form-group row">
-	        					<label for="" class="col-sm-2 col-form-label">
-	        						select title
-	        					</label>
-	        					<div class="col-sm-10">
-									<select id="" class="form-control">
-										<option selected="">Choose...</option>
-										<option>...</option>
-									</select>
+	        						<input type="text" name="venAcntNo" class="form-control" id="venAcntNo" th:field="*{venAcntNo}">
+	        						<span th:if="${#fields.hasErrors('venAcntNo')}" th:errors="*{venAcntNo}"></span>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
-	        					<label for="" class="col-sm-2 col-form-label">
-	        						file title
+	        					<label for="venAcntNo" class="col-sm-2 col-form-label">
+	        						타입
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="file" class="form-control" id="">
+	        						<select name="venType" class="form-control">
+	        							<option value="데이트 코스">데이트 코스</option>
+	        							<option value="쇼핑몰">쇼핑몰</option>
+	        						</select>
 	        					</div>
-	        				</div> -->	
+	        				</div>
+	        				
 	        				<div class="btn-group float-sm-right">
 	        					<button type="submit" class="btn btn-primary">등록</button>
 	        				</div>

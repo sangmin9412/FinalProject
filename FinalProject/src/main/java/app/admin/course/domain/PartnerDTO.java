@@ -1,6 +1,6 @@
 package app.admin.course.domain;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Alias(value = "PartnerDTO")
 public class PartnerDTO {
 		String venId;
 		String venPass;
@@ -19,23 +18,9 @@ public class PartnerDTO {
 		String venNo;
 		String venAddr;
 		String venCeo;
-		Timestamp venCdate;
+		Date venCdate;
 		String venAcnt;
 		String venAcntNo;
-		
-		StartEndPageDTO2 startEndPageDTO;
-		
-		public PartnerDTO(String venId, String venPass, String venName,  String venTel, String venNo, String venAddr, String venCeo,
-			   Timestamp venCdate, String venAcnt, String venAcntNo) {
-			this.venId = venId;
-			this.venPass = venPass;
-			this.venName = venName;
-			this.venTel = venTel;
-			this.venNo = venNo;
-			this.venAddr = venAddr;
-			this.venCeo = venCeo;
-			this.venCdate = venCdate;
-			this.venAcnt = venAcnt;
-			this.venAcntNo = venAcntNo;
-		}	
+		String venType;
+		String venOk;
 }
