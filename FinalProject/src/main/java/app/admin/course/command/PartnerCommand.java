@@ -36,6 +36,7 @@ public class PartnerCommand {
 	String venAcnt;	
 	@NotNull
 	String venAcntNo;	
+	String venOk;
 	
 	public boolean isVenPassEqualToReVenPass() {
 		if(venPass.equals(reVenPass)) {

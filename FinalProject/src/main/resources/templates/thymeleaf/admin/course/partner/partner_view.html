@@ -99,6 +99,7 @@
 	        				</div>
 	        			</form>
 	        			<div class="btn-group float-sm-right">
+        					<a th:href="@{partnerCourseAdd(id=${partnerCommand.venId})}" class="btn btn-primary">업체 코스 관리</a>
         					<a href="/admin/course/partner/partnerModify" class="btn btn-primary">수정</a>
         					<a th:href="@{partnerDelete(id=${partnerCommand.venId})}" class="btn btn-primary" >삭제</a>
         					<a href="/admin/course/partner/partnerList" class="btn btn-primary">목록으로</a>

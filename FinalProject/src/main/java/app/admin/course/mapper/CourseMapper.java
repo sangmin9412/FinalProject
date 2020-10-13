@@ -1,0 +1,23 @@
+package app.admin.course.mapper;
+
+
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+import app.admin.course.domain.CourseDTO;
+import app.user.course.domain.CartDTO;
+import app.user.course.domain.OrderDTO;
+
+@Component
+@Repository(value = "app.admin.course.mapper.CourseMapper")
+public interface CourseMapper {
+	public Integer courseInsert(CourseDTO courseDTO)throws Exception;
+	public List<CourseDTO> selectCourse(CourseDTO courseDTO) throws Exception;	
+	public Integer courseCount();	
+	public Integer goodsCartAdd(CartDTO cartDTO);	
+	public List<CartDTO> selectCart(CartDTO cartDTO) throws Exception;	
+	public Integer goodsOrder(OrderDTO orderDTO);	
+//	public Integer courseDelete(String venId)throws Exception;
+}

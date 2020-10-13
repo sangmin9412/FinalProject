@@ -59,7 +59,7 @@
 								</td>
 
 								<td class="cart-product-price">
-									<span class="amount">$19.99</span>
+									<span class="amount" >[[${cart.goodsPrice}]]</span>
 								</td>
 
 								<td class="cart-product-quantity">
@@ -136,7 +136,7 @@
 								<td colspan="6">
 									<div class="row clearfix">
 										<div class="col-md-12 col-xs-12 nopadding">
-											<a href="#" class="button button-3d notopmargin fright">Check Out</a>
+											<a th:href="@{order(cartNo=${cart.cartNo})}" class="button button-3d notopmargin fright">order</a>
 										</div>
 									</div>
 								</td>

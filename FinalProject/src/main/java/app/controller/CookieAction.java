@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import app.command.AuthInfo;
+
 @Component
 @Service
 public class CookieAction {
@@ -19,8 +21,8 @@ public class CookieAction {
 					request.setAttribute("isId", c.getValue());
 				}
 				if(c.getName().equals("autoLogin")) {
-					 // AuthInfo authInfo = new AuthInfo(c.getValue(),null, null,null);
-					 // session.setAttribute("authInfo",authInfo);
+					  AuthInfo authInfo = new AuthInfo(c.getValue(),null, null,null);
+					  session.setAttribute("authInfo",authInfo);
 				}
 			}
 		}

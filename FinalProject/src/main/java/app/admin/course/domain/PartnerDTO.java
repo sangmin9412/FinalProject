@@ -22,11 +22,12 @@ public class PartnerDTO {
 		Timestamp venCdate;
 		String venAcnt;
 		String venAcntNo;
+		String venOk;
 		
 		StartEndPageDTO2 startEndPageDTO;
 		
 		public PartnerDTO(String venId, String venPass, String venName,  String venTel, String venNo, String venAddr, String venCeo,
-			   Timestamp venCdate, String venAcnt, String venAcntNo) {
+			   Timestamp venCdate, String venAcnt, String venAcntNo, String venOk) {
 			this.venId = venId;
 			this.venPass = venPass;
 			this.venName = venName;
@@ -37,5 +38,6 @@ public class PartnerDTO {
 			this.venCdate = venCdate;
 			this.venAcnt = venAcnt;
 			this.venAcntNo = venAcntNo;
+			this.venOk = venOk;
 		}	
 }

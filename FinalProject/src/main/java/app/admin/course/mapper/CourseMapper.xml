@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.admin.course.mapper.CourseMapper" >
+<sql id="baseColumn">
+		VEN_ID, GOODS_TYPE, GOODS_NO, GOODS_NAME, GOODS_PRICE, GOODS_DET, GOODS_IMAGE
+</sql>	
+<insert id="courseInsert" parameterType="app.admin.course.domain.CourseDTO">
+	insert into goods ( <include refid="baseColumn" />  )
+		values(#{venId},#{goodsType},#{goodsNo},#{goodsName},#{goodsPrice},#{goodsDet},#{goodsImage})
+</insert>
+	<resultMap type="app.admin.course.domain.CourseDTO" id="baseCourse" >
+		<constructor>
+			<idArg column="VEN_ID" javaType="string" />
+			<arg column="GOODS_TYPE" javaType="string" />
+			<arg column="GOODS_NO" javaType="string" />
+			<arg column="GOODS_NAME" javaType="string" />
+			<arg column="GOODS_PRICE" javaType="long" />
+			<arg column="GOODS_DET" javaType="string" />
+			<arg column="GOODS_IMAGE" javaType="string" />
+		</constructor>
+	</resultMap>
+<select id="selectCourse" parameterType="app.admin.course.domain.CourseDTO" resultMap="baseCourse">
+select * 
+from(select rownum rn, <include refid="baseColumn" />
+	from(  select <include refid="baseColumn" />  
+			from goods
+			<where>
+				<if test="venId != null">
+					VEN_ID = #{venId} 
+				</if>
+			</where>
+			order by goods_no desc))
+	<where>
+		<if test="startEndPageDTO != null">
+				rn between #{startEndPageDTO.startPage} 
+			and #{startEndPageDTO.endPage}
+		</if>
+	</where>
+</select>
+<select id="courseCount" resultType="int">
+		select count(*) from goods
+</select>
+<!-- 
+<delete id="courseDelete" parameterType="string">
+	delete from goods
+	<where>
+		VEN_ID = #{venId} 
+	</where>
+</delete>
+ -->
+
+ <insert id="goodsCartAdd" parameterType="app.user.course.domain.CartDTO" useGeneratedKeys="false">
+	MERGE into cart c1
+	USING (select goods_no from goods  where goods_no = #{goodsNo} ) g1
+	ON (c1.GOODS_no = g1.GOODS_no)
+	When MATCHED THEN
+		update set c1.cart_qty = c1.cart_qty + 1,
+			       c1.cart_price = (c1.cart_qty + 1) * c1.goods_price	   							   	   
+	When NOT MATCHED THEN
+		insert (c1.cart_no , c1.goods_no, c1.mem_id, c1.ven_id, c1.goods_name, c1.goods_price, c1.goods_image, c1.cart_qty, c1.cart_price)
+		values(NUM_SEQ.nextval, g1.goods_no,#{memId},#{venId},#{goodsName},#{goodsPrice},#{goodsImage},1,#{goodsPrice})
+</insert>
+
+	<resultMap type="app.user.course.domain.CartDTO" id="baseCart" >
+		<constructor>
+			<idArg column="CART_NO" javaType="string" />
+			<arg column="MEM_ID" javaType="string" />
+			<arg column="GOODS_NO" javaType="string" />
+			<arg column="GOODS_IMAGE" javaType="string" />
+			<arg column="GOODS_NAME" javaType="string" />
+			<arg column="VEN_ID" javaType="string" />
+			<arg column="CART_QTY" javaType="string" />
+			<arg column="GOODS_PRICE" javaType="long" />
+			<arg column="CART_PRICE" javaType="string" />
+		</constructor>
+	</resultMap>
+<select id="selectCart" parameterType="app.user.course.domain.CartDTO" resultMap="baseCart">
+select * 
+from(select rownum rn, CART_NO, MEM_ID, GOODS_NO, GOODS_IMAGE, GOODS_NAME, VEN_ID, CART_QTY, GOODS_PRICE, CART_PRICE
+	from(  select CART_NO, MEM_ID, GOODS_NO, GOODS_IMAGE, GOODS_NAME, VEN_ID, CART_QTY, GOODS_PRICE, CART_PRICE
+			from cart
+			<where>
+				<if test="goodsNo != null">
+					GOODS_NO = #{goodsNo} 
+				</if>
+			</where>
+			order by goods_no desc))
+</select>
+
+<insert id="goodsOrder" parameterType="app.user.course.domain.OrderDTO">
+	insert into order (ORDER_NO, VEN_ID, GOODS_NO, ORDER_QTY, ORDER_DATE, ORDER_PRICE)
+		values(NUM_SEQ.nextval,#{venId},#{goodsNo},#{orderQty},sysdate,#{orderPrice})
+</insert>
+
+</mapper>
+
+
