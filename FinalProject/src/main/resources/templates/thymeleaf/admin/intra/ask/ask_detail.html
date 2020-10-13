@@ -84,12 +84,13 @@
         				<hr class="sidebar-divider d-none d-md-block">
         				
 						<div id="comment">
-						    <form id="comment_new_form" class="comment_form">
+						    <form action="ansWritePro" method="post" th:object="${intraAnswerCommand}">
+						    	<input type="hidden" name="askNo" th:value="${intraAskCommand.askNo}" />
 								<div class="form_wrapper">
 								    <dl class="comment_form_content">
 								        <dt>댓글 본문</dt>
 								        <dd>
-								            <textarea id="empCom" rows="3" class="form-control">댓글을 작성하려면 로그인하셔야 합니다.</textarea>
+								            <textarea id="empCom" rows="3" name = "ansCont" class="form-control">댓글을 작성하려면 로그인하셔야 합니다.</textarea>
 								        </dd>
 								    </dl>
 								</div>
@@ -99,24 +100,12 @@
 						    </form>
 						
 							<ol id="comment_list">
-								<li>
+								<li th:each="answerList ,i: ${intraAskCommand.answerlist}">
 									<div class="name time">
-										<strong>댓글단 사람 아이디1 </strong>
-									</div><div class="comment_content">
-										댓글 내용<br>
-										댓글 내용<br>
-										댓글 내용<br>
-										댓글 내용<br>
+										<strong>[[${answerList.sempId}]]</strong>
 									</div>
-								</li>
-								<li>
-									<div class="name time">
-										<strong>댓글단 사람 아이디2 </strong>
-									</div><div class="comment_content">
-										댓글 내용<br>
-										댓글 내용<br>
-										댓글 내용<br>
-										댓글 내용<br>
+									<div class="comment_content">
+										[[${answerList.ansCont}]]
 									</div>
 								</li>
 							</ol>

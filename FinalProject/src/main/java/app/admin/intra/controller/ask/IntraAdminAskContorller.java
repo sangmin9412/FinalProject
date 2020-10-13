@@ -7,10 +7,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import app.admin.intra.command.IntraAnswerCommand;
 import app.admin.intra.command.IntraAskCommand;
+import app.admin.intra.service.answer.IntraAnswerWriteProService;
 import app.admin.intra.service.ask.IntraAskDetailService;
 import app.admin.intra.service.ask.IntraAskListService;
 import app.admin.intra.service.ask.IntraAskModifyProService;
@@ -35,11 +39,17 @@ public class IntraAdminAskContorller {
 	 @Autowired
 	 IntraDeleteProService intraNoticeDeleteProService;
 	
-	
+	@ModelAttribute
+	IntraAnswerCommand setIntraAnswerCommand() {
+		return new IntraAnswerCommand();
+	}
 	
 	@RequestMapping("askList")
-	public String askList(Model model)throws Exception {
-		intraAskListService.listServie(model);
+	public String askList(
+				@RequestParam(value = "page", defaultValue = "1") int page, 
+				Model model
+			)throws Exception {
+		intraAskListService.listServie(page, model);
 		return "thymeleaf/admin/intra/ask/ask_list";
 	}
 	@RequestMapping("askWrite")
@@ -52,11 +62,21 @@ public class IntraAdminAskContorller {
 		System.out.println(intraAskCommand);
 		return "redirect:/admin/intra/ask/askList";
 	}
+	
 	@RequestMapping("askView")
 	public String askDetail(@RequestParam(value = "num")Integer askNo, Model model)throws Exception {
 		intraAskDetailService.intraAskDetailService(askNo, model);
 		return "thymeleaf/admin/intra/ask/ask_detail";
 	}
+	@Autowired
+	IntraAnswerWriteProService intraAnswerWriteProService;
+		@RequestMapping(value = "ansWritePro", method = RequestMethod.POST)
+	public String ansWritePro(IntraAnswerCommand intraAnswerCommand,HttpSession session)throws Exception {
+		intraAnswerWriteProService.answerWritePro(intraAnswerCommand, session);
+		return "redirect:/admin/intra/ask/askView?num="+ intraAnswerCommand.getAskNo();
+	}
+		
+		
 	@RequestMapping("askModify")
 	public String askModify(@RequestParam(value = "num")Integer askNo,Model model)throws Exception{
 		intraAskDetailService.intraAskDetailService(askNo, model);
