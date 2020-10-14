@@ -1,65 +1,110 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      	layout:decorator="layout/partner/mall/default">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/partner/mall/default">
 <head>
-  	<title>Partner</title>
-	<!-- 페이지 css -->
-	<th:block layout:fragment="css">
-		<style></style>
-	</th:block>
-	
-	<!-- 페이지 js -->
-	<th:block layout:fragment="js">
-		<script></script>
-	</th:block>
+<title>Partner</title>
+<!-- 페이지 css -->
+<th:block layout:fragment="css">
+	<style></style>
+</th:block>
+
+<!-- 페이지 js -->
+<th:block layout:fragment="js">
+	<script></script>
+</th:block>
 </head>
 
 <body>
-    <th:block layout:fragment="content" class="content">
-    	<!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">상품 등록</h1>
-        <div class="row">
-        	<div class="col-md-12">
-	        	<div class="card">
-	        		<div class="card-body">
-	        			<!-- Page 컨텐츠 영역 -->
-	        			<form action="" method="">
+	<th:block layout:fragment="content" class="content">
+		<!-- Page Heading -->
+		<h1 class="h3 mb-4 text-gray-800">상품 등록</h1>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
+						<!-- Page 컨텐츠 영역 -->
+						<form th:action="@{/partner/mall/goods/goodsWritePro}"
+							method="post" th:object="${goodsCommand}">
+							<div class="form-group row">
+								<label for="goodsNo" class="col-sm-2 col-form-label"> 상품
+									번호 </label>
+								<div class="col-sm-10">
+									<input type="text" name="goodsNo" class="form-control"
+										id="goodsNo">
+									<!--<span th:if="${#fields.hasErrors('goodsNo')}" th:errors="*{goodsNo}"></span>--> 
+								</div>
+							</div>
+							<!-- 
 	        				<div class="form-group row">
-	        					<label for="" class="col-sm-2 col-form-label">
-	        						input title
+	        					<label for="venId" class="col-sm-2 col-form-label">
+	        						업체 ID
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="text" name="" class="form-control" id="">
+	        						<input type="text" name="venId" class="form-control" id="venId">
+	        						<span th:if="${#fields.hasErrors('venId')}" th:errors="*{venId}"></span>
+									 
 	        					</div>
 	        				</div>
-	        				<div class="form-group row">
-	        					<label for="" class="col-sm-2 col-form-label">
-	        						select title
-	        					</label>
-	        					<div class="col-sm-10">
-									<select id="" class="form-control">
-										<option selected="">Choose...</option>
-										<option>...</option>
+									 -->
+							<div class="form-group row">
+								<label for="goodsName" class="col-sm-2 col-form-label">
+									상품 이름 </label>
+								<div class="col-sm-10">
+									<input type="text" name="goodsName" class="form-control"
+										id="goodsName">
+									<!--<span th:if="${#fields.hasErrors('goodsName')}" th:errors="*{goodsName}"></span> -->
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="goodsPrice" class="col-sm-2 col-form-label">
+									상품 가격 </label>
+								<div class="col-sm-10">
+									<input type="text" name="goodsPrice" class="form-control"
+										id="goodsPrice">
+									<!--<span th:if="${#fields.hasErrors('goodsName')}" th:errors="*{goodsName}"></span> -->
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="goodsDet" class="col-sm-2 col-form-label">
+									상품 설명 </label>
+								<div class="col-sm-10">
+									<input type="text" name="goodsDet" class="form-control"
+										id="goodsDet">
+									<!--<span th:if="${#fields.hasErrors('goodsName')}" th:errors="*{goodsName}"></span> -->
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="goodsImage" class="col-sm-2 col-form-label">
+									상품 이미지 </label>
+								<div class="col-sm-10">
+									<input type="file" name="goodsImage" class="form-control"
+										id="goodsImage">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="goodsType" class="col-sm-2 col-form-label">
+									상품 종류 </label>
+								<div class="col-sm-10">
+									<!--
+	        						<input type="text" name="goodsType" class="form-control" id="goodsType">
+	        					<span th:if="${#fields.hasErrors('goodsName')}" th:errors="*{goodsName}"></span> -->
+									<select id="goodsType" name=goodsType class="form-control">
+										<option selected="1">1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
 									</select>
-	        					</div>
-	        				</div>
-	        				<div class="form-group row">
-	        					<label for="" class="col-sm-2 col-form-label">
-	        						file title
-	        					</label>
-	        					<div class="col-sm-10">
-	        						<input type="file" class="form-control" id="">
-	        					</div>
-	        				</div>
-	        				<div class="btn-group float-sm-right">
-	        					<button type="submit" class="btn btn-primary">등록</button>
-	        				</div>
-	        			</form>
-	        		</div>
-	        	</div>
-        	</div>
-        </div>
-    </th:block>
+								</div>
+							</div>
+							<div class="btn-group float-sm-right">
+								<button type="submit" class="btn btn-primary">등록</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</th:block>
 </body>
 </html>
