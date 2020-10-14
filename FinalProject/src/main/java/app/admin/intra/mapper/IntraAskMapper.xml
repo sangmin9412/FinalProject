@@ -36,13 +36,13 @@
 	
 		 <insert id="insertAnswer" parameterType="app.admin.intra.domain.IntraAnswerDTO">
   insert into ANSWER(
-  EMP_ID,
+  SEMP_ID,
   ANS_CONT,
   ASK_NO,
   CREATE_AT
   )
   values(
-  	#{empId},
+  	#{sempId},
   	#{ansCont},
   	#{askNo},
   	sysDate
@@ -110,7 +110,7 @@
 			resultMap="fff" />
 	</resultMap>
 	<resultMap type="app.admin.intra.domain.IntraAnswerDTO" id="fff">
-	  <id column="SEMP_ID" jdbcType="VARCHAR" property="sempId"/>		
+	  <result column="SEMP_ID" jdbcType="VARCHAR" property="sempId"/>		
 	  <result column="ANS_CONT" jdbcType="VARCHAR" property="ansCont"/>
 	  <result column="CREATE_AT" jdbcType="TIMESTAMP" property="createAt"/>
 	</resultMap>
