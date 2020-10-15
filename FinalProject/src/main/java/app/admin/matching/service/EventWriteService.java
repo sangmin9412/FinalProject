@@ -32,8 +32,8 @@ public class EventWriteService {
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		EventDTO eventDTO=new EventDTO();
 		eventDTO.setEveContent(eventCommand.getEveContent());
-		Timestamp eveDate=Timestamp.valueOf(eventCommand.getEveDate());
-		eventDTO.setEveDate(eveDate);
+//		Timestamp eveDate=Timestamp.valueOf(eventCommand.getEveDate());
+		eventDTO.setEveDate(eventCommand.getEveDate());
 		eventDTO.setEveLoc(eventCommand.getEveLoc());
 		eventDTO.setEveMxCnt(eventCommand.getEveMxCnt());
 		eventDTO.setEveSubject(eventCommand.getEveSubject());
@@ -62,7 +62,7 @@ public class EventWriteService {
 		eventDTO.setEveOriginalImage(originalTotal);
 		eventDTO.setEveStoreImage(storeTotal);
 		eventMapper.eventInsert(eventDTO);
-		location="redirect:/admin/matching/";
+		location="redirect:/admin/matching/event/eventList";
 		return location;
 	}
 }

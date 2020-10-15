@@ -18,7 +18,7 @@ public class MemberListService {
 	@Autowired
 	MemberMapper memberMapper;
 
-	public void memberList(Model model, Integer page, int i) throws Exception {
+	public void memberList(Model model, Integer page) throws Exception {
 		int limit = 10;
 		int limitPage = 10;
 
@@ -27,17 +27,32 @@ public class MemberListService {
 		StartEndPageDTO startEndPageDTO = new StartEndPageDTO(startRow, endRow);
 
 		List<MemberDTO> list = memberMapper.selectMember(startEndPageDTO);
-		int count = memberMapper.getMemberCount();
+		int count = memberMapper.getMemberCount(null);
 
 		model.addAttribute("memberList", list);
 		model.addAttribute("count", count);
 		PageAction pageAction = new PageAction();
-		if (i == 1) {
 			pageAction.page(model, count, limit, limitPage, page, "memberList?");
 
-		} else {
+	}
+	
+	public void paidMemberList(Model model,Integer page) throws Exception {
+		
+		int limit = 10;
+		int limitPage = 10;
+
+		Long startRow = ((long) page - 1) * 10 + 1;
+		Long endRow = startRow + limit - 1;
+		StartEndPageDTO startEndPageDTO = new StartEndPageDTO(startRow, endRow);
+
+		List<MemberDTO> list = memberMapper.selectPaidMember(startEndPageDTO);
+		int count = memberMapper.getMemberCount("1");
+
+		model.addAttribute("memberList", list);
+		model.addAttribute("count", count);
+		PageAction pageAction = new PageAction();
 			pageAction.page(model, count, limit, limitPage, page, "List?");
-		}
+		
 	}
 
 }

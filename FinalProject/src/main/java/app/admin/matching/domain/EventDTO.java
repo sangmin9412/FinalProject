@@ -1,6 +1,9 @@
 package app.admin.matching.domain;
 
-import java.sql.Timestamp;
+
+
+import java.sql.Date;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +16,7 @@ public class EventDTO {
 	Long eveNo;
 	String venId;
 	String eveLoc;
-	Timestamp eveDate;
+	Date eveDate;
 	Long eveMxCnt;
 	String eveSubject;
 	String eveContent;

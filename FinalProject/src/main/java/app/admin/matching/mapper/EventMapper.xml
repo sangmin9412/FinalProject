@@ -60,4 +60,37 @@
 		WHERE EVE_NO=#{value}
 	
 	</update>
+	
+	<update id="eventUpdate" parameterType="app.admin.matching.domain.EventDTO">
+		UPDATE EVENT
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="eveSubject != null">
+				EVE_SUBJECT=#{eveSubject},
+			</if>
+			<if test="eveContent != null">
+				EVE_CONTENT=#{eveContent},
+			</if>
+			<if test="eveDate != null">
+				EVE_DATE=#{eveDate},
+			</if>
+			<if test="eveLoc != null">
+				EVE_LOC=#{eveLoc},
+			</if>
+			<if test="eveMxCnt != null">
+				EVE_MXCNT=#{eveMxCnt},
+			</if>
+			<if test="eveOriginalImage != null">
+				EVE_ORIGINAL_IMAGE=#{eveOriginalImage},
+				EVE_STORE_IMAGE=#{eveStoreImage}
+			</if>
+		
+		</trim> 
+		WHERE EVE_NO=#{eveNo} and VEN_ID=#{venId}
+	
+	</update>
+	
+	<delete id="eventDel" parameterType="app.admin.matching.domain.EventDTO">
+		DELETE FROM EVENT
+		WHERE EVE_NO=#{eveNo} and VEN_ID=#{venId}
+	</delete>
 	</mapper>

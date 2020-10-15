@@ -17,5 +17,6 @@ public interface MatchMapper {
 	public Integer getMatchCount();
 	public void matchUpdate(MatchDTO dto) throws Exception;
 	public void matchPayInsert(MatchPayDTO dto) throws Exception;
+	public Integer memberMatchUpdate(MatchDTO dto) throws Exception;
 	
 }

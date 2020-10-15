@@ -29,6 +29,18 @@
 	
 	</resultMap>
 	
+	<select id="selectPaidMember" parameterType="app.domain.StartEndPageDTO" resultMap="member">
+		select *
+		from(select rownum rn, <include refid="column"/>, MEM_MAT
+			from(select m.MEM_ID, MEM_NAME, MEM_BIRTH, MEM_ADDR, MEM_TEL, 
+						MEM_EMAIL, MEM_PASS, MEM_GENDER, MEM_REGIST, MEM_JOINOK, MEM_MAT
+					from member m join memberadd a
+					on a.mem_id=m.mem_id
+					where a.mem_exp is not null
+					order by MEM_REGIST desc))
+		where rn &gt;= #{startPage} and rn &lt;= #{endPage}
+	
+	</select>
 	
 	<select id="selectAddInfo" parameterType="string" resultMap="memAdd">
 		SELECT <include refid="col_memadd"/> 
@@ -77,6 +89,7 @@
 		<result column="MEM_PASS" jdbcType="VARCHAR" property="memPass"/>
 		<result column="MEM_GENDER" jdbcType="VARCHAR" property="memGender"/>
 		<result column="MEM_REGIST" jdbcType="TIMESTAMP" property="memRegist"/>
+		<association property="memberAdd" javaType="app.admin.matching.domain.MemberAddDTO" resultMap="memAdd"/>
 	</resultMap>
 	
 	<select id="selectMember" parameterType="app.domain.StartEndPageDTO" resultMap="member">
@@ -93,8 +106,15 @@
 		where rn &gt;= #{startPage} and rn &lt;= #{endPage}
 	
 	</select>
-	<select id="getMemberCount" resultType="int">
-		select count(*) from member
+	<select id="getMemberCount" parameterType="string" resultType="int">
+		select count(*) 
+		from member m join memberadd a
+		on m.mem_id=a.mem_id
+		<where>
+			<if test="value != null">
+				mem_exp is not null
+			</if>
+		</where>
 	</select>
 
 	<update id="updateJoinOk">

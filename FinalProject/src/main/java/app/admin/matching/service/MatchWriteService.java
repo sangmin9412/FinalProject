@@ -1,7 +1,5 @@
 package app.admin.matching.service;
 
-import java.sql.Timestamp;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 import app.admin.matching.command.MatchCommand;
 import app.admin.matching.domain.MatchDTO;
 import app.admin.matching.mapper.MatchMapper;
+import app.admin.matching.mapper.MemberMapper;
 import app.command.AuthInfo;
 
 @Service
@@ -35,8 +34,13 @@ public class MatchWriteService {
 		matchDTO.setPartnerId(matchCommand.getPartnerId());
 		System.out.println(matchDTO.getPartnerId());
 		matchDTO.setMatLoc(matchCommand.getMatLoc());
-		matchMapper.matchInsert(matchDTO);
-		location="redirect:/";
+		
+		Integer i=matchMapper.memberMatchUpdate(matchDTO);
+		if (i==1) {
+			matchMapper.matchInsert(matchDTO);
+		}
+			
+		location="redirect:/admin/matching/";
 		return location;
 	}
 }

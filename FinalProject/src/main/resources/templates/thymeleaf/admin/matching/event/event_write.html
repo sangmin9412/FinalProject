@@ -92,7 +92,7 @@
 	        						이벤트 일시
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="datetime-local" name="eveDate" class="form-control" id="eveDate" th:field="*{eveDate}" >
+	        						<input type="date" name="eveDate" class="form-control" id="eveDate" th:field="*{eveDate}" >
 	        						<span th:if="${#fields.hasErrors('eveDate')}" th:errors="*{eveDate}"></span>
 	        					</div>
 	        				</div>
@@ -129,7 +129,8 @@
 	        						소개 이미지
 	        					</label>
 	        					<div class="col-sm-10">
-	        						<input type="file" class="form-control" name="eveImage" multiple="multiple"  />
+	        						<input type="file" class="form-control" name="eveImage" multiple="multiple"  th:field="*{eveImage}"/>
+	        						<span th:if="${#fields.hasErrors('eveImage')}" th:errors="*{eveImage}"></span>
 	        					</div>
 	        				</div>
 

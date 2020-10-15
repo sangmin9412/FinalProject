@@ -1,6 +1,5 @@
 package app.admin.matching.mapper;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -19,7 +18,8 @@ public interface MemberMapper {
 	public Integer insertMember(MemberDTO dto) throws Exception;
 	public Integer insertMemberAdd(MemberAddDTO dto) throws Exception;
 	public List<MemberDTO> selectMember(StartEndPageDTO startEndPageDTO) throws Exception;
-	public Integer getMemberCount() throws Exception;
+	public List<MemberDTO> selectPaidMember(StartEndPageDTO startEndPageDTO) throws Exception;
+	public Integer getMemberCount(String value) throws Exception;
 	public Integer updateJoinOk(MemberJoinOkDTO dto) throws Exception;
 	public String findId(UserIdChangeDTO dto) throws Exception;
 	public void changePw(UserPwChangeDTO dto) throws Exception;

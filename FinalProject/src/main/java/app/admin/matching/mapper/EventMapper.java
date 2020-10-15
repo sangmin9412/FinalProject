@@ -17,4 +17,6 @@ public interface EventMapper {
 	public Integer getEventCount();
 	public void eventJoin(EventJoinDTO dto) throws Exception;
 	public void eventJoinApp(String eveNo) throws Exception;
+	public Integer eventUpdate(EventDTO eventDTO) throws Exception;
+	public Integer eventDel(EventDTO eventDTO) throws Exception;
 }

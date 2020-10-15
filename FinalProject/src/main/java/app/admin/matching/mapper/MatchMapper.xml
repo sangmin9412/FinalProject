@@ -74,7 +74,11 @@
 	
 	</insert>
 	
-	
+	<update id="memberMatchUpdate" parameterType="app.admin.matching.domain.MatchDTO">
+		UPDATE MEMBERADD
+		SET MEM_MAT=MEM_MAT+1
+		WHERE (MEM_ID=#{memId} AND 6 > MEM_MAT) AND (MEM_ID=#{partnerId} AND 6 > MEM_MAT) 
+	</update>
 	
 	
 	
