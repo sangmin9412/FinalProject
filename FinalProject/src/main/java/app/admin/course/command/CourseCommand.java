@@ -18,7 +18,7 @@ public class CourseCommand {
 	@NotBlank(message = "이름을 입력해주세요")
 	String goodsName;
 	@NotNull
-	String goodsPrice;
+	Long goodsPrice;
 	@NotNull
 	String goodsDet;
 	@NotNull

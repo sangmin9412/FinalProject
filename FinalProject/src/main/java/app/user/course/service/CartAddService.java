@@ -37,9 +37,9 @@ public class CartAddService {
 //					userId = "dbsgywjd";
 //				}
 				cart.setMemId(userId);
-				Integer i = courseMapper.goodsCartAdd(cart);			
+				courseMapper.goodsCartAdd(cart);			
 				
-				model.addAttribute("cart", i);
+//				model.addAttribute("cart", i);
 			}
 
 }

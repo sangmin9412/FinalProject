@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CartDTO {
 	Long cartNo;
-	String memId;
 	String goodsNo;
-	String goodsImage;
-	String goodsName;
+	String memId;
 	String venId;
-	Long cartQty;
+	String goodsName;
 	Long goodsPrice;
-	String cartPrice;
+	String goodsImage;
+	Long cartQty;
+	Long cartPrice;
 }

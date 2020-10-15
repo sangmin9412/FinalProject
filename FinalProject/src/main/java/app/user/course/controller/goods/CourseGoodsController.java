@@ -5,12 +5,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import app.admin.course.command.PartnerCommand;
+import app.user.course.command.OrderCommand;
 import app.user.course.service.CartAddService;
+import app.user.course.service.CartListService;
 import app.user.course.service.CourseDetailService;
+import app.user.course.service.OrderAddService;
 import app.user.course.service.UserCourseListService;
 
 
@@ -23,10 +29,14 @@ public class CourseGoodsController {
     CourseDetailService courseDetailService;
     @Autowired
     CartAddService cartAddService;
+    @Autowired
+    CartListService cartListService;
+    @Autowired
+    OrderAddService orderAddService;
     
 	@RequestMapping("goodsList")
-	public String goodsList(@RequestParam(value = "page" , defaultValue = "1")Integer page, Model model) throws Exception{
-		userCourseListService.userCourseList(page,model);
+	public String goodsList(@RequestParam(value = "page" , defaultValue = "1")Integer page, @RequestParam(value="type") String type, Model model) throws Exception{
+		userCourseListService.userCourseList(page,type,model);
 		return "thymeleaf/course/goods/course_list";
 	}	
 
@@ -39,10 +49,32 @@ public class CourseGoodsController {
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String goodsCart(@RequestParam(value="goodsNo") String goodsNo, HttpSession session, Model model)  throws Exception{
 		cartAddService.cartAdd(goodsNo, session, model);
+		cartListService.cartList(session, model);
 		return "thymeleaf/course/goods/course_cart";
 	}
-	@RequestMapping("order")
-	public String goodsOrder() {
+	
+	@RequestMapping(value = "order", method = RequestMethod.GET)
+	public String goodsOrder(@Validated OrderCommand orderCommand, BindingResult result,HttpSession session, Model model)  throws Exception{
+		cartListService.cartList(session, model);
 		return "thymeleaf/course/goods/course_order";
 	}
+	
+	@RequestMapping("orderOk")
+	public String orderOk(@Validated OrderCommand orderCommand, BindingResult result, HttpSession session, Model model)  throws Exception{
+		cartListService.cartList(session, model);
+		orderAddService.orderAdd(orderCommand, session, model);
+		return "thymeleaf/course/goods/order_ok";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

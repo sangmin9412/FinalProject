@@ -4,9 +4,11 @@ import lombok.Data;
 
 @Data
 public class OrderCommand {
-	String venId;
-	String goodsNo;
-	Long orderQty;
-	String orderPrice;
-
+   String memId;
+   String venId;
+   String orderAddr;
+   String orderMsg;
+   String goodsNo;
+   String cartPrice;
+   String totalPrice;
 }

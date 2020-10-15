@@ -19,7 +19,7 @@ public class OrderService {
 	public void goodsOrder(Long cartNo, HttpSession session, Model model) throws Exception{
 		CartDTO cart = new CartDTO();
 		cart.setCartNo(cartNo);
-		cart = courseMapper.selectCart(cart).get(0);
+//		cart = courseMapper.selectCart(cart).get(0);
 				
 		model.addAttribute("order", cart);
 

@@ -94,6 +94,8 @@
 	        				<div class="btn-group float-sm-right">
 	        					<button type="submit" class="btn btn-primary">등록</button>
 	        				</div>
+	        				<br/>
+	        				<br/>
 	        				
 	        		<!-- 위의 내용 등록 후 바로 보여지는 뷰페이지 -->
 	        		
@@ -103,10 +105,10 @@
 								<table class="table table-bordered">
 									<colgroup>
 										<col style="width:90px;" />
+										<col style="width:120px;" />
 										<col />
 										<col />
-										<col />
-										<col />
+										<col style="width:90px;" />
 										<col />
 									</colgroup>
 									<thead>
@@ -125,7 +127,7 @@
 											<td th:if="${course.goodsType == 1}">단일 코스</td>
 											<td th:unless="${course.goodsType == 2}">패키지 코스</td>
 											<!-- <td th:text="${course.goodsImage}"></td> -->
-											<td><img th:src="@{'/static/upload/course/'+${course.goodsImage}}" alt="goods image"></td>
+											<td><img width="80" height="80" th:src="@{'/static/upload/course/'+${course.goodsImage}}" alt="goods image"></td>
 											<td th:text="${course.goodsName}"></td>
 											<td th:text="${course.goodsPrice}"></td>
 											<td th:text="${course.goodsDet}"></td>

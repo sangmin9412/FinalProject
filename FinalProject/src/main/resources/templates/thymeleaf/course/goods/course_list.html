@@ -38,9 +38,9 @@
 				<div id="shop" class="shop grid-container clearfix" data-layout="fitRows">
 				   <div class="product clearfix" th:each="course : ${goods_lists}" >
 						<div class="product-image">
-							<img th:src="@{'/static/upload/course/'+${course.goodsImage}}" alt="goods image">
+							<img width="150" height="150" th:src="@{'/static/upload/course/'+${course.goodsImage}}" alt="goods image">
 							<div class="product-overlay">
-								<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> 장바구니</span></a>
+								<a th:href="@{cart(goodsNo=${course.goodsNo})}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> 장바구니</span></a>
 								<a href="javascript:alert('준비중 입니다.')" class="item-quick-view"><i class="icon-zoom-in2"></i><span> 미리보기</span></a>
 							</div>
 						</div>

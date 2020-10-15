@@ -35,35 +35,37 @@
 					<div class="col-md-12">
 						<h3 class="">배송 정보 입력</h3>
 
-						<form id="shipping-form" name="shipping-form" class="nobottommargin" action="#" method="post">
+						<form id="shipping-form" name="shipping-form" class="nobottommargin" th:action="@{/course/goods/orderOk}" method="post" th:object="${orderCommand}">
 
 
 							<div class="col_full">
 								<label for="shipping-form-companyname">주문자명</label>
-								<input type="text" id="shipping-form-companyname" name="shipping-form-companyname" value="" class="sm-form-control" />
+								<input type="text" id="memId" th:value="${memId}" class="sm-form-control" />
 							</div>
 
 							<div class="clear"></div>
 
 							<div class="col_full">
 								<label for="shipping-form-companyname">업체</label>
-								<input type="text" id="shipping-form-companyname" name="shipping-form-companyname" value="" class="sm-form-control" />
+								<input type="text" id="venId" name="venId" th:value="${venId}" class="sm-form-control" />
 							</div>
 
 							<div class="col_full">
 								<label for="shipping-form-address">배송지 주소</label>
-								<input type="text" id="shipping-form-address" name="shipping-form-address" value="" class="sm-form-control" />
+								<input type="text" id="orderAddr" name="orderAddr" class="sm-form-control" />
 							</div>
 
 							<div class="col_full">
 								<label for="shipping-form-message">주문 시 전달사항 <small>*</small></label>
-								<textarea class="sm-form-control" id="shipping-form-message" name="shipping-form-message" rows="6" cols="30"></textarea>
+								<textarea class="sm-form-control" id="orderMsg" name="orderMsg" rows="6" cols="30"></textarea>
 							</div>
-
+							
+                            <button type="submit" class="button button-3d fright">Place Order</button>
+                           
 						</form>
 					</div>
 					<div class="clear bottommargin"></div>
-					<div class="col-md-6">
+					<div class="col-md-6" >
 						<div class="table-responsive clearfix">
 							<h4>Your Orders</h4>
 
@@ -77,21 +79,21 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="cart_item">
+									<tr class="cart_item" th:each="cartList : ${cartList}">
 										<td class="cart-product-thumbnail">
-											<a href="#"><img width="64" height="64" src="https://via.placeholder.com/270" alt="Pink Printed Dress"></a>
+											<a href="#"><img width="64" height="64" th:src="@{'/static/upload/course/'+${cartList.goodsImage}}" alt="goods image"></a>
 										</td>
 
 										<td class="cart-product-name">
-											<a href="#">Pink Printed Dress</a>
+											<a href="#" th:text="${cartList.goodsName}"></a>
 										</td>
 
 										<td class="cart-product-quantity">
-											<div class="quantity clearfix" th:text="${order.orderQty}"></div>
+											<div class="quantity clearfix" th:text="${cartList.cartQty}"></div>
 										</td>
 
 										<td class="cart-product-subtotal">
-											<span class="amount" th:text="${order.orderPrice"></span>
+											<span class="amount" th:text="${cartList.cartPrice}"></span>
 										</td>
 									</tr>
 									<!--
@@ -146,13 +148,13 @@
 
 							<table class="table cart">
 								<tbody>
-									<tr class="cart_item">
+									<tr class="cart_item" >
 										<td class="notopborder cart-product-name">
 											<strong class="t400">총 금액</strong>
 										</td>
 
 										<td class="notopborder cart-product-name">
-											<span class="amount">$106.94</span>
+											<span class="amount" th:text="${sumTotalPrice}"></span>
 										</td>
 									</tr>
 									<tr class="cart_item">
@@ -170,7 +172,7 @@
 										</td>
 
 										<td class="cart-product-name">
-											<span class="amount color lead"><strong>$106.94</strong></span>
+											<strong><span class="amount color lead"  th:text="${sumTotalPrice}"></strong></span>
 										</td>
 									</tr>
 								</tbody>
@@ -178,16 +180,54 @@
 
 						</div>
 						<div class="accordion clearfix">
-							<div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>결제 방법 1</div>
-							<div class="acc_content clearfix">Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</div>
+							<div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>가상 계좌 입금</div>
+							<div class="acc_content clearfix">신한은행 120-3584-562336 (오후 3시 기준 입금 확인 처리)</div>
 
-							<div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>결제 방법 2</div>
-							<div class="acc_content clearfix">Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</div>
+							<div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>카드 결제</div>
+							<div class="acc_content clearfix">
+							<div class="col-md-10">
 
-							<div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>결제 방법 3</div>
-							<div class="acc_content clearfix">Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus. Aenean lacinia bibendum nulla sed consectetur.</div>
+							<table class="card">
+								<tbody>
+									<tr class="card-info" >
+										
+									  <div class="form-group row">
+	        					        <label for="cardNum" class="col-sm-3 col-form-label">
+	        					         	카드번호 
+	        					        </label>
+	        					        <div class="col-sm-10">
+	        						    <input type="text" name="cardNum" class="form-control" id="cardNum">
+	        					       </div>
+	        			          	  </div>
+	        			          	 
+									  <div class="form-group row">
+	        					        <label for="cardLimit" class="col-sm-3 col-form-label">
+	        					         	유효기간 
+	        					        </label>
+	        					        <div class="col-sm-10">
+	        						    <input type="text" name="cardLimit" class="form-control" id="cardLimit">
+	        					       </div>
+	        			          	  </div>	        			          	 
+
+									  <div class="form-group row">
+	        					        <label for="cvc" class="col-sm-3 col-form-label">
+	        					         	CVC 
+	        					        </label>
+	        					        <div class="col-sm-10">
+	        						    <input type="text" name="cvc" class="form-control" id="cvc">
+	        					       </div>
+	        			          	  </div>		        			          	 
+	        			          	 
+									</tr>
+								</tbody>
+							</table>
+
 						</div>
-						<a th:href="@{orderOk(orderNo=${order.orderNo})}" class="button button-3d fright">Place Order</a>
+							</div>
+
+						</div>
+						
+						<!-- <a th:href="orderOk" class="button button-3d fright">Place Order</a> -->
 					</div>
 				</div>
 			</div>

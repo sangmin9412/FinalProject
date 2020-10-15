@@ -1,4 +1,4 @@
-package app.user.course.service;
+package app.admin.course.service;
 
 import java.util.List;
 
@@ -7,18 +7,18 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import app.admin.course.domain.CourseDTO;
 import app.admin.course.domain.StartEndPageDTO2;
 import app.admin.course.mapper.CourseMapper;
 import app.controller.PageAction;
+import app.user.course.domain.OrderDTO;
 
 @Component
 @Service
-public class UserCourseListService {
+public class PaymentListService {
 	@Autowired
 	CourseMapper courseMapper;
 
-	public void userCourseList(Integer page, String type, Model model) throws Exception{
+	public void paymentList(Integer page, Model model) throws Exception{
 		int limit = 10;
 		int limitPage = 10;
 		
@@ -27,16 +27,15 @@ public class UserCourseListService {
 		
 		
 		StartEndPageDTO2 startEndPageDTO = new StartEndPageDTO2(startRow,endRow);
-		CourseDTO courseDTO = new CourseDTO();
-		courseDTO.setStartEndPageDTO(startEndPageDTO);
-		courseDTO.setGoodsType(type);
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setStartEndPageDTO(startEndPageDTO);
 
-		List<CourseDTO> course = courseMapper.selectCourse(courseDTO);
-		int count = courseMapper.courseCount();
+		List<OrderDTO> payment = courseMapper.selectOrder(orderDTO);
+		int count = courseMapper.orderCount();
 		
-		model.addAttribute("goods_lists", course);
+		model.addAttribute("payment_list", payment);
 		PageAction pageAction = new PageAction();
-		pageAction.page(model, count, limit, limitPage, page, "goodsList?");
+		pageAction.page(model, count, limit, limitPage, page, "paymentList?");		
 	}
 
 }

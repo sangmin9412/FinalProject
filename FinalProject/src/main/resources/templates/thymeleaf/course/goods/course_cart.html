@@ -45,98 +45,41 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="cart_item">
+							<tr class="cart_item" th:each="cartList:${cartList}" >
 								<td class="cart-product-remove">
 									<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
 								</td>
 
 								<td class="cart-product-thumbnail">
-									<a href="#"><img width="64" height="64" src="https://via.placeholder.com/270" alt="Pink Printed Dress"></a>
+									<a href="#"><img width="64" height="64" th:src="@{'/static/upload/course/'+${cartList.goodsImage}}" alt="goods image"></a>
 								</td>
 
 								<td class="cart-product-name">
-									<a href="#">Pink Printed Dress</a>
+									<a href="#" th:text="${cartList.goodsName}"></a>
 								</td>
 
 								<td class="cart-product-price">
-									<span class="amount" >[[${cart.goodsPrice}]]</span>
+									<span class="amount" th:text="${cartList.goodsPrice}"></span>
 								</td>
 
 								<td class="cart-product-quantity">
 									<div class="quantity clearfix">
 										<input type="button" value="-" class="minus">
-										<input type="text" name="quantity" value="2" class="qty" />
+										<input type="text" name="quantity" th:value="${cartList.cartQty}" class="qty" />
 										<input type="button" value="+" class="plus">
 									</div>
 								</td>
 
 								<td class="cart-product-subtotal">
-									<span class="amount">$39.98</span>
+									<span class="amount" th:text="${cartList.cartPrice}"></span>
 								</td>
 							</tr>
-							<tr class="cart_item">
-								<td class="cart-product-remove">
-									<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-								</td>
-
-								<td class="cart-product-thumbnail">
-									<a href="#"><img width="64" height="64" src="https://via.placeholder.com/270" alt="Checked Canvas Shoes"></a>
-								</td>
-
-								<td class="cart-product-name">
-									<a href="#">Checked Canvas Shoes</a>
-								</td>
-
-								<td class="cart-product-price">
-									<span class="amount">$24.99</span>
-								</td>
-
-								<td class="cart-product-quantity">
-									<div class="quantity clearfix">
-										<input type="button" value="-" class="minus">
-										<input type="text" name="quantity" value="1" class="qty" />
-										<input type="button" value="+" class="plus">
-									</div>
-								</td>
-
-								<td class="cart-product-subtotal">
-									<span class="amount">$24.99</span>
-								</td>
-							</tr>
-							<tr class="cart_item">
-								<td class="cart-product-remove">
-									<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-								</td>
-
-								<td class="cart-product-thumbnail">
-									<a href="#"><img width="64" height="64" src="https://via.placeholder.com/270" alt="Pink Printed Dress"></a>
-								</td>
-
-								<td class="cart-product-name">
-									<a href="#">Blue Men Tshirt</a>
-								</td>
-
-								<td class="cart-product-price">
-									<span class="amount">$13.99</span>
-								</td>
-
-								<td class="cart-product-quantity">
-									<div class="quantity clearfix">
-										<input type="button" value="-" class="minus">
-										<input type="text" name="quantity" value="3" class="qty" />
-										<input type="button" value="+" class="plus">
-									</div>
-								</td>
-
-								<td class="cart-product-subtotal">
-									<span class="amount">$41.97</span>
-								</td>
-							</tr>
-							<tr class="cart_item">
+							
+							<tr class="cart_item" >
 								<td colspan="6">
-									<div class="row clearfix">
+									<div class="row clearfix" >
 										<div class="col-md-12 col-xs-12 nopadding">
-											<a th:href="@{order(cartNo=${cart.cartNo})}" class="button button-3d notopmargin fright">order</a>
+											<a th:href="order" class="button button-3d notopmargin fright">order</a>
 										</div>
 									</div>
 								</td>
@@ -160,7 +103,7 @@
 										</td>
 
 										<td class="cart-product-name">
-											<span class="amount">$106.94</span>
+											<span class="amount" th:text="${sumTotalPrice}"></span>
 										</td>
 									</tr>
 									<tr class="cart_item">
@@ -178,7 +121,7 @@
 										</td>
 
 										<td class="cart-product-name">
-											<span class="amount color lead"><strong>$106.94</strong></span>
+											<span class="amount color lead" th:text="${sumTotalPrice}"><strong></strong></span>
 										</td>
 									</tr>
 								</tbody>

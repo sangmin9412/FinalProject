@@ -31,10 +31,11 @@ from(select rownum rn, <include refid="baseColumn" />
 				</if>
 			</where>
 			order by goods_no desc))
+			
 	<where>
 		<if test="startEndPageDTO != null">
 				rn between #{startEndPageDTO.startPage} 
-			and #{startEndPageDTO.endPage}
+			and #{startEndPageDTO.endPage} and goods_type = #{goodsType} 
 		</if>
 	</where>
 </select>
@@ -64,35 +65,61 @@ from(select rownum rn, <include refid="baseColumn" />
 
 	<resultMap type="app.user.course.domain.CartDTO" id="baseCart" >
 		<constructor>
-			<idArg column="CART_NO" javaType="string" />
-			<arg column="MEM_ID" javaType="string" />
+			<idArg column="CART_NO" javaType="long" />
 			<arg column="GOODS_NO" javaType="string" />
-			<arg column="GOODS_IMAGE" javaType="string" />
-			<arg column="GOODS_NAME" javaType="string" />
+			<arg column="MEM_ID" javaType="string" />
 			<arg column="VEN_ID" javaType="string" />
-			<arg column="CART_QTY" javaType="string" />
+			<arg column="GOODS_NAME" javaType="string" />
 			<arg column="GOODS_PRICE" javaType="long" />
-			<arg column="CART_PRICE" javaType="string" />
+			<arg column="GOODS_IMAGE" javaType="string" />
+			<arg column="CART_QTY" javaType="long" />
+			<arg column="CART_PRICE" javaType="long" />
 		</constructor>
 	</resultMap>
-<select id="selectCart" parameterType="app.user.course.domain.CartDTO" resultMap="baseCart">
+<select id="cartList" parameterType="app.user.course.domain.CartDTO" resultMap="baseCart">
 select * 
-from(select rownum rn, CART_NO, MEM_ID, GOODS_NO, GOODS_IMAGE, GOODS_NAME, VEN_ID, CART_QTY, GOODS_PRICE, CART_PRICE
-	from(  select CART_NO, MEM_ID, GOODS_NO, GOODS_IMAGE, GOODS_NAME, VEN_ID, CART_QTY, GOODS_PRICE, CART_PRICE
-			from cart
-			<where>
-				<if test="goodsNo != null">
-					GOODS_NO = #{goodsNo} 
-				</if>
-			</where>
-			order by goods_no desc))
+from(select rownum rn, cart_no, goods_no, mem_id, ven_id, goods_name, goods_price, goods_image, cart_qty, cart_price
+	from(  select cart_no, goods_no, mem_id, ven_id, goods_name, goods_price, goods_image, cart_qty, cart_price from cart where mem_id = #{memId} order by goods_no desc))
 </select>
 
 <insert id="goodsOrder" parameterType="app.user.course.domain.OrderDTO">
-	insert into order (ORDER_NO, VEN_ID, GOODS_NO, ORDER_QTY, ORDER_DATE, ORDER_PRICE)
-		values(NUM_SEQ.nextval,#{venId},#{goodsNo},#{orderQty},sysdate,#{orderPrice})
+	insert into orders (ORDER_NO, MEM_ID, VEN_ID, ORDER_ADDR, ORDER_MSG, GOODS_NO, ORDER_DATE, ORDER_PRICE)
+		values(NUM_SEQ.nextval,#{memId},#{venId},#{orderAddr},#{orderMsg},#{goodsNo},sysdate,#{orderPrice})
 </insert>
 
+	<resultMap type="app.user.course.domain.OrderDTO" id="baseOrder" >
+		<constructor>
+			<idArg column="ORDER_NO" javaType="long" />
+			<arg column="MEM_ID" javaType="string" />
+			<arg column="VEN_ID" javaType="string" />
+			<arg column="ORDER_ADDR" javaType="string" />
+			<arg column="ORDER_MSG" javaType="string" />
+			<arg column="GOODS_NO" javaType="string" />
+			<arg column="ORDER_DATE" javaType="java.sql.Timestamp" />
+			<arg column="ORDER_PRICE" javaType="long" />
+		</constructor>
+	</resultMap>
+<select id="selectOrder" parameterType="app.user.course.domain.OrderDTO" resultMap="baseOrder">
+select * 
+from(select rownum rn, ORDER_NO, MEM_ID, VEN_ID, ORDER_ADDR, ORDER_MSG, GOODS_NO, ORDER_DATE, ORDER_PRICE
+	from(  select ORDER_NO, MEM_ID, VEN_ID, ORDER_ADDR, ORDER_MSG, GOODS_NO, ORDER_DATE, ORDER_PRICE 
+	       from orders 
+		    <where>
+				<if test="memId != null">
+					MEM_ID = #{memId} 
+				</if>
+			</where>
+			order by goods_no desc))
+	<where>
+		<if test="startEndPageDTO != null">
+				rn between #{startEndPageDTO.startPage} 
+			and #{startEndPageDTO.endPage}
+		</if>
+	</where>
+</select>
+<select id="orderCount" resultType="int">
+		select count(*) from orders
+</select>
 </mapper>
 
 
