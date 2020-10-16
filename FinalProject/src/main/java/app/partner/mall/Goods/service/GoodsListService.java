@@ -17,7 +17,7 @@ import app.partner.mall.mapper.GoodsMapper;
 public class GoodsListService {
 	@Autowired
 	GoodsMapper goodsMapper;
-	public void execute(Model model, Integer page) throws Exception{
+	public void execute(Model model, Integer page, int i) throws Exception{
 		int limit = 10;
 		int limitPage = 10;
 		
@@ -30,8 +30,12 @@ public class GoodsListService {
 		model.addAttribute("goodsList",list);
 		model.addAttribute("count",count);
 		PageAction pageAction = new PageAction();
-		pageAction.page(model, count, limit, limitPage, page, "goodsList?");
-		
+		if (i == 1) {
+			pageAction.page(model, count, limit, limitPage, page, "goodsList?");
+
+		} else {
+			pageAction.page(model, count, limit, limitPage, page, "List?");
+		}
 		
 	}
 

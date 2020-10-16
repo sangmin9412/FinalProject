@@ -13,6 +13,7 @@ import app.partner.mall.domain.GoodsDTO;
 public interface GoodsMapper {
 	public Integer goodsInsert(GoodsDTO dto) throws Exception;
 	public List<GoodsDTO> selectGoods(StartEndPageDTO startEndPageDTO) throws Exception;
+	public GoodsDTO goodsDetail(Integer goodsNo) throws Exception;
 	public Integer getGoodsCount();
 	public void goodsUpdate(GoodsDTO dto) throws Exception;
 

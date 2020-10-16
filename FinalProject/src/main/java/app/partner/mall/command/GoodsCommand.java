@@ -3,7 +3,8 @@ package app.partner.mall.command;
 import java.sql.Timestamp;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,5 +23,9 @@ public class GoodsCommand {
 	String goodsImage;
 	String goodsType;
 	Timestamp goodsRegist;
+	String goodsOriginal;
+	String goodsStore;
+	Long goodsSize;	
+	MultipartFile report;
 
 }

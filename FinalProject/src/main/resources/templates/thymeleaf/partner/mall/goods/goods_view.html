@@ -27,31 +27,73 @@
 	        			<form action="" method="">
 	        				<div class="form-group row">
 	        					<label for="" class="col-sm-2 col-form-label">
-	        						아이디
+	        						상품번호
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							asd123
+	        							[[${goodsDTO.goodsNo}]]
 	        						</p>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
 	        					<label for="" class="col-sm-2 col-form-label">
-	        						이름
+	        						상품 이름
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							홍길동
+	        							[[${goodsDTO.goodsName}]]
 	        						</p>
 	        					</div>
 	        				</div>
 	        				<div class="form-group row">
 	        					<label for="" class="col-sm-2 col-form-label">
-	        						생년월일
+	        						등록일
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							2010/10/15
+	        						<span th:text="${#dates.format(goodsDTO.goodsRegist,'yyyy-MM-dd')}"></span>
+	        						</p>
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="" class="col-sm-2 col-form-label">
+	        						상품 가격
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<p class="form-control-plaintext">
+	        							[[${goodsDTO.goodsPrice}]]
+	        						</p>
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="" class="col-sm-2 col-form-label">
+	        						상품 설명
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<p class="form-control-plaintext">
+	        							[[${goodsDTO.goodsDet}]]
+	        						</p>
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="" class="col-sm-2 col-form-label">
+	        						상품 종류
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<p class="form-control-plaintext">
+	        							[[${goodsDTO.goodsType}]]
+	        						</p>
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="" class="col-sm-2 col-form-label">
+	        						상품 이미지
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<p class="form-control-plaintext">
+	        							<!--  
+	        							<img src= "[[${goodsDTO.goodsImage}]]" alt="">
+	        							-->
 	        						</p>
 	        					</div>
 	        				</div>

@@ -1,11 +1,14 @@
 package app.partner.mall.Goods.service;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import app.command.AuthInfo;
 import app.partner.mall.command.GoodsCommand;
@@ -18,10 +21,8 @@ public class GoodsWriteService {
 	@Autowired
 	GoodsMapper goodsMapper;
 
-	public int goodsWrite(GoodsCommand goodsCommand, HttpServletRequest request) throws Exception {
-		int result = 0;
+	public void execute(GoodsCommand goodsCommand, HttpSession session) throws Exception {
 		GoodsDTO goodsDTO = new GoodsDTO();
-		HttpSession session = request.getSession();
 		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 		goodsDTO.setVenId(authInfo.getId());
 		System.out.println(goodsDTO.getVenId());
@@ -33,8 +34,27 @@ public class GoodsWriteService {
 		goodsDTO.setGoodsDet(goodsCommand.getGoodsDet());
 		goodsDTO.setGoodsImage(goodsCommand.getGoodsImage());
 		goodsDTO.setGoodsType(goodsCommand.getGoodsType());
-		result = goodsMapper.goodsInsert(goodsDTO);;
-		return result;
+		
+		
+		try {
+			String PATH = "/goods/upload";
+			String filePath = session.getServletContext().getRealPath(PATH);
+			MultipartFile mf = goodsCommand.getReport();
+			String original = mf.getOriginalFilename();
+			String originalFileExtension = original.substring(original.lastIndexOf("."));
+			String store = UUID.randomUUID().toString().replace("-", "") + originalFileExtension;
+			goodsDTO.setGoodsStore(store);
+			goodsDTO.setGoodsOriginal(original);
+
+			File file = new File(filePath + "/" + store);
+			goodsDTO.setGoodsSize(mf.getSize());
+			System.out.println(mf.getSize());
+			mf.transferTo(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			goodsMapper.goodsInsert(goodsDTO);
+		}
 	}
 
 }

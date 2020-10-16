@@ -1,44 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	<mapper namespace="app.partner.mall.mapper.GoodsMapper">
+<mapper namespace="app.partner.mall.mapper.GoodsMapper">
 	<sql id="col_goods">
 		GOODS_NO, VEN_ID, GOODS_NAME, GOODS_PRICE,
-		GOODS_DET, GOODS_IMAGE, GOODS_TYPE, GOODS_REGIST
+		GOODS_DET,
+		GOODS_IMAGE, GOODS_TYPE, GOODS_REGIST, GOODS_ORIGINAL_FILE,
+		GOODS_STORE_FILE, GOODS_SIZE
 	</sql>
-	
-	<insert id ="goodsInsert" parameterType="app.partner.mall.domain.GoodsDTO">
-	insert into goods (<include refid="col_goods"/>)
-	values(#{goodsNo},#{venId}, #{goodsName}, #{goodsPrice}, #{goodsDet}, #{goodsImage}, #{goodsType}, sysdate)
-	
+
+	<insert id="goodsInsert"
+		parameterType="app.partner.mall.domain.GoodsDTO">
+		insert into goods (
+		<include refid="col_goods" />
+		)
+		values(#{goodsNo},#{venId}, #{goodsName}, #{goodsPrice}, #{goodsDet}, null,
+		#{goodsType}, sysdate, #{goodsOriginal}, #{goodsStore}, #{goodsSize})
+
 	</insert>
 	<resultMap type="app.partner.mall.domain.GoodsDTO" id="goods">
-		<id column="GOODS_NO" jdbcType="INTEGER" property="goodsNo"/>
-		<result column="VEN_ID" jdbcType="VARCHAR" property="venId"/>
-		<result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName"/>
-		<result column="GOODS_PRICE" jdbcType="VARCHAR" property="goodsPrice"/>
-		<result column="GOODS_DET" jdbcType="VARCHAR" property="goodsDet"/>
-		<result column="GOODS_IMAGE" jdbcType="VARCHAR" property="goodsImage"/>
-		<result column="GOODS_TYPE" jdbcType="VARCHAR" property="goodsType"/>
-		<result column="GOODS_REGIST" jdbcType="TIMESTAMP" property="goodsRegist"/>
+		<id column="GOODS_NO" jdbcType="INTEGER" property="goodsNo" />
+		<result column="VEN_ID" jdbcType="VARCHAR" property="venId" />
+		<result column="GOODS_NAME" jdbcType="VARCHAR"
+			property="goodsName" />
+		<result column="GOODS_PRICE" jdbcType="VARCHAR"
+			property="goodsPrice" />
+		<result column="GOODS_DET" jdbcType="VARCHAR"
+			property="goodsDet" />
+		<result column="GOODS_IMAGE" jdbcType="VARCHAR"
+			property="goodsImage" />
+		<result column="GOODS_TYPE" jdbcType="VARCHAR"
+			property="goodsType" />
+		<result column="GOODS_REGIST" jdbcType="TIMESTAMP"
+			property="goodsRegist" />
+		<result column="GOODS_ORIGINAL_FILE" jdbcType="VARCHAR"
+			property="goodsOriginal" />
+		<result column="GOODS_STORE_FILE" jdbcType="VARCHAR"
+			property="goodsStore" />
+		<result column="GOODS_SIZE" jdbcType="VARCHAR"
+			property="goodsSize" />
 	</resultMap>
-	
-	<select id="selectGoods" parameterType="app.domain.StartEndPageDTO" resultMap="goods">
+
+	<select id="selectGoods"
+		parameterType="app.domain.StartEndPageDTO" resultMap="goods">
 		select *
-		from(select rownum rn, <include refid="col_goods"/>
-			from(select <include refid="col_goods"/>
-			from goods
-			<trim prefix="where" prefixOverrides="AND | OR">
-				<if test="num != null">
-					GOODS_NO=#{num}
-				</if>
-			</trim>
-			order by GOODS_REGIST desc))
-			where rn &gt;= #{startPage} and rn &lt;= #{endPage}
-		
-		</select>
-		<select id="getGoodsCount" resultType="int">
-			select count(*) from GOODS
-		</select>
-	
-	</mapper>
+		from(select rownum rn,
+		<include refid="col_goods" />
+		from(select
+		<include refid="col_goods" />
+		from goods
+		<trim prefix="where" prefixOverrides="AND | OR">
+			<if test="num != null">
+				GOODS_NO=#{num}
+			</if>
+		</trim>
+		order by GOODS_REGIST))
+		where rn &gt;= #{startPage} and rn &lt;= #{endPage}
+
+	</select>
+	<select id="getGoodsCount" resultType="int">
+		select count(*) from GOODS
+	</select>
+	<select id="goodsDetail" parameterType="int" resultMap="goods">
+		select
+		<include refid="col_goods" />
+		from goods
+		where goods_No = #{goodsNo}
+	</select>
+
+</mapper>

@@ -20,5 +20,8 @@ public class GoodsDTO {
 	String goodsImage;
 	String goodsType;
 	Timestamp goodsRegist;
+	String goodsOriginal;
+	String goodsStore;
+	Long goodsSize;
 
 }
