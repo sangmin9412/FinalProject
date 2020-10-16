@@ -44,7 +44,14 @@ public class CartListService {
 	      model.addAttribute("cartNo",cartNo);
 	      
 	      
+	}
 
+	public void cartQtyDown(HttpSession session) throws Exception{
+		  AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		  String userId = authInfo.getId();
+		
+		  courseMapper.qtyDown(userId);
+		
 	}
 	
 

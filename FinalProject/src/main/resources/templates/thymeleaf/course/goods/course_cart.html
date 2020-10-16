@@ -13,6 +13,17 @@
 	<th:block layout:fragment="js">
 		<script></script>
 	</th:block>
+	<script type="text/javascript"	src="https://code.jquery.com/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript">
+
+function checkQty(qty){
+	if(document.getElementsByClassName('minus').value != null){
+		location.href="cartQtyDown";
+	}else{
+		return false;
+	}
+}
+</script>
 </head>
 
 <body>

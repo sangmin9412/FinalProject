@@ -82,6 +82,12 @@ from(select rownum rn, cart_no, goods_no, mem_id, ven_id, goods_name, goods_pric
 	from(  select cart_no, goods_no, mem_id, ven_id, goods_name, goods_price, goods_image, cart_qty, cart_price from cart where mem_id = #{memId} order by goods_no desc))
 </select>
 
+<update id="qtyDown" parameterType="long">
+	update cart
+	set cart_qty = cart_qty - 1, cart_price = (cart_qty - 1) * goods_price
+	where mem_id = #{memId}
+</update>
+
 <insert id="goodsOrder" parameterType="app.user.course.domain.OrderDTO">
 	insert into orders (ORDER_NO, MEM_ID, VEN_ID, ORDER_ADDR, ORDER_MSG, GOODS_NO, ORDER_DATE, ORDER_PRICE)
 		values(NUM_SEQ.nextval,#{memId},#{venId},#{orderAddr},#{orderMsg},#{goodsNo},sysdate,#{orderPrice})

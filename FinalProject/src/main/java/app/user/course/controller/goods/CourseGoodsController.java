@@ -53,6 +53,12 @@ public class CourseGoodsController {
 		return "thymeleaf/course/goods/course_cart";
 	}
 	
+	@RequestMapping("cartQtyDown")
+	public String cartQtyDown(HttpSession session)  throws Exception{
+		cartListService.cartQtyDown(session);
+		return "redirect:/course/goods/cart";
+	}
+	
 	@RequestMapping(value = "order", method = RequestMethod.GET)
 	public String goodsOrder(@Validated OrderCommand orderCommand, BindingResult result,HttpSession session, Model model)  throws Exception{
 		cartListService.cartList(session, model);
