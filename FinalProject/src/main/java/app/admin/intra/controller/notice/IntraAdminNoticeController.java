@@ -41,8 +41,8 @@ public class IntraAdminNoticeController {
 
 	
 	@RequestMapping("noticeList")//리스트 페이지
-	public String noticeList(Model model)throws Exception {
-		intraNoticeListService.listService(model);
+	public String noticeList(@RequestParam(value= "page",defaultValue = "1")int page,Model model)throws Exception {
+		intraNoticeListService.listService(page,model);
 		return "thymeleaf/admin/intra/notice/notice_list";
 	}
 	@RequestMapping("noticeWrite")//라이트 페이지
