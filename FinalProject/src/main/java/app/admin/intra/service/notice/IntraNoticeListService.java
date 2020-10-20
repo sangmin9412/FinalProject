@@ -28,10 +28,12 @@ public class IntraNoticeListService {
 		Long endRow = startRow + limit - 1;
 		
 		StartEndPageDTO dto = new StartEndPageDTO(startRow, endRow);
+		
 		List<IntraNoticeDTO> lists = intraNoticeMapper.viewNotice(dto);
 		int count = intraNoticeMapper.noticeCount();
 
-		
+	
+				
 	   model.addAttribute("noticeList", lists);
 	   model.addAttribute("count", count);
 		
