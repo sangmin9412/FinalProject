@@ -18,7 +18,7 @@
 <body>
     <th:block layout:fragment="content" class="content">
     	<!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">회원 추가 정보</h1>
+        <h1 class="h3 mb-4 text-gray-800">이상형 설문 내용</h1>
         <div class="row">
         	<div class="col-md-12">
 	        	<div class="card">
@@ -31,7 +31,17 @@
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							[[${dto.memId}]]
+	        							[[${survey.memId}]]
+	        						</p>
+	        					</div>
+	        				</div>
+	        				<div class="form-group row">
+	        					<label for="" class="col-sm-2 col-form-label">
+	        						나이대
+	        					</label>
+	        					<div class="col-sm-10">
+	        						<p class="form-control-plaintext">
+	        							[[${survey.surAge}]] 대
 	        						</p>
 	        					</div>
 	        				</div>
@@ -41,7 +51,7 @@
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							[[${dto.memCareer}]]
+	        							[[${survey.surCareer}]]
 	        						</p>
 	        					</div>
 	        				</div>
@@ -51,7 +61,7 @@
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							[[${dto.memJob}]]
+	        							[[${survey.surJob}]]
 	        						</p>
 	        					</div>
 	        				</div>
@@ -63,7 +73,7 @@
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							[[${dto.memSalary}]]
+	        							[[${survey.surSalary}]]
 	        						</p>
 	        					</div>
 	        				</div>
@@ -73,7 +83,7 @@
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							[[${dto.memBlood}]]
+	        							[[${survey.surBlood}]]
 	        						</p>
 	        					</div>
 	        				</div>
@@ -83,7 +93,7 @@
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							[[${dto.memHgt}]]
+	        							[[${survey.surHgt}]]
 	        						</p>
 	        					</div>
 	        				</div>
@@ -94,7 +104,7 @@
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							[[${dto.memWgt}]]
+	        							[[${survey.surWgt}]]
 	        						</p>
 	        					</div>
 	        				</div>
@@ -105,7 +115,7 @@
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							[[${dto.memHobby}]]
+	        							[[${survey.surHobby}]]
 	        						</p>
 	        					</div>
 	        				</div>
@@ -116,16 +126,11 @@
 	        					</label>
 	        					<div class="col-sm-10">
 	        						<p class="form-control-plaintext">
-	        							[[${dto.memRlg}]]
+	        							[[${survey.surRlg}]]
 	        						</p>
 	        					</div>
 	        				</div>
 	        				
-	        				<div class="col-sm-10" >
-	        						<p class="form-control-plaintext">
-	        							<img th:src="@{'/static/upload/member/'+${dto.memStoreImage}}"/>
-	        						</p>
-	        					</div>
 	        				
 	        			</form>
 	        			<div class="btn-group float-sm-right">

@@ -16,6 +16,8 @@ import app.admin.matching.command.MemberCommand;
 import app.admin.matching.service.MemberAddWriteService;
 import app.admin.matching.service.MemberJoinService;
 import app.admin.matching.service.MemberListService;
+import app.admin.matching.service.MemberViewService;
+import app.admin.matching.service.SurveySearchService;
 
 @Controller
 @RequestMapping("/admin/matching/member")
@@ -26,7 +28,11 @@ public class MatchingAdminMemberController {
 	MemberAddWriteService memberAddWriteService;
 	@Autowired
 	MemberListService memberListService;
-
+	@Autowired
+	SurveySearchService surveySearchService;
+	@Autowired
+	MemberViewService memberViewService;
+	
 	@RequestMapping("memberList")
 	public String memberList(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) throws Exception  {
 				memberListService.memberList(model,page);
@@ -34,7 +40,8 @@ public class MatchingAdminMemberController {
 	}
 
 	@RequestMapping("memberView")
-	public String memberView() {
+	public String memberView(@RequestParam(value = "memId")String memId, Model model) throws Exception {
+		memberViewService.execute(memId, model);
 		return "thymeleaf/admin/matching/member/member_view";
 	}
 
@@ -87,5 +94,13 @@ public class MatchingAdminMemberController {
 	public String list(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) throws Exception {
 		memberListService.paidMemberList(model,page);
 		return "thymeleaf/admin/matching/member/list";
+	}
+	
+	@RequestMapping("surveyView")
+	public String surveyView(@RequestParam(value = "memId")String memId, Model model) throws Exception {
+		surveySearchService.execute(memId, model);
+		return "thymeleaf/admin/matching/member/survey_view";
+		
+		
 	}
 }

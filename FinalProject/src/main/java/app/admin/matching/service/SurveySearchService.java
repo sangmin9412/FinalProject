@@ -32,6 +32,7 @@ public class SurveySearchService {
 		List<MemberDTO> list=surveyMapper.selectMember(surveyDTO);
 		model.addAttribute("memberList",list);
 		model.addAttribute("memId",memId);
+		model.addAttribute("survey",surveyDTO);
 		
 	}
 

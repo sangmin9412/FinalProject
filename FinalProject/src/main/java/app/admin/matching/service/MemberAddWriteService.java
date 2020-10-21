@@ -76,8 +76,8 @@ public class MemberAddWriteService {
 			String original=mf.getOriginalFilename();
 			String originalFileExtension=original.substring(original.lastIndexOf("."));
 			String store=UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
-			originalTotal+=original+"`";
-			storeTotal+=store+"`";
+			originalTotal+=original+" ";
+			storeTotal+=store+" ";
 			File file=new File(filePath+"/"+store);
 			
 			
