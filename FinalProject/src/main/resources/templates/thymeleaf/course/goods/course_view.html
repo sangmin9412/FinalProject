@@ -20,7 +20,7 @@
    	<section id="page-title">
 
 		<div class="container clearfix">
-			<h1>코스이름이 들어갑니다</h1>
+			<h1>[[${courseCommand.goodsName}]]</h1>
 		</div>
 
 	</section>
@@ -51,7 +51,7 @@
 
 						<div class="col_three_fifth product-desc nomargin">
 
-							<div class="product-price" th:text="${courseCommand.goodsPrice}"></div>
+							<div class="product-price" th:text="${courseCommand.goodsPrice}+'원'"></div>
 
 							<div class="clear"></div>
 							<div class="line"></div>
@@ -69,7 +69,7 @@
 							<!-- Product Single - Short Description
 							============================================= -->
 							<h3>상품설명</h3>
-							<p th:text="${courseCommand.goodsDet}">
+							<p th:utext="${courseCommand.goodsDet}">
 								
 							</p>
 							

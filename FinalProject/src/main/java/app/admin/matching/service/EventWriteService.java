@@ -31,7 +31,7 @@ public class EventWriteService {
 		HttpSession session=request.getSession();
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		EventDTO eventDTO=new EventDTO();
-		eventDTO.setEveContent(eventCommand.getEveContent());
+		eventDTO.setEveContent(eventCommand.getEveContent().replace("\r\n", "<br>"));
 //		Timestamp eveDate=Timestamp.valueOf(eventCommand.getEveDate());
 		eventDTO.setEveDate(eventCommand.getEveDate());
 		eventDTO.setEveLoc(eventCommand.getEveLoc());

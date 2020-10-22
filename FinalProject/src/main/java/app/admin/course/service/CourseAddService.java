@@ -30,7 +30,7 @@ public class CourseAddService {
 		course.setGoodsNo(courseCommand.getGoodsNo());
 		course.setGoodsName(courseCommand.getGoodsName());
 		course.setGoodsPrice(courseCommand.getGoodsPrice());
-		course.setGoodsDet(courseCommand.getGoodsDet());
+		course.setGoodsDet(courseCommand.getGoodsDet().replace("\r\n", "<br>"));
 //		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 //		dto.setUserId(authInfo.getUserId());
 //		dto.setIpAddr(request.getRemoteAddr());
