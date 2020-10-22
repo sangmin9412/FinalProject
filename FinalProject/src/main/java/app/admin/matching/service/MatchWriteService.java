@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import app.admin.matching.command.MatchCommand;
 import app.admin.matching.domain.MatchDTO;
 import app.admin.matching.mapper.MatchMapper;
-import app.admin.matching.mapper.MemberMapper;
 import app.command.AuthInfo;
 
 @Service
@@ -35,12 +34,17 @@ public class MatchWriteService {
 		System.out.println(matchDTO.getPartnerId());
 		matchDTO.setMatLoc(matchCommand.getMatLoc());
 		
-		Integer i=matchMapper.memberMatchUpdate(matchDTO);
-		if (i==1) {
+		Integer i=matchMapper.memberMatchUpdate(matchDTO.getMemId());
+		Integer j=matchMapper.memberMatchUpdate(matchDTO.getPartnerId());
+		if (i==1 && j==1) {
 			matchMapper.matchInsert(matchDTO);
+		}else if(i==1 && j!=1){
+			matchMapper.memberMatchUpdate2(matchDTO.getMemId());
+		}else if(i!=1 && j==1) {
+			matchMapper.memberMatchUpdate2(matchDTO.getPartnerId());
 		}
 			
-		location="redirect:/admin/matching/";
+		location="redirect:/admin/matching/match/matchList";
 		return location;
 	}
 }

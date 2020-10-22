@@ -21,6 +21,8 @@
 	
 	
 	
+	
+	
 	<insert id="matchInsert" parameterType="app.admin.matching.domain.MatchDTO">
 	 insert into matching (<include refid="col_match"/>)
 	 values(MATCH_SEQ.NEXTVAL,#{memId}, #{partnerId}, #{empId}, #{matDate}, #{matCheck}, #{matLoc})
@@ -74,12 +76,17 @@
 	
 	</insert>
 	
-	<update id="memberMatchUpdate" parameterType="app.admin.matching.domain.MatchDTO">
+	<update id="memberMatchUpdate" parameterType="string">
 		UPDATE MEMBERADD
 		SET MEM_MAT=MEM_MAT+1
-		WHERE (MEM_ID=#{memId} AND 6 > MEM_MAT) AND (MEM_ID=#{partnerId} AND 6 > MEM_MAT) 
+		WHERE (MEM_ID=#{value} AND 6 > MEM_MAT) 
 	</update>
 	
+	<update id="memberMatchUpdate2" parameterType="string">
+		UPDATE MEMBERADD
+		SET MEM_MAT=MEM_MAT-1
+		WHERE MEM_ID=#{value} 
+	</update>
 	
 	
 	
