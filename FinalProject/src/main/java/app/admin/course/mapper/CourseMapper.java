@@ -21,6 +21,6 @@ public interface CourseMapper {
 	public Integer goodsOrder(OrderDTO orderDTO)throws Exception;	
 	public List<OrderDTO> selectOrder(OrderDTO orderDTO)throws Exception;	
 	public Integer orderCount();	
-	public void qtyDown(String userId);	
+	public void qtyDown(CartDTO cartDTO);	
 //	public Integer courseDelete(String venId)throws Exception;
 }

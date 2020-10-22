@@ -25,11 +25,14 @@ select *
 from(select rownum rn, <include refid="baseColumn" />
 	from(  select <include refid="baseColumn" />  
 			from goods
-			<where>
+			<trim prefix="where" prefixOverrides="and">
 				<if test="venId != null">
-					VEN_ID = #{venId} 
+					and VEN_ID = #{venId} 
 				</if>
-			</where>
+				<if test="goodsNo != null">
+					and GOODS_NO = #{goodsNo}
+				</if>
+			</trim>
 			order by goods_no desc))
 			
 	<where>
@@ -82,10 +85,10 @@ from(select rownum rn, cart_no, goods_no, mem_id, ven_id, goods_name, goods_pric
 	from(  select cart_no, goods_no, mem_id, ven_id, goods_name, goods_price, goods_image, cart_qty, cart_price from cart where mem_id = #{memId} order by goods_no desc))
 </select>
 
-<update id="qtyDown" parameterType="long">
+<update id="qtyDown" parameterType="app.user.course.domain.CartDTO">
 	update cart
 	set cart_qty = cart_qty - 1, cart_price = (cart_qty - 1) * goods_price
-	where mem_id = #{memId}
+	where mem_id = #{memId} AND goods_no = #{goodsNo}
 </update>
 
 <insert id="goodsOrder" parameterType="app.user.course.domain.OrderDTO">
@@ -126,6 +129,7 @@ from(select rownum rn, ORDER_NO, MEM_ID, VEN_ID, ORDER_ADDR, ORDER_MSG, GOODS_NO
 <select id="orderCount" resultType="int">
 		select count(*) from orders
 </select>
+
 </mapper>
 
 

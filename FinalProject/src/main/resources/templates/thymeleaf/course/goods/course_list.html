@@ -45,7 +45,7 @@
 							</div>
 						</div>
 						<div class="product-desc">
-							<a th:href="@{goodsView(id=${course.venId})}"><h3><div class="product-title" th:text="${course.goodsName}"></div></h3></a>
+							<a th:href="@{goodsView(id=${course.venId},goodsNo=${course.goodsNo})}"><h3><div class="product-title" th:text="${course.goodsName}"></div></h3></a>
 							<div class="product-price" th:text="${course.goodsPrice}" ></div>
 						</div>
 					</div>

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import app.admin.course.command.PartnerCommand;
 import app.user.course.command.OrderCommand;
 import app.user.course.service.CartAddService;
 import app.user.course.service.CartListService;
@@ -41,8 +40,8 @@ public class CourseGoodsController {
 	}	
 
 	@RequestMapping(value = "goodsView", method = RequestMethod.GET)
-	public String goodsView(@RequestParam(value="id") String venId, Model model)  throws Exception{
-		courseDetailService.courseDetail(venId, model);
+	public String goodsView(@RequestParam(value="id") String venId, @RequestParam(value = "goodsNo") String goodsNo,Model model)  throws Exception{
+		courseDetailService.courseDetail(venId, model,goodsNo);
 		return "thymeleaf/course/goods/course_view";
 	}
 	
@@ -54,9 +53,10 @@ public class CourseGoodsController {
 	}
 	
 	@RequestMapping("cartQtyDown")
-	public String cartQtyDown(HttpSession session)  throws Exception{
-		cartListService.cartQtyDown(session);
-		return "redirect:/course/goods/cart";
+	public String cartQtyDown(@RequestParam(value = "goodsNo")String goodsNo,HttpSession session,Model model)  throws Exception{
+		cartListService.cartQtyDown(goodsNo,session);
+		cartListService.cartList(session, model);
+		return "thymeleaf/course/goods/course_cart";
 	}
 	
 	@RequestMapping(value = "order", method = RequestMethod.GET)

@@ -14,10 +14,10 @@ public class CourseDetailService {
 	@Autowired
 	CourseMapper courseMapper;
 
-	public void courseDetail(String venId, Model model) throws Exception{
+	public void courseDetail(String venId, Model model, String goodsNo) throws Exception{
 		CourseDTO course = new CourseDTO();
 		
-	
+		course.setGoodsNo(goodsNo);
 	 	course.setVenId(venId);
 	 	course = courseMapper.selectCourse(course).get(0);
 	 	String imgs = course.getGoodsImage();

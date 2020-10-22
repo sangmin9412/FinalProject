@@ -46,11 +46,15 @@ public class CartListService {
 	      
 	}
 
-	public void cartQtyDown(HttpSession session) throws Exception{
+	public void cartQtyDown(String goodsNo,HttpSession session) throws Exception{
 		  AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		  String userId = authInfo.getId();
-		
-		  courseMapper.qtyDown(userId);
+		  CartDTO cartDTO=new CartDTO();
+		  cartDTO.setMemId(userId);
+		  cartDTO.setGoodsNo(goodsNo);
+		  System.out.println(cartDTO.getMemId());
+		  System.out.println(cartDTO.getGoodsNo());
+		  courseMapper.qtyDown(cartDTO);
 		
 	}
 	
