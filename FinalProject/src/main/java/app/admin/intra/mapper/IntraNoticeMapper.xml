@@ -35,6 +35,11 @@
 	 <select id="commuteCount" resultType="int">
 		select count(*) from COMMUTE
 	</select>
+	<update id="readCount" parameterType = "int">
+	update NOTICE
+		set not_count = not_count + 1
+		where not_no = #{notNo}
+	</update>
     
   
   	<resultMap type="app.admin.intra.domain.IntraNoticeDTO" id="aaa">
