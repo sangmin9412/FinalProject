@@ -11,7 +11,44 @@
 	
 	<!-- 페이지 js -->
 	<th:block layout:fragment="js">
-		<script></script>
+		<script type="text/javascript"
+		src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+		
+		<script>
+		$("#pay").click(function() {
+
+			var IMP = window.IMP; // 생략가능
+			IMP.init('imp41979243'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+
+			IMP.request_pay({
+				pg: 'kakao', 
+				pay_method: 'card',
+				merchant_uid : 'merchant_' + new Date().getTime(),
+				name : '데이트코스 상품',
+				amount : '[[${sumTotalPrice}]]',
+				buyer_email : '[[${memEmail}]]',
+				buyer_name : '[[${memName}]]',
+				buyer_tel : '[[${memTel}]]',
+				buyer_addr : '[[${memAddr}]]',
+				buyer_postcode : '123-456',
+			}, function(rsp) {
+				if (rsp.success) {
+					var msg = '결제가 완료되었습니다.';
+					msg += '고유ID : ' + rsp.imp_uid;
+					msg += '상점 거래ID : ' + rsp.merchant_uid;
+					msg += '결제 금액 : ' + rsp.paid_amount;
+					msg += '카드 승인번호 : ' + rsp.apply_num;
+					document.getElementById('payFrm').submit();
+
+				} else {
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+				}
+				alert(msg);
+			});
+		});
+		
+		</script>
 	</th:block>
 </head>
 
@@ -35,7 +72,7 @@
 					<div class="col-md-12">
 						<h3 class="">배송 정보 입력</h3>
 
-						<form id="shipping-form" name="shipping-form" class="nobottommargin" th:action="@{/course/goods/orderOk}" method="post" th:object="${orderCommand}">
+						<form id="payFrm" name="shipping-form" class="nobottommargin" th:action="@{/course/goods/orderOk}" method="post" th:object="${orderCommand}">
 
 
 							<div class="col_full">
@@ -60,7 +97,7 @@
 								<textarea class="sm-form-control" id="orderMsg" name="orderMsg" rows="6" cols="30"></textarea>
 							</div>
 							
-                            <button type="submit" class="button button-3d fright">Place Order</button>
+                            <button type="button" id="pay" class="button button-3d fright">Place Order</button>
                            
 						</form>
 					</div>
@@ -93,7 +130,7 @@
 										</td>
 
 										<td class="cart-product-subtotal">
-											<span class="amount" th:text="${cartList.cartPrice}"></span>
+											<span id="price" class="amount" th:text="${cartList.cartPrice}"></span>
 										</td>
 									</tr>
 									<!--
@@ -179,7 +216,7 @@
 							</table>
 
 						</div>
-						<div class="accordion clearfix">
+						<!-- <div class="accordion clearfix">
 							<div class="acctitle"><i class="acc-closed icon-ok-circle"></i><i class="acc-open icon-remove-circle"></i>가상 계좌 입금</div>
 							<div class="acc_content clearfix">신한은행 120-3584-562336 (오후 3시 기준 입금 확인 처리)</div>
 
@@ -225,7 +262,7 @@
 						</div>
 							</div>
 
-						</div>
+						</div> -->
 						
 						<!-- <a th:href="orderOk" class="button button-3d fright">Place Order</a> -->
 					</div>

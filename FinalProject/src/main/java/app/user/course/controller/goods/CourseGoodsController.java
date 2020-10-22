@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import app.user.course.command.OrderCommand;
 import app.user.course.service.CartAddService;
 import app.user.course.service.CartListService;
+import app.user.course.service.CartRemoveService;
 import app.user.course.service.CourseDetailService;
 import app.user.course.service.OrderAddService;
 import app.user.course.service.UserCourseListService;
@@ -32,6 +33,8 @@ public class CourseGoodsController {
     CartListService cartListService;
     @Autowired
     OrderAddService orderAddService;
+    @Autowired
+    CartRemoveService cartRemoveService;
     
 	@RequestMapping("goodsList")
 	public String goodsList(@RequestParam(value = "page" , defaultValue = "1")Integer page, @RequestParam(value="type") String type, Model model) throws Exception{
@@ -70,6 +73,12 @@ public class CourseGoodsController {
 		cartListService.cartList(session, model);
 		orderAddService.orderAdd(orderCommand, session, model);
 		return "thymeleaf/course/goods/order_ok";
+	}
+	@RequestMapping("cartRemove")
+	public String cartRemove(@RequestParam(value = "cartNo")Long cartNo, @RequestParam(value = "goodsNo") String goodsNo, HttpSession session, Model model) throws Exception {
+		cartRemoveService.execute(cartNo,goodsNo);
+		cartListService.cartList(session, model);
+		return "thymeleaf/course/goods/course_cart";
 	}
 }
 

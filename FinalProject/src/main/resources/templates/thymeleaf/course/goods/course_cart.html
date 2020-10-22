@@ -58,7 +58,7 @@
 							</thead>
 							<tbody>
 								<tr class="cart_item" th:each="cartList:${cartList}">
-									<td class="cart-product-remove"><a href="#" class="remove"
+									<td class="cart-product-remove"><a th:href="@{cartRemove(cartNo=${cartList.cartNo},goodsNo=${cartList.goodsNo})}" class="remove"
 										title="Remove this item"><i class="icon-trash2"></i></a></td>
 
 									<td class="cart-product-thumbnail"><a href="#"><img

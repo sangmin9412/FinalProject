@@ -129,6 +129,12 @@ from(select rownum rn, ORDER_NO, MEM_ID, VEN_ID, ORDER_ADDR, ORDER_MSG, GOODS_NO
 <select id="orderCount" resultType="int">
 		select count(*) from orders
 </select>
+<delete id="cartGoodsDel" parameterType="app.user.course.domain.CartDTO">
+	DELETE FROM CART
+	WHERE CART_NO=#{cartNo} and GOODS_NO=#{goodsNo}
+
+</delete>
+
 
 </mapper>
 
