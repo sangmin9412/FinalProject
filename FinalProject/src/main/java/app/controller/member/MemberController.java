@@ -52,7 +52,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping("login")
-	public String login() {
+	public String login(
+				HttpServletRequest request,
+				Model model
+			) {
+		String path = "/";
+		if (request.getHeader("referer") != null) {
+			path = request.getHeader("referer");
+		}
+		model.addAttribute("path", path);
 		return "thymeleaf/common/login";
 	}
 	

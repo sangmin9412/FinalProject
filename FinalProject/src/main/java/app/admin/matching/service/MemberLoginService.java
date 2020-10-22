@@ -43,6 +43,7 @@ public class MemberLoginService {
 				System.out.println(authInfo.getId());
 				authInfo.setPw(memberDTO.getMemPass());
 				System.out.println(authInfo.getPw());
+				authInfo.setCondition("user");
 				session.setAttribute("authInfo", authInfo);
 				location="redirect:/";
 				

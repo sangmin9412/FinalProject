@@ -64,7 +64,7 @@
 
 					<div class="well well-lg nobottommargin">
 						<form id="login-form" name="login-form" class="nobottommargin" th:action="@{/login}" method="post" th:object="${memberLoginCommand}">
-
+							<input type="hidden" name="path" th:value="${path}" />
 							<h3>로그인</h3>
 
 							<div class="col_full">

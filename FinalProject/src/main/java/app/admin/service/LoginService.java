@@ -50,7 +50,8 @@ public class LoginService {
 							empDTO.getEmpId(), 
 							empDTO.getEmpEmail(), 
 							empDTO.getEmpName(), 
-							empDTO.getEmpPass()
+							empDTO.getEmpPass(),
+							"admin"
 						);
 				session.setAttribute("authInfo", authInfo);
 				

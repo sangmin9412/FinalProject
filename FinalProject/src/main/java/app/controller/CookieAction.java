@@ -21,7 +21,7 @@ public class CookieAction {
 					request.setAttribute("isId", c.getValue());
 				}
 				if(c.getName().equals("autoLogin")) {
-					  AuthInfo authInfo = new AuthInfo(c.getValue(),null, null,null);
+					  AuthInfo authInfo = new AuthInfo(c.getValue(),null, null,null, null);
 					  session.setAttribute("authInfo",authInfo);
 				}
 			}
