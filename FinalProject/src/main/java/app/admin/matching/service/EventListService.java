@@ -21,14 +21,14 @@ public class EventListService {
 		int limit = 10;
 		int limitPage = 10;
 		
-		Long startRow = ((long)page -1 ) * 10 +1;
+		Long startRow = ((long)page -1 ) * limit +1;
 		Long endRow = startRow + limit -1;
 		StartEndPageDTO startEndPageDTO = 
 				new StartEndPageDTO(startRow,endRow);
 		List<EventDTO> list=eventMapper.selectEvent(startEndPageDTO);
-		int count=eventMapper.getEventCount();
+		int count = eventMapper.getEventCount();
 		model.addAttribute("eventList",list);
 		PageAction pageAction = new PageAction();
-		pageAction.page(model, count, limit, limitPage, page, "eventList?");
+		pageAction.page(model, count, limit, limitPage, page, "eventList");
 	}
 }
