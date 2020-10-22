@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       	layout:decorator="layout/sub">
+      	
 <head>
   	<title>User</title>
 	<!-- 페이지 css -->
@@ -13,8 +14,8 @@
 	<th:block layout:fragment="js">
 		<script></script>
 	</th:block>
-</head>
 
+ </head>
 <body>
 	<th:block layout:fragment="content" class="content">
    	<section id="page-title">
@@ -35,79 +36,23 @@
 				<!-- Shop
 				============================================= -->
 				<div id="shop" class="shop grid-container clearfix" data-layout="fitRows">
-
-					<div class="product clearfix">
+				   <div class="product clearfix" th:each="course : ${goods_lists}" >
 						<div class="product-image">
-							<a href="goodsView"><img src="https://via.placeholder.com/270" alt="goods image"></a>
+							<img width="150" height="150" th:src="@{'/static/upload/course/'+${course.goodsImage}}" alt="goods image">
 							<div class="product-overlay">
-								<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> 장바구니</span></a>
+								<a th:href="@{cart(goodsNo=${course.goodsNo})}" class="add-to-cart"><i class="icon-shopping-cart"></i><span> 장바구니</span></a>
 								<a href="javascript:alert('준비중 입니다.')" class="item-quick-view"><i class="icon-zoom-in2"></i><span> 미리보기</span></a>
 							</div>
 						</div>
 						<div class="product-desc">
-							<div class="product-title"><h3>상품이름이 들어갑니다.</h3></div>
-							<div class="product-price">10,000원</div>
+							<a th:href="@{goodsView(id=${course.venId},goodsNo=${course.goodsNo})}"><h3><div class="product-title" th:text="${course.goodsName}"></div></h3></a>
+							<div class="product-price" th:text="${course.goodsPrice}" ></div>
 						</div>
 					</div>
 
-					<div class="product clearfix">
-						<div class="product-image">
-							<a href="goodsView"><img src="https://via.placeholder.com/270" alt="goods image"></a>
-							<div class="product-overlay">
-								<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> 장바구니</span></a>
-								<a href="javascript:alert('준비중 입니다.')" class="item-quick-view"><i class="icon-zoom-in2"></i><span> 미리보기</span></a>
-							</div>
-						</div>
-						<div class="product-desc">
-							<div class="product-title"><h3>상품이름이 들어갑니다.</h3></div>
-							<div class="product-price">10,000원</div>
-						</div>
-					</div>
-					
-					<div class="product clearfix">
-						<div class="product-image">
-							<a href="goodsView"><img src="https://via.placeholder.com/270" alt="goods image"></a>
-							<div class="product-overlay">
-								<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> 장바구니</span></a>
-								<a href="javascript:alert('준비중 입니다.')" class="item-quick-view"><i class="icon-zoom-in2"></i><span> 미리보기</span></a>
-							</div>
-						</div>
-						<div class="product-desc">
-							<div class="product-title"><h3>상품이름이 들어갑니다.</h3></div>
-							<div class="product-price">10,000원</div>
-						</div>
-					</div>
-					
-					<div class="product clearfix">
-						<div class="product-image">
-							<a href="goodsView"><img src="https://via.placeholder.com/270" alt="goods image"></a>
-							<div class="product-overlay">
-								<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> 장바구니</span></a>
-								<a href="javascript:alert('준비중 입니다.')" class="item-quick-view"><i class="icon-zoom-in2"></i><span> 미리보기</span></a>
-							</div>
-						</div>
-						<div class="product-desc">
-							<div class="product-title"><h3>상품이름이 들어갑니다.</h3></div>
-							<div class="product-price">10,000원</div>
-						</div>
-					</div>
-					
-					<div class="product clearfix">
-						<div class="product-image">
-							<a href="goodsView"><img src="https://via.placeholder.com/270" alt="goods image"></a>
-							<div class="product-overlay">
-								<a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i><span> 장바구니</span></a>
-								<a href="javascript:alert('준비중 입니다.')" class="item-quick-view"><i class="icon-zoom-in2"></i><span> 미리보기</span></a>
-							</div>
-						</div>
-						<div class="product-desc">
-							<div class="product-title"><h3>상품이름이 들어갑니다.</h3></div>
-							<div class="product-price">10,000원</div>
-						</div>
-					</div>
 
 				</div><!-- #shop end -->
-				
+				<!-- 개발이 완료되면 아래 인크루드 사용하세요 
 				<div class="center">
 					<ul class="pagination">
 					  <li><a href="#">«</a></li>
@@ -118,10 +63,10 @@
 					  <li><a href="#">5</a></li>
 					  <li><a href="#">»</a></li>
 					</ul>
+					-->
 					
-					<!-- 개발이 완료되면 아래 인크루드 사용하세요 
 					<th:block th:replace="fragments/includePage :: pagingFragment"></th:block>
-					 -->
+					 
 				 </div>
 
 			</div>

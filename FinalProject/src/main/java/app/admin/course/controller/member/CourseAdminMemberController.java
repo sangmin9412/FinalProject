@@ -67,7 +67,6 @@ public class CourseAdminMemberController {
 		return "redirect:/admin/course/member/memberList";
 	}
 	
-	
 	@RequestMapping("memberModify")
 	public String memberModify() {
 		return "thymeleaf/admin/course/member/member_modify";

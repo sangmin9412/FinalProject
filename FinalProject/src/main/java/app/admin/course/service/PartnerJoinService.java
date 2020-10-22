@@ -42,6 +42,7 @@ public class PartnerJoinService {
 		partnerDTO.setVenCdate(venCdate);
 		partnerDTO.setVenAcnt(partnerCommand.getVenAcnt());
 		partnerDTO.setVenAcntNo(partnerCommand.getVenAcntNo());
+		partnerDTO.setVenOk(partnerCommand.getVenOk());
 		try {
 			result = partnerMapper.insertPartner(partnerDTO);
 		} catch (Exception e) {
