@@ -20,6 +20,7 @@ import app.command.ChangeIdCommand;
 import app.command.ChangePwCommand;
 import app.command.LoginCommand;
 import app.controller.CookieAction;
+import app.controller.LoginPrevUrl;
 
 @Controller
 @RequestMapping("/admin/matching")
@@ -29,6 +30,8 @@ public class MatchingAdminMainController {@Autowired
 	LoginService loginService;
 	@Autowired
 	IdPwModifyService idPwModifyService;
+	@Autowired
+	LoginPrevUrl loginPrevUrl;
 	
 	@ModelAttribute
 	LoginCommand setloginCommand() {
@@ -53,6 +56,7 @@ public class MatchingAdminMainController {@Autowired
 				HttpServletRequest request,
 				Model model
 			) {
+		loginPrevUrl.execute(request, model, "/admin/matching/");
 		cookieAction.execute(request);
 		return "thymeleaf/admin/common/login";
 	}

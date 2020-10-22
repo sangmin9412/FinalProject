@@ -34,6 +34,7 @@
 		                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
 		                  </div>
 		                  <form th:action="login" method="post" th:object="${loginCommand}">
+		                  	<input type="hidden" name="path" th:value="${path}" />
 		                    <div class="form-group">
 		                      <input type="text" name="userId" class="form-control form-control-user" th:if="${isId != null}" th:value="${isId}" placeholder="ID" maxlength="12">
 		                      <input type="text" name="userId" class="form-control form-control-user" th:if="${isId == null}" th:field="*{userId}" placeholder="ID" maxlength="12">

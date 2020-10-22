@@ -23,6 +23,7 @@ import app.admin.matching.service.MemberLoginService;
 import app.admin.service.IdPwModifyService;
 import app.command.ChangeIdCommand;
 import app.command.ChangePwCommand;
+import app.controller.LoginPrevUrl;
 
 @Controller
 @RequestMapping("/")
@@ -33,6 +34,8 @@ public class MemberController {
 	MemberJoinService memberJoinService;
 	@Autowired
 	IdPwModifyService idPwModifyService;
+	@Autowired
+	LoginPrevUrl loginPrevUrl;
 	
 	@ModelAttribute
 	MemberCommand setMemberCommand() {
@@ -56,16 +59,13 @@ public class MemberController {
 				HttpServletRequest request,
 				Model model
 			) {
-		String path = "/";
-		if (request.getHeader("referer") != null) {
-			path = request.getHeader("referer");
-		}
-		model.addAttribute("path", path);
+		loginPrevUrl.execute(request, model, "/");
 		return "thymeleaf/common/login";
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login1(@Validated MemberLoginCommand memberLoginCommand,
+	public String login1(
+			@Validated MemberLoginCommand memberLoginCommand,
 			BindingResult result, HttpSession session,
 			HttpServletResponse response, Model model) throws Exception {
 		if (result.hasErrors()) {

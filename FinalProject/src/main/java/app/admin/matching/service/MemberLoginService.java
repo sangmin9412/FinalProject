@@ -45,7 +45,7 @@ public class MemberLoginService {
 				System.out.println(authInfo.getPw());
 				authInfo.setCondition("user");
 				session.setAttribute("authInfo", authInfo);
-				location="redirect:/";
+				location="redirect:" + memberLoginCommand.getPath();
 				
 			}else {
 				model.addAttribute("valid_pw","비밀번호가 틀립니다.");

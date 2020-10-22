@@ -76,7 +76,7 @@ public class LoginService {
 					response.addCookie(cookie);
 				}
 				
-				return "redirect:" + url;
+				return "redirect:" + loginCommand.getPath();
 			} else {
 				System.out.println("비밀번호가 틀렸습니다!");
 				model.addAttribute("valid_Pw", "비밀번호가 틀렸습니다.");

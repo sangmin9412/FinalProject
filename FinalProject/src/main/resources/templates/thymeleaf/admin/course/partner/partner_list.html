@@ -42,8 +42,8 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="partner : ${p_lists}" >
-											<td> </td>
+										<tr th:each="partner, i : ${p_lists}" >
+											<td>[[${ ((page - 1) * limit) + i.count }]]</td>
 											<td>
 												<a th:href="@{partnerView(id=${partner.venId})}" th:text="${partner.venId}"></a>
 											</td>
