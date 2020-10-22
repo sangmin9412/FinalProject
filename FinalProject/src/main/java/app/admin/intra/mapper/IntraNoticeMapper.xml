@@ -30,8 +30,16 @@
 	 )
   </insert>
   <select id="noticeCount" resultType="int">
+		select count(*) from NOTICE
+	</select>
+	 <select id="commuteCount" resultType="int">
 		select count(*) from COMMUTE
 	</select>
+	<update id="readCount" parameterType = "int">
+	update NOTICE
+		set not_count = not_count + 1
+		where not_no = #{notNo}
+	</update>
     
   
   	<resultMap type="app.admin.intra.domain.IntraNoticeDTO" id="aaa">
@@ -46,9 +54,18 @@
 		<result column="NOT_SIZE" jdbcType="VARCHAR" property="notSize" />
 	</resultMap>
 	
-	<select id="viewNotice" resultMap="aaa">
-		select <include refid="baseColumns" />
+	<select id="viewNotice" parameterType="app.domain.StartEndPageDTO" resultMap="aaa">
+		select *
+		from(
+		select rownum rn, <include refid="baseColumns" />
+		from (
+		select * 
 		from notice
+		order by NOT_DATE
+		)
+		)
+		where rn between #{startPage}
+		and #{endPage}
 	</select>
 	
 	<select id="detailNotice" parameterType="int" resultMap="aaa">

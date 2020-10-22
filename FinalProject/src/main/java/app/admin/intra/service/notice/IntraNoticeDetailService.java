@@ -18,6 +18,7 @@ public class IntraNoticeDetailService {
 	public void intraNoticeDetailService(Integer notNo,Model model )throws Exception {
 		
 		IntraNoticeDTO dto = intraNoticeMapper.detailNotice(notNo);
+		intraNoticeMapper.readCount(notNo);
 		
 		model.addAttribute("intraNoticeCommand", dto);
 	}

@@ -14,7 +14,10 @@ public interface IntraCommuteMapper {
 	public int insertCommute(IntraCommuteDTO dto) throws Exception;
 	public int insertWorkOut(IntraCommuteDTO dto) throws Exception;
 	public List<IntraCommuteDTO> commuteList()throws Exception;
+	public List<IntraCommuteDTO> commuteLists(String comDate);
 	public Integer commuteCount() throws Exception;
+	
+	
 
 
 	

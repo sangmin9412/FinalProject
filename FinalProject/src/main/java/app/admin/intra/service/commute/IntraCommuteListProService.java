@@ -12,19 +12,22 @@ import app.admin.intra.mapper.IntraCommuteMapper;
 
 @Service
 @Component
-public class IntraCommuteListServie {
-	
+public class IntraCommuteListProService {
+
 	@Autowired
 	IntraCommuteMapper intraCommuteMapper;
-
-	public void listService(Model model)throws Exception{
-		 
-		List<IntraCommuteDTO> lists = intraCommuteMapper.commuteList();
-		
-		int count = intraCommuteMapper.commuteCount();
-
-		model.addAttribute("commuteList", lists);
-		model.addAttribute("count", count);
 	
+public void intraCommuteListProService(String comDate,Model model)throws Exception {
+		
+	  List<IntraCommuteDTO> month = intraCommuteMapper.commuteLists(comDate);
+	  System.out.println(comDate);
+	  model.addAttribute("commuteList", month);
+		
+		
 	}
+	
 }
+
+	
+	
+
