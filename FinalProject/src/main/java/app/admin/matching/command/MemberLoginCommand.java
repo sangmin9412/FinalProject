@@ -9,4 +9,5 @@ public class MemberLoginCommand {
 	@NotBlank
 	String userId;
 	String userPw;
+	String path;
 }

@@ -13,5 +13,6 @@ public class LoginCommand {
 	String userPw;
 	Boolean idStore;
 	Boolean autoLogin;
+	String path;
 	
 }

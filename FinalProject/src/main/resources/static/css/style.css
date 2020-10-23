@@ -5879,6 +5879,12 @@ p.wp-caption-text {
 	width: 100%;
 	height: auto;
 	overflow: hidden;
+	
+}
+
+.shop .product-image {
+	padding-bottom: 100%;
+	background: #f1f1f1;
 }
 
 .product-image > a,
@@ -5887,6 +5893,14 @@ p.wp-caption-text {
 	display: block;
 	width: 100%;
 	height: 100%;
+}
+
+.shop .product-image img {
+	position: absolute;
+	left: 50%; top: 50%;
+	transform: translate3d(-50%, -50%, 0);
+	max-width:100%;
+	height: auto;
 }
 
 body:not(.device-touch):not(.device-xs):not(.device-xxs) .product-image > a {

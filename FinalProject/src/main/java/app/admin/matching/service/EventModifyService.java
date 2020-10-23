@@ -27,7 +27,7 @@ public class EventModifyService {
 	public Integer execute(String eveNo, HttpSession session, EventCommand eventCommand) throws Exception {
 		String venId = ((AuthInfo) session.getAttribute("authInfo")).getId();
 		EventDTO eventDTO = new EventDTO();
-		eventDTO.setEveSubject(eventCommand.getEveSubject());
+		eventDTO.setEveSubject(eventCommand.getEveSubject().replace("\r\n", "<br>"));
 		eventDTO.setEveContent(eventCommand.getEveContent());
 		/*
 		 * Timestamp eveDate=Timestamp.valueOf(eventCommand.getEveDate());

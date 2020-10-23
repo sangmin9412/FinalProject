@@ -20,6 +20,7 @@ public class CourseDetailService {
 		course.setGoodsNo(goodsNo);
 	 	course.setVenId(venId);
 	 	course = courseMapper.selectCourse(course).get(0);
+//	 	course.setGoodsDet(course.getGoodsDet().replace("\r\n", "<br>"));
 	 	String imgs = course.getGoodsImage();
 	 	course.setGoodsImage(imgs);
 		model.addAttribute("courseCommand", course);			

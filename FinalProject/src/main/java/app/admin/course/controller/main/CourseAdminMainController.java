@@ -20,6 +20,7 @@ import app.command.ChangeIdCommand;
 import app.command.ChangePwCommand;
 import app.command.LoginCommand;
 import app.controller.CookieAction;
+import app.controller.LoginPrevUrl;
 
 @Controller
 @RequestMapping("/admin/course")
@@ -30,6 +31,8 @@ public class CourseAdminMainController {
 	LoginService loginService;
 	@Autowired
 	IdPwModifyService idPwModifyService;
+	@Autowired
+	LoginPrevUrl loginPrevUrl;
 	
 	@ModelAttribute
 	LoginCommand setloginCommand() {
@@ -55,6 +58,7 @@ public class CourseAdminMainController {
 				Model model
 			) {
 		cookieAction.execute(request);
+		loginPrevUrl.execute(request, model, "/admin/course/");
 		return "thymeleaf/admin/common/login";
 	}
 	
