@@ -58,7 +58,7 @@
 									<tbody>
 										<th:block th:if="${noticeList != null}">
 										<tr th:each="dto ,i: ${noticeList}">
-											<th>[[${i.count}]]</th>
+											<th>[[${ ((page - 1) * limit) + i.count }]]</th>
 											<td>
 												<a th:href="@{noticeView(num=${dto.notNo})}">[[${dto.notSub}]]</a>
 											</td>

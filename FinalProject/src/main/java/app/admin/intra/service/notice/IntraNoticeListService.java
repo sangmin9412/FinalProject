@@ -32,7 +32,6 @@ public class IntraNoticeListService {
 		List<IntraNoticeDTO> lists = intraNoticeMapper.viewNotice(dto);
 		int count = intraNoticeMapper.noticeCount();
 		
-		
 	   model.addAttribute("noticeList", lists);
 	   model.addAttribute("count", count);
 		
